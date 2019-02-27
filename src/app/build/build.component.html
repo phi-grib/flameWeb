@@ -1,12 +1,12 @@
 
 <div class="row">
-  <button type="button" class="btn btn-outline-success">New Model</button> 
+  <button type="button" class="btn btn-outline-success" (click)="newModel()">New Model</button> 
 </div>
 <div class ="row">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">State</th>
         <th scope="col">Name</th>
         <th scope="col">Version</th>
         <th scope="col">Molecules</th>
@@ -18,31 +18,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Caco Model</td>
-        <td>dev</td>
+      <tr *ngFor="let info of models" (click)="openModel()">
+        <th scope="row">{{info.trained}}</th>
+        <td>{{info.name}}</td>
+        <td>{{info.version}}</td>
         <td>1500</td>
-        <td>Quantitative</td>
-        <td>Random Forest</td>
-        <td>No</td>
-        <td>TODO</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Caco Model</td>
-        <td>v2</td>
-        <td>1500</td>
-        <td>Qualitative</td>
-        <td>SVM</td>
-        <td>No</td>
-        <td>TODO</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Model_1</td>
-        <td>dev</td>
-        <td>988</td>
         <td>Quantitative</td>
         <td>Random Forest</td>
         <td>No</td>
