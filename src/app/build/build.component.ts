@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewContainerRef} from '@angular/core';
 import { BuildService } from './build.service';
+import {ModalDialogService} from 'ngx-modal-dialog'
+import {NewmodelComponent} from "../newmodel/newmodel.component"
+
 
 @Component({
   selector: 'app-build',
@@ -8,7 +11,7 @@ import { BuildService } from './build.service';
 })
 export class BuildComponent implements OnInit {
 
-  constructor(private service: BuildService) { }
+  constructor(private service: BuildService, private modalService: ModalDialogService, private viewRef: ViewContainerRef) { }
 
   models:Array<any>
   ngOnInit() {
@@ -49,12 +52,14 @@ export class BuildComponent implements OnInit {
     }
 
     );
-    console.log(this.models)
   }
   openModel(){
     alert("Open model windows to VIEW model")
   }
   newModel(){
-    alert("Open model windows to NEW model")
+    this.modalService.openDialog(this.viewRef, {
+      title: 'Some modal title',
+      childComponent: NewmodelComponent
+    });
   }
 }
