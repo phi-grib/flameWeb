@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewContainerRef} from '@angular/core';
 import { BuildService } from './build.service';
-import {ModalDialogService} from 'ngx-modal-dialog'
-import {NewmodelComponent} from "../newmodel/newmodel.component"
+import {ModalDialogService, IModalDialogSettings} from 'ngx-modal-dialog';
+import {NewmodelComponent} from '../newmodel/newmodel.component';
 
 
 @Component({
@@ -13,53 +13,56 @@ export class BuildComponent implements OnInit {
 
   constructor(private service: BuildService, private modalService: ModalDialogService, private viewRef: ViewContainerRef) { }
 
-  models:Array<any>
+  models: Array<any>;
+  modelSettings: IModalDialogSettings;
+
   ngOnInit() {
 
-    this.getModels()
-    this.models=[]
+    this.getModels();
+    this.models = [];
 
   }
 
-  getModels(){
-
+  getModels() {
     this.service.getAllModels().subscribe(
       result => {
         result = JSON.parse(result);
-        for (let info of result){
-          
-            for (let node of info.nodes){
-              
+        for (const info of result) {
+            for (const node of info.nodes) {
               this.service.getModelInfo(info.text,node.text).subscribe(
-                result=>{
-                    let trained=false
-                    if (result){
-                      trained=true 
+                result2 => {
+                    let trained = false;
+                    if (result2) {
+                      trained = true;
                     }
-                   
-                    this.models.push({name:info.text,version:node.text,trained:trained})
+                    this.models.push({name: info.text, version: node.text, trained: trained})
                 },
-                error =>{
-                  alert("Error getALL each model")
+                error => {
+                  alert('Error getALL each model');
                 }
               );
             }
         }
-        
     },
     error => {
-        alert("Error getALL models")
+        alert('Error getALL models');
     }
 
     );
   }
-  openModel(){
-    alert("Open model windows to VIEW model")
+
+  openModel() {
+    alert('Open model windows to VIEW model');
   }
-  newModel(){
+
+  newModel() {
     this.modalService.openDialog(this.viewRef, {
       title: 'Some modal title',
-      childComponent: NewmodelComponent
+      childComponent: NewmodelComponent,
+      settings: {
+        closeButtonClass: 'close mdi mdi-close',
+        modalDialogClass: 'modal-dialog modal-dialog-centered modal-lg'
+      },
     });
   }
 }

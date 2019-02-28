@@ -10,15 +10,14 @@ import {NewmodelService} from './newmodel.service'
 export class NewmodelComponent implements OnInit, IModalDialog {
 
   actionButtons: IModalDialogButton[];
- 
+
   constructor(private service: NewmodelService) {
     this.actionButtons = [
       { text: 'Close' }, // no special processing here
       { text: 'I will always close', onAction: () => true },
-      { text: 'I never close', onAction: () => false }
+      { text: 'Train', onAction: () => false }
     ];
   }
- 
   dialogInit(reference: ComponentRef<IModalDialog>, options: Partial<IModalDialogOptions<any>>) {
     // no processing needed
   }
