@@ -8,6 +8,8 @@ import { BuildComponent } from './build/build.component';
 import { PredictComponent } from './predict/predict.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { ModalDialogModule } from 'ngx-modal-dialog';
+import { NewmodelComponent } from './newmodel/newmodel.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,16 @@ import { TabsComponent } from './tabs/tabs.component';
     BuildComponent,
     PredictComponent,
     TrainingSeriesComponent,
-    TabsComponent
+    TabsComponent,
+    NewmodelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ModalDialogModule.forRoot()
   ],
+  entryComponents: [NewmodelComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
