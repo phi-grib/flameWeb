@@ -51,8 +51,14 @@ export class BuildComponent implements OnInit {
     );
   }
 
-  openModel() {
-    alert('Open model windows to VIEW model');
+  viewModel() {
+    alert('VIEW model validation');
+  }
+  createVersion(){
+    alert("Create new version")
+  }
+  deleteModel(){
+    alert("DELETE model")
   }
 
   newModel() {

@@ -6,7 +6,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">State</th>
+        <th scope="col"></th>
         <th scope="col">Name</th>
         <th scope="col">Version</th>
         <th scope="col">Molecules</th>
@@ -18,8 +18,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let info of models" (click)="openModel()">
-        <th scope="row">{{info.trained}}</th>
+      <tr *ngFor="let info of models">
+        <th scope="row">
+          <i class="fa fa-eye" aria-hidden="true" (click)="viewModel()"></i>
+          <i class="fa fa-code-fork" aria-hidden="true" (click)="createVersion()"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="deleteModel()"></i>
+        </th>
         <td>{{info.name}}</td>
         <td>{{info.version}}</td>
         <td>1500</td>
