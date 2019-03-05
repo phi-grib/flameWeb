@@ -8,17 +8,17 @@
 
 
 <div class="accordion">
-  <div class="card">
+  <div class="card" [ngClass]="{'disabledbutton':trainigseriesEnable}">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
           1- Training Serie
-        <button class="btn btn-link pt-0 pb-0 float-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link pt-0 pb-0 float-right" [ngClass]="{'collapsed':trainigseriesCollapsed}" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         </button>
       </h5>
       
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" >
+    <div #trainigseries id="collapseOne" class="collapse" aria-labelledby="headingOne" >
       <div class="card-body">
           <div class="input-group">
               <div class="input-group-prepend">
@@ -32,11 +32,11 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" [ngClass]="{'disabledbutton':modelEnable}">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
           2- Model
-        <button class="btn btn-link pt-0 pb-0 float-right collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link pt-0 pb-0 float-right" [ngClass]="{'collapsed':trainigseriesCollapsed}" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         </button>
       </h5>
     </div>
@@ -46,12 +46,11 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card" [ngClass]="{'disabledbutton':validationEnable}">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
           3 - Model Validation
-        <button class="btn btn-link pt-0 pb-0 float-right collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          
+        <button class="btn btn-link pt-0 pb-0 float-right" [ngClass]="{'collapsed':trainigseriesCollapsed}" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         </button>
       </h5>
     </div>

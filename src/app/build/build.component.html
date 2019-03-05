@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row mb-3">
   <button type="button" class="btn btn-outline-success" (click)="newModel()">New Model</button> 
 </div>
 <div class ="row">
@@ -20,9 +20,9 @@
     <tbody>
       <tr *ngFor="let info of models">
         <th scope="row">
-          <i class="fa fa-eye" aria-hidden="true" (click)="viewModel()"></i>
-          <i class="fa fa-code-fork" aria-hidden="true" (click)="createVersion()"></i>
-          <i class="fa fa-trash" aria-hidden="true" (click)="deleteModel()"></i>
+          <i class="fa fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
+          <i class="fa fa-code-fork" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
         </th>
         <td>{{info.name}}</td>
         <td>{{info.version}}</td>
