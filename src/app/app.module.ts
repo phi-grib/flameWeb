@@ -10,6 +10,7 @@ import { TrainingSeriesComponent } from './training-series/training-series.compo
 import { TabsComponent } from './tabs/tabs.component';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { NewmodelComponent } from './newmodel/newmodel.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NewmodelComponent } from './newmodel/newmodel.component';
     PredictComponent,
     TrainingSeriesComponent,
     TabsComponent,
-    NewmodelComponent
+    NewmodelComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
