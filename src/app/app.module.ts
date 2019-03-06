@@ -13,6 +13,8 @@ import { NewmodelComponent } from './newmodel/newmodel.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
+import { Model } from './Model';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ValidationsComponent } from './validations/validations.component';
     NewmodelComponent,
     SidebarComponent,
     ParametersComponent,
-    ValidationsComponent
+    ValidationsComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ValidationsComponent } from './validations/validations.component';
     ModalDialogModule.forRoot()
   ],
   entryComponents: [NewmodelComponent],
-  providers: [],
+  providers: [Model],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

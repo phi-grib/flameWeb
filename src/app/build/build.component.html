@@ -1,34 +1,29 @@
 <div class ="row">
-  <table class="table table-striped">
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col"></th>
-        <th scope="col">Sate</th>
+        <!--<th scope="col"></th>-->
+        <th class="align-middle text-center" scope="col">Sate</th>
         <th scope="col">Name</th>
         <th scope="col">Version</th>
-        <th scope="col">Molecules</th>
+        <th scope="col">#Molecules</th>
+        <th scope="col">#Variables</th>
         <th scope="col">Type</th>
-        <th scope="col">Method</th>
-        <th scope="col">Conformal</th>
-        <th scope="col">Quality</th>
-
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let info of models">
-        <th scope="row">
+      <tr  *ngFor="let info of models" (click)= "selectModel(info.name, info.version)">
+        <!--<th scope="row">
           <i class="far fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
           <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
           <i class="far fa-trash-alt" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
-        </th>
-        <td><i class="fas fa-circle" style="color: #51cf66;" aria-hidden="true"></i></td>
+        </th>-->
+        <td class="align-middle text-center" ><i class="fas fa-circle"  [ngStyle]="{'color':info.trained ? '#51cf66' : 'red' }" aria-hidden="true"></i></td>
         <td>{{info.name}}</td>
         <td>{{info.version}}</td>
-        <td>1500</td>
-        <td>Quantitative</td>
-        <td>Random Forest</td>
-        <td>No</td>
-        <td>TODO</td>
+        <td>{{info.numMols}}</td>
+        <td>{{info.variables}}</td>
+        <td>{{info.type}}</td>
       </tr>
     </tbody>
   </table>

@@ -2,6 +2,7 @@ import { Component, OnInit , ViewContainerRef} from '@angular/core';
 import { BuildService } from './build.service';
 import {ModalDialogService, IModalDialogSettings} from 'ngx-modal-dialog';
 import {NewmodelComponent} from '../newmodel/newmodel.component';
+import { SelectorMatcher } from '@angular/compiler';
 
 
 @Component({
@@ -18,24 +19,65 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getModels();
+    this.getModelsInfo();
     this.models = [];
 
   }
 
-  getModels() {
+  getModelsInfo() {
+
+    this.service.getAll().subscribe(
+      result => {
+        result = JSON.parse(result);
+        console.log(result);
+        /*Models*/
+        for (const model of result) {
+          const modelName = model[0];
+          let version = '-';
+          let trained = false;
+          /*Models trained*/
+          if (model[1].length > 0) {
+            for (const versions of model[1]) {
+              trained =  true;
+              version = versions[0];
+              version = (version == '0') ? 'dev' : version;
+              const dict_info = {};
+              for ( const info of versions[1]) {
+                dict_info[info[0]] = info[2];
+              }
+              this.models.push({name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
+              variables: dict_info['nvarx'], type: dict_info['model']});
+            }
+          }
+          else {
+            this.models.push({name: modelName, version: version, trained: trained, numMols: '-',
+              variables: '-', type: '-'});
+          }
+        }
+      },
+      error => {
+        alert('Error getALL models');
+      }
+
+    );
+
+  }
+
+  /*getModels() {
     this.service.getAllModels().subscribe(
       result => {
         result = JSON.parse(result);
         for (const info of result) {
             for (const node of info.nodes) {
-              this.service.getModelInfo(info.text,node.text).subscribe(
+              this.service.getModelInfo(info.text, node.text).subscribe(
                 result2 => {
                     let trained = false;
                     if (result2) {
                       trained = true;
                     }
-                    this.models.push({name: info.text, version: node.text, trained: trained})
+                    result2 = JSON.parse(result2);
+                    console.log(result2);
+                    this.models.push({name: info.text, version: node.text, trained: trained});
                 },
                 error => {
                   alert('Error getALL each model');
@@ -49,16 +91,28 @@ export class BuildComponent implements OnInit {
     }
 
     );
-  }
+  }*/
 
-  viewModel() {
-    alert('VIEW model validation');
-  }
-  createVersion(){
-    alert("Create new version")
-  }
-  deleteModel(){
-    alert("DELETE model")
+  selectModel(name: string, version: string) {
+
+    if (version === '-' || version === 'dev') {
+      version = '0';
+    }
+    this.service.getModelInfo(name, version).subscribe(
+      result2 => {
+          let trained = false;
+          if (result2) {
+            trained = true;
+          }
+          result2 = JSON.parse(result2);
+          console.log(result2);
+          alert('Info');
+      },
+      error => {
+        alert('Error getALL each model');
+      }
+    );
+
   }
 
   /**
