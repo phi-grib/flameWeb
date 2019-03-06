@@ -11,6 +11,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { NewmodelComponent } from './newmodel/newmodel.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ParametersComponent } from './parameters/parameters.component';
+import { ValidationsComponent } from './validations/validations.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     TrainingSeriesComponent,
     TabsComponent,
     NewmodelComponent,
-    SidebarComponent
+    SidebarComponent,
+    ParametersComponent,
+    ValidationsComponent
   ],
   imports: [
     BrowserModule,

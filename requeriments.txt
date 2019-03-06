@@ -1,5 +1,7 @@
 npm i bootstrap-material-design
 npm i font-awesome
+npm install @fortawesome/fontawesome-free
 npm i bootstrap
 npm i ngx-modal-dialog
 npm install ngx-toastr --save
+

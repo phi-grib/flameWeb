@@ -45,4 +45,15 @@ export class BuildService {
     const url: string = environment.baseUrl + 'get_info_models';
     return this.http.get(url);
   }
+
+  /**
+   * @param modelname The model name to recieve parameters
+   * Version will be automatically set to 'dev'
+   */
+  getParameters(modelname: string): Observable<any> {
+    const url: string = environment.baseUrl + 'get_parameters';
+    let params = new HttpParams();
+    params = params.set('modelName', modelname);
+    return this.http.get(url, { params: params });
+  }
 }
