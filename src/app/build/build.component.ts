@@ -3,6 +3,7 @@ import { BuildService } from './build.service';
 import {ModalDialogService, IModalDialogSettings} from 'ngx-modal-dialog';
 import {NewmodelComponent} from '../newmodel/newmodel.component';
 import { SelectorMatcher } from '@angular/compiler';
+import {Model} from '../Model';
 
 
 @Component({
@@ -12,7 +13,10 @@ import { SelectorMatcher } from '@angular/compiler';
 })
 export class BuildComponent implements OnInit {
 
-  constructor(private service: BuildService, private modalService: ModalDialogService, private viewRef: ViewContainerRef) { }
+  constructor(private service: BuildService, 
+    private modalService: ModalDialogService,
+    private viewRef: ViewContainerRef,
+    public model: Model,) { }
 
   models: Array<any>;
   modelSettings: IModalDialogSettings;
@@ -98,20 +102,9 @@ export class BuildComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    this.service.getModelInfo(name, version).subscribe(
-      result2 => {
-          let trained = false;
-          if (result2) {
-            trained = true;
-          }
-          result2 = JSON.parse(result2);
-          console.log(result2);
-          alert('Info');
-      },
-      error => {
-        alert('Error getALL each model');
-      }
-    );
+    this.model.name = name;
+    this.model.version = version;
+
 
   }
 
