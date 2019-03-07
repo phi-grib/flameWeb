@@ -10,10 +10,9 @@
           </a>
           <a class="list-group-item list-group-item-action d-flex" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
               Training Series
-              <i *ngIf="this.model.name" class="justify-content-end fas fa-check fa-lg pt-2 ml-5" style="color: #51cf66;"></i>
           </a>
           <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">Parameters</a>
-          <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">Results</a>
+          <a class="list-group-item list-group-item-action disabled" [ngClass]="{'disabled':!model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">Results</a>
         </div> 
   </div>
   <hr class="my-4">

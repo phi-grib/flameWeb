@@ -12,6 +12,7 @@ export class Model {
   type: string = undefined; // Quantitative / Qualitative
   fileFields: any = []; // Headers of SDFile
   fileData: any = undefined;
+  trained: boolean = false; // Model is already trained
   /*
   Delta parameters, empty by default, fills on clicking the parameters tab.
   When you change anything on the formulary, automatically changes the value for that key

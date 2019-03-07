@@ -32,7 +32,6 @@ export class BuildComponent implements OnInit {
     this.service.getAll().subscribe(
       result => {
         result = JSON.parse(result);
-        console.log(result);
         /*Models*/
         for (const model of result) {
           const modelName = model[0];
@@ -54,10 +53,9 @@ export class BuildComponent implements OnInit {
                     && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
                     && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
 
-                      quality[info] = dict_info[info];
+                      quality[info] = dict_info[info].toFixed(3);
                 }
               }
-              console.log(quality); 
               this.models.push({name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
               variables: dict_info['nvarx'], type: dict_info['model'], quality: quality});
             }
@@ -76,15 +74,16 @@ export class BuildComponent implements OnInit {
 
   }
 
-  selectModel(name: string, version: string) {
+  selectModel(name: string, version: string, trained: boolean) {
 
     if (version === '-' || version === 'dev') {
       version = '0';
     }
     this.model.name = name;
     this.model.version = version;
+    this.model.trained = trained;
 
-    this.service.getParameters(name).subscribe(
+    /*this.service.getParameters(name).subscribe(
       result => {
        console.log(JSON.parse(result));
       },
@@ -95,7 +94,7 @@ export class BuildComponent implements OnInit {
         // console.log('actual parameters.yaml \n', parameters);
         console.log('Hola');
       }
-    );
+    );*/
 
   }
 

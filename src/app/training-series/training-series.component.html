@@ -1,5 +1,5 @@
 <div class="box">
-  <input type="file" #file name="file" id="file" ng2FileSelect [uploader]="uploader" accept=".sdf" />
+  <input type="file" #file name="file" id="file" ng2FileSelect [uploader]="uploader" (change)="onFileChanged($event)" accept=".sdf" />
   <button type="button" class="btn btn-success" (click)="uploader.uploadAll(); " [disabled]="!uploader.getNotUploadedItems().length">
     Upload
   </button>

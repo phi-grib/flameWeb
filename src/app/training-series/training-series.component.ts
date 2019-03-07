@@ -31,19 +31,20 @@ export class TrainingSeriesComponent implements OnInit {
   ngOnInit(): void {
     this.uploadFile();
   }
+  onFileChanged(event) {
+    console.log( event.target.files[0].name);
+   
+   }
+   
   /**
    * Uploads the sdf file to the server and uses a toastr to informs the user
    */
   uploadFile(): void {
+    
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       if (response !== '0') {
         //this.toastr.success('SDF uploaded correctly', 'Success!', { closeButton: true, positionClass: 'toast-bottom-right' });
-        console.log('SDF uploaded!!!:');
-        console.log(item);
-        console.log(status);
-        console.log(JSON.parse(response));
-        console.log("---------------------");
         const data = JSON.parse(response);
         if (data) {
           this.model.molNumber = data[0];
@@ -51,6 +52,7 @@ export class TrainingSeriesComponent implements OnInit {
           this.model.fileData = data[1];
           this.model.file = data[2];
         }
+        console.log(this.model)
       } else {
         //this.toastr.error('Invalid file', 'Error', { closeButton: true, positionClass: 'toast-bottom-right' });
       }

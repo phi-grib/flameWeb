@@ -1,5 +1,5 @@
 <div class ="row">
-  <table class="table table-striped table-hover">
+  <table class="table table-hover">
     <thead>
       <tr>
         <!--<th scope="col"></th>-->
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let info of models" (click)= "selectModel(info.name, info.version)">
+      <tr  *ngFor="let info of models" (click)= "selectModel(info.name, info.version, info.trained)">
         <!--<th scope="row">
           <i class="far fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
           <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
@@ -33,9 +33,9 @@
             </a> 
                     
             <div class="collapse" id="collapse_{{info.name}}_{{info.version}}">
-              <div class="card card-body">
+              <div class="card card-body p-2">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item p-0" *ngFor="let key of objectKeys(info.quality)"><p><strong>{{key}} :</strong> {{info.quality[key]}}</p></li>
+                  <li class="list-group-item p-0" *ngFor="let key of objectKeys(info.quality)"><p class="m-0"><strong>{{key}} :</strong> {{info.quality[key]}}</p></li>
                 </ul>
               </div>
             </div>
