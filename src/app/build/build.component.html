@@ -3,12 +3,13 @@
     <thead>
       <tr>
         <!--<th scope="col"></th>-->
-        <th class="align-middle text-center" scope="col">Sate</th>
+        <th class="text-center" scope="col">State</th>
         <th scope="col">Name</th>
         <th scope="col">Version</th>
         <th scope="col">#Molecules</th>
         <th scope="col">#Variables</th>
         <th scope="col">Type</th>
+        <th scope="col">Quality</th>
       </tr>
     </thead>
     <tbody>
@@ -18,12 +19,29 @@
           <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
           <i class="far fa-trash-alt" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
         </th>-->
-        <td class="align-middle text-center" ><i class="fas fa-circle"  [ngStyle]="{'color':info.trained ? '#51cf66' : 'red' }" aria-hidden="true"></i></td>
+        <td class="text-center" ><i class="fas fa-circle"  [ngStyle]="{'color':info.trained ? '#51cf66' : 'red' }" aria-hidden="true"></i></td>
         <td>{{info.name}}</td>
         <td>{{info.version}}</td>
         <td>{{info.numMols}}</td>
         <td>{{info.variables}}</td>
-        <td>{{info.type}}</td>
+        <td class="text-capitalize">{{info.type}}</td>
+        <td width="30%">
+          
+          <div  *ngIf="objectKeys(info.quality).length!=0">
+            <a class="btn btn-primary" data-toggle="collapse" href= "#collapse_{{info.name}}_{{info.version}}" role="button" aria-expanded="false" >
+                      + INFO
+            </a> 
+                    
+            <div class="collapse" id="collapse_{{info.name}}_{{info.version}}">
+              <div class="card card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item p-0" *ngFor="let key of objectKeys(info.quality)"><p><strong>{{key}} :</strong> {{info.quality[key]}}</p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+        </td>
       </tr>
     </tbody>
   </table>
@@ -33,7 +51,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div #modalWindow class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -51,8 +69,8 @@
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="newModel()">Save changes</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="createModel()">Create</button>
         </div>
       </div>
     </div>

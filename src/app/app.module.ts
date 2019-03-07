@@ -8,13 +8,14 @@ import { BuildComponent } from './build/build.component';
 import { PredictComponent } from './predict/predict.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { ModalDialogModule } from 'ngx-modal-dialog';
 import { NewmodelComponent } from './newmodel/newmodel.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
+import { ToastrModule } from 'ngx-toastr';
 import { Model } from './Model';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ModalDialogModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   entryComponents: [NewmodelComponent],
   providers: [Model],

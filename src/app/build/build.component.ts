@@ -1,9 +1,8 @@
-import { Component, OnInit , ViewContainerRef} from '@angular/core';
+import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { BuildService } from './build.service';
-import {ModalDialogService, IModalDialogSettings} from 'ngx-modal-dialog';
-import {NewmodelComponent} from '../newmodel/newmodel.component';
-import { SelectorMatcher } from '@angular/compiler';
+import { Router } from '@angular/router';
 import {Model} from '../Model';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,19 +12,19 @@ import {Model} from '../Model';
 })
 export class BuildComponent implements OnInit {
 
-  constructor(private service: BuildService, 
-    private modalService: ModalDialogService,
+  constructor(private service: BuildService,
     private viewRef: ViewContainerRef,
-    public model: Model,) { }
+    private router: Router,
+    public model: Model,
+    private toastr: ToastrService) { }
 
   models: Array<any>;
-  modelSettings: IModalDialogSettings;
+  modelName: string;
+  objectKeys = Object.keys;
 
   ngOnInit() {
-
-    this.getModelsInfo();
     this.models = [];
-
+    this.getModelsInfo();
   }
 
   getModelsInfo() {
@@ -39,6 +38,7 @@ export class BuildComponent implements OnInit {
           const modelName = model[0];
           let version = '-';
           let trained = false;
+          const quality = {};
           /*Models trained*/
           if (model[1].length > 0) {
             for (const versions of model[1]) {
@@ -49,13 +49,22 @@ export class BuildComponent implements OnInit {
               for ( const info of versions[1]) {
                 dict_info[info[0]] = info[2];
               }
+              for ( const info of Object.keys(dict_info)) {
+                if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
+                    && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
+                    && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
+
+                      quality[info] = dict_info[info];
+                }
+              }
+              console.log(quality); 
               this.models.push({name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
-              variables: dict_info['nvarx'], type: dict_info['model']});
+              variables: dict_info['nvarx'], type: dict_info['model'], quality: quality});
             }
           }
           else {
             this.models.push({name: modelName, version: version, trained: trained, numMols: '-',
-              variables: '-', type: '-'});
+              variables: '-', type: '-', quality: {}});
           }
         }
       },
@@ -67,36 +76,6 @@ export class BuildComponent implements OnInit {
 
   }
 
-  /*getModels() {
-    this.service.getAllModels().subscribe(
-      result => {
-        result = JSON.parse(result);
-        for (const info of result) {
-            for (const node of info.nodes) {
-              this.service.getModelInfo(info.text, node.text).subscribe(
-                result2 => {
-                    let trained = false;
-                    if (result2) {
-                      trained = true;
-                    }
-                    result2 = JSON.parse(result2);
-                    console.log(result2);
-                    this.models.push({name: info.text, version: node.text, trained: trained});
-                },
-                error => {
-                  alert('Error getALL each model');
-                }
-              );
-            }
-        }
-    },
-    error => {
-        alert('Error getALL models');
-    }
-
-    );
-  }*/
-
   selectModel(name: string, version: string) {
 
     if (version === '-' || version === 'dev') {
@@ -105,6 +84,18 @@ export class BuildComponent implements OnInit {
     this.model.name = name;
     this.model.version = version;
 
+    this.service.getParameters(name).subscribe(
+      result => {
+       console.log(JSON.parse(result));
+      },
+      error => {
+        console.log(error);
+      },
+      () => { // when subscribe finishes
+        // console.log('actual parameters.yaml \n', parameters);
+        console.log('Hola');
+      }
+    );
 
   }
 
@@ -112,18 +103,18 @@ export class BuildComponent implements OnInit {
    * Creates a new model with the given name and informs the user with a toastr
    */
   createModel(): void {
-    /*const letters = /^[A-Za-z0-9_]+$/;
+    const letters = /^[A-Za-z0-9_]+$/;
     if (this.modelName.match(letters)) {
         this.service.createNewModel(this.modelName).subscribe(
             result => {
-                if (result[0] === true) {
-                    this.trainigseriesEnable = false;
-                    this.modelEnable = false;
-                    this.validationEnable = false;
-                    this.trainserieElement.nativeElement.className = 'collapse show';
-                } else {
-                    //alert('ERROR1');
-                }
+              this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
+              if (result[0] === true) {
+                this.modelName = '';
+                this.models = [];
+                this.getModelsInfo();
+              } else {
+                  //alert('ERROR1');
+              }
             },
             error => {
                 //alert('ERROR2');
@@ -135,7 +126,7 @@ export class BuildComponent implements OnInit {
         );
     } else {
         alert('Invalid name');
-    }*/
+    }
   }
 
   getParameters(): void{
