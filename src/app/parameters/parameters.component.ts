@@ -1,13 +1,13 @@
 import { Component, OnInit, ComponentRef, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import {IModalDialog, IModalDialogOptions, IModalDialogButton} from 'ngx-modal-dialog';
-import {NewmodelService} from './newmodel.service';
+import {ParametersService} from './parameters.service';
 
 @Component({
-  selector: 'app-newmodel',
-  templateUrl: './newmodel.component.html',
-  styleUrls: ['./newmodel.component.css']
+  selector: 'app-parameters',
+  templateUrl: './parameters.component.html',
+  styleUrls: ['./parameters.component.css']
 })
-export class NewmodelComponent implements OnInit, IModalDialog, OnChanges {
+export class ParametersComponent implements OnInit, OnChanges {
 
   @ViewChild('trainigseries') trainserieElement: ElementRef;
   actionButtons: IModalDialogButton[];
@@ -17,17 +17,8 @@ export class NewmodelComponent implements OnInit, IModalDialog, OnChanges {
   validationEnable = true;
   trainigseriesCollapsed = true;
 
-  constructor(private service: NewmodelService) {
-    this.actionButtons = [
-      { text: 'Close' }, // no special processing here
-      { text: 'I will always close', onAction: () => true },
-      { text: 'Train', onAction: () => false }
-    ];
-  }
-  dialogInit(reference: ComponentRef<IModalDialog>, options: Partial<IModalDialogOptions<any>>) {
-    // no processing needed
-  }
-
+  constructor(private service: ParametersService) {}
+ 
   ngOnInit() {
 
 
@@ -81,4 +72,5 @@ export class NewmodelComponent implements OnInit, IModalDialog, OnChanges {
       }
     );
   }
+
 }

@@ -1,35 +1,17 @@
-<div class="row">
-  <button type="button" class="btn btn-outline-success">New Training Serie</button> 
-</div>
-<div class ="row">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">#Molecules</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>TrainSet 1</td>
-        <td>1564</td>
-        <td>molecule</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>TrainSet_2 Caco</td>
-        <td>1800</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>TrainSet_3 Caco</td>
-        <td>2000</td>
-        <td>molecules</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="box">
+  <input type="file" #file name="file" id="file" ng2FileSelect [uploader]="uploader" (change)="onFileChanged($event)" accept=".sdf" />
+  <button type="button" class="btn btn-success" (click)="uploader.uploadAll(); " [disabled]="!uploader.getNotUploadedItems().length">
+    Upload
+  </button>
+  <div class="progress mt-3" style="border-radius: 5px">
+    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">{{uploader.progress}}%</div>
+  </div>
+  <div class='properties' *ngIf="model.file!==undefined">
+    <h4>SDFile fields</h4>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let field of model.fileFields" class="list-group-item">
+        {{field}}
+      </li>
+    </ul>
+  </div>
 </div>
