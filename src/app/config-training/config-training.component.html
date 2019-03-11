@@ -5,7 +5,7 @@
       <dd class="col-md-5">{{this.model.fileExtension}}</dd>
     <!-- </div>-->
   </div>
-  <div class="form-row" *ngIf="this.model.file">
+  <div class="form-row">
     <div *ngFor="let key of infoSDF.sdf" class="form-group col-md-4">
       <label for="key"><strong>{{key}}:</strong></label>
         <select id="key" class="form-control">
@@ -53,5 +53,4 @@
     </div>
 
   </div>
-multiple
 </form>
