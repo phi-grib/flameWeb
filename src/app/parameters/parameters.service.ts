@@ -20,15 +20,4 @@ export class ParametersService {
     params = params.set('modelName', modelname);
     return this.http.get(url, { params: params });
   }
-
-  /**
-   * Call to the server to create a new model with the given name
-   * @param model Name of the model to add
-   */
-  createNewModel(model: string): Observable<any> {
-    const url: string = environment.baseUrl + 'new_model';
-    let params = new HttpParams();
-    params = params.set('model', model);
-    return this.http.get(url, { params: params });
-  }
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit, ComponentRef, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import {IModalDialog, IModalDialogOptions, IModalDialogButton} from 'ngx-modal-dialog';
 import {ParametersService} from './parameters.service';
+import { Model } from '../Model';
 
 @Component({
   selector: 'app-parameters',
   templateUrl: './parameters.component.html',
   styleUrls: ['./parameters.component.css']
 })
-export class ParametersComponent implements OnInit, OnChanges {
+export class ParametersComponent implements OnInit {
 
   @ViewChild('trainigseries') trainserieElement: ElementRef;
   actionButtons: IModalDialogButton[];
@@ -17,51 +18,23 @@ export class ParametersComponent implements OnInit, OnChanges {
   validationEnable = true;
   trainigseriesCollapsed = true;
 
-  constructor(private service: ParametersService) {}
+  constructor(private service: ParametersService, private model: Model) {}
  
   ngOnInit() {
 
+    this.getParameters();
 
-  }
-
-  ngOnChanges() {
-    alert('Changes');
-  }
-
-  /**
-   * Creates a new model with the given name and informs the user with a toastr
-   */
-  createModel(): void {
-    const letters = /^[A-Za-z0-9_]+$/;
-    if (this.modelName.match(letters)) {
-        this.service.createNewModel(this.modelName).subscribe(
-            result => {
-                if (result[0] === true) {
-                    this.trainigseriesEnable = false;
-                    this.modelEnable = false;
-                    this.validationEnable = false;
-                    this.trainserieElement.nativeElement.className = 'collapse show';
-                } else {
-                    //alert('ERROR1');
-                }
-            },
-            error => {
-                //alert('ERROR2');
-            },
-            () => {
-                //alert('no se que ha pasado');
-                this.getParameters();
-            }
-        );
-    } else {
-        alert('Invalid name');
-    }
   }
 
   getParameters(): void{
-    this.service.getParameters(this.modelName).subscribe(
+    this.service.getParameters(this.model.name).subscribe(
       result => {
-       console.log(JSON.parse(result));
+       result = JSON.parse(result); 
+       console.log(result);
+
+        /////////////////////////////////
+
+        ////////////////////////////////
       },
       error => {
         console.log(error);

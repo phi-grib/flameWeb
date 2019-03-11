@@ -127,19 +127,4 @@ export class BuildComponent implements OnInit {
         alert('Invalid name');
     }
   }
-
-  getParameters(): void{
-   /* this.service.getParameters(this.modelName).subscribe(
-      result => {
-       console.log(JSON.parse(result));
-      },
-      error => {
-        console.log(error);
-      },
-      () => { // when subscribe finishes
-        // console.log('actual parameters.yaml \n', parameters);
-        alert('Hola');
-      }
-    );*/
-  }
 }

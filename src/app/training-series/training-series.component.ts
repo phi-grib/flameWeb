@@ -33,16 +33,9 @@ export class TrainingSeriesComponent implements OnInit {
     this.uploadFile();
     this.uploader.onBeforeUploadItem = (fileItem: any) => {
       const extension = fileItem.file.name.split('.');
-      fileItem.file.name = this.model.name + '_' + this.model.version + '.' + extension[1];
-      console.log('onCompleteItem');
-      console.log(fileItem);
-      console.log('--------');
+      fileItem.file.name = this.model.name + '_' + this.model.version + '.' + extension[1]; //RANDOM ???
+      this.model.fileExtension = extension[1];
     };
-    /*this.uploader.onAfterAddingFile = (file) => {
-      console.log('***** onAfterAddingFile ******');
-      console.log('file ', file.file.name);
-      file.file.name = 'nacho';
-    };*/
   }
   /**
    * Uploads the sdf file to the server and uses a toastr to informs the user
@@ -53,16 +46,12 @@ export class TrainingSeriesComponent implements OnInit {
       if (response !== '0') {
         //  this.toastr.success('SDF uploaded correctly', 'Success!', { closeButton: true, positionClass: 'toast-bottom-right' });
         const data = JSON.parse(response);
-        console.log('####################');
-        console.log(data);
-        console.log('####################');
         if (data) {
           this.model.molNumber = data[0];
           this.model.fileFields = Object.keys(data[1]);
           this.model.fileData = data[1];
           this.model.file = data[2];
         }
-        console.log(this.model);
       } else {
         // this.toastr.error('Invalid file', 'Error', { closeButton: true, positionClass: 'toast-bottom-right' });
       }

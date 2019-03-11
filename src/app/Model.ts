@@ -7,6 +7,7 @@ export class Model {
   modelProps: {} = undefined;    // Model propierties of the model selected in the first step
   file: string = undefined;  // Name of file uploaded in the second step
   fileDetails: any = [];   // Details of the uploaded file in the second step. Actually
+  fileExtension: string = undefined;
   molNumber: number = undefined;
   data: any = [];
   type: string = undefined; // Quantitative / Qualitative
