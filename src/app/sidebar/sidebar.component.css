@@ -1,9 +1,13 @@
 a:hover {
 
-    background-color: #E6BC72;
+    background: #E6BC72;
 }
 
 a.active {
-    background-color: #E69400;
+    background: #E69400;
     border-color: #E69400;
+}
+a {
+    background: linear-gradient(to left, #FFFFFF 0%, #275B7D 100%);
+    color:white;
 }

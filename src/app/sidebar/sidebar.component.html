@@ -2,21 +2,25 @@
 <div class="d-flex align-items-start flex-column" style="height: 100%;">
   <div class="mb-auto w-100">
       <div class="list-group list-group-flush">
-          <a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
-            Models 
-            <p class="font-weight-bold p-1" *ngIf="this.model.name">
-                <i class="fas fa-reply fa-rotate-180 "></i> {{this.model.name}} v.{{this.model.version}}
-            </p>
+          <a class="list-group-item list-group-item-action  active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
+           <strong> Models 
+              <p class="font-weight-bold p-1" *ngIf="this.model.name">
+                  <i class="fas fa-reply fa-rotate-180 "></i> {{this.model.name}} v.{{this.model.version}}
+              </p>
+            </strong>
           </a>
-          <a class="list-group-item list-group-item-action d-flex disabled" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
-              Training Series
+          <a class="list-group-item list-group-item-action  d-flex disabled" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
+              <strong>Training Series</strong>
           </a>
-          <a class="list-group-item list-group-item-action disabled" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">Parameters</a>
-          <a class="list-group-item list-group-item-action disabled" [ngClass]="{'disabled':!model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">Results</a>
+          <a class="list-group-item list-group-item-action  disabled" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
+            <strong>Parameters</strong>
+          </a>
+          <a class="list-group-item list-group-item-action  disabled" [ngClass]="{'disabled':!model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">
+            <strong>Results</strong>
+          </a>
         </div> 
   </div>
-  <hr class="my-4">
-  <div class="w-100 d-flex flex-row-reverse  pr-3">
+  <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5">
       <button type="button" class="btn btn-outline-primary">Build model</button>
   </div>
 </div>

@@ -1,3 +1,12 @@
 .display-3 {
     color: #E69400;
 }
+.main {
+    max-height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 10px;
+}
+.sidebar {
+    background-color: #C6C8CA;
+    background: linear-gradient(to left, #FFFFFF 0%, #275B7D 100%);
+}

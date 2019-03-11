@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { Model } from './Model';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfigTrainingComponent } from './config-training/config-training.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SidebarComponent,
     ParametersComponent,
     ValidationsComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    ConfigTrainingComponent
   ],
   imports: [
     BrowserModule,

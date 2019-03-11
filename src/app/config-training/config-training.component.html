@@ -1,0 +1,57 @@
+<form>
+  <div class="form-row">
+    <!-- <div class="form-group col-md-9">-->
+      <dt class="col-md-2">Input file:</dt>
+      <dd class="col-md-5">{{this.model.fileExtension}}</dd>
+    <!-- </div>-->
+  </div>
+  <div class="form-row" *ngIf="this.model.file">
+    <div *ngFor="let key of infoSDF.sdf" class="form-group col-md-4">
+      <label for="key"><strong>{{key}}:</strong></label>
+        <select id="key" class="form-control">
+        <option selected>Choose...</option>
+        <option *ngFor="let value of this.model.fileFields">{{value}}</option>
+      </select>
+      <small id="key" class="text-muted">
+        {{this.model.parameters[key].description}}
+      </small>  
+    </div>
+    <!--REST OF PARAMETERS-->
+
+
+    <div *ngFor="let key of infoSeries" class="form-group col-md-4">
+      
+      <div *ngIf="this.model.parameters[key].writable">
+        <label for="key"><strong>{{key}}:</strong></label>
+        <input class="form-control" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}">
+        <input class="form-control" *ngIf="this.model.parameters[key].object_type!=='string'" id="key" type='number' placeholder={{key}}>
+      </div>
+      <div class="form-check" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='boolean'">
+      <br>
+        <input class="form-check-input" type="checkbox" value="" id="key">
+        <label class="form-check-label" for="key">
+         <strong>{{key}}</strong>
+        </label>
+      </div>
+      <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
+        <label for="key"><strong>{{key}}:</strong></label>
+        <select id="key" class="form-control">
+          <option selected>Choose...</option>
+          <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
+        </select>
+      </div>
+      <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
+        <label for="key"><strong>{{key}}:</strong></label>
+        <select multiple id="key" class="form-control">
+          <option selected>Choose...</option>
+          <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
+        </select>
+      </div>
+      <small id="key" class="text-muted">
+        {{this.model.parameters[key].description}}
+      </small>  
+    </div>
+
+  </div>
+multiple
+</form>

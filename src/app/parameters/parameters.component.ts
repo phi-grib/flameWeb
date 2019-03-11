@@ -26,12 +26,12 @@ export class ParametersComponent implements OnInit {
 
   }
 
-  getParameters(): void{
+  getParameters(): void {
     this.service.getParameters(this.model.name).subscribe(
       result => {
-       result = JSON.parse(result); 
+       result = JSON.parse(result);
+       this.model.parameters = result;
        console.log(result);
-
         /////////////////////////////////
 
         ////////////////////////////////
@@ -41,7 +41,6 @@ export class ParametersComponent implements OnInit {
       },
       () => { // when subscribe finishes
         // console.log('actual parameters.yaml \n', parameters);
-        alert('Hola');
       }
     );
   }
