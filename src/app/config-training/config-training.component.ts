@@ -19,10 +19,6 @@ export class ConfigTrainingComponent implements OnInit {
   infoSeries = ['computeMD_method', 'convert3D_method', 'ext_input', 'feature_selection',
                 'feature_number', 'imbalance', 'ionize_method', 'mol_batch', 'modelAutoscaling','quantitative'];
 
-
-
-
-
   ngOnInit() {
   }
 
