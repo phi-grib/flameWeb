@@ -21,6 +21,10 @@ export class TrainingSeriesComponent implements OnInit {
     private router: Router,
   ) { }
   url: string = environment.baseUrl + 'upload';
+  file:any;
+  fileContent: string = '';
+  num_of_mols: number = 0;
+  type_file: string;
   public uploader: FileUploader = new FileUploader({
     url: this.url,
     itemAlias: 'file',
@@ -30,11 +34,12 @@ export class TrainingSeriesComponent implements OnInit {
    * Checks if the first step is completed and initites the upload method observable
    */
   ngOnInit(): void {
-    this.uploadFile();
+    //this.uploadFile();
     this.uploader.onBeforeUploadItem = (fileItem: any) => {
       const extension = fileItem.file.name.split('.');
       fileItem.file.name = this.model.name + '_' + this.model.version + '.' + extension[1]; //RANDOM ???
       this.model.fileExtension = extension[1];
+      console.log(fileItem)
     };
   }
   /**
@@ -61,4 +66,26 @@ export class TrainingSeriesComponent implements OnInit {
     };
   }
 
+  readFile(e) {
+    this.file = e.target.files[0];
+    console.log(this.file)
+    let fileReader = new FileReader();
+    console.log(fileReader.readAsText(this.file));
+
+  }
+
+  public onChange(fileList: FileList): void {
+    let file = fileList[0];
+    console.log(file.name);
+    const extension = file.name.split('.');
+    this.type_file = extension[1];
+    let fileReader: FileReader = new FileReader();
+    let self = this;
+    fileReader.onloadend = function(x) {
+      self.fileContent = fileReader.result;
+      self.num_of_mols = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
+      
+    }
+    fileReader.readAsText(file);
+  }
 }

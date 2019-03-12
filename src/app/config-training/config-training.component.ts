@@ -16,7 +16,7 @@ export class ConfigTrainingComponent implements OnInit {
     tsv: ['TSV_objnames', 'TSV_activity', 'TSV_varnames']
   };
 
-  infoSeries = ['computeMD_method', 'convert3D_method', 'ext_input', 'feature_selection',
+  infoSeries = ['input_type','SDFile_name', 'SDFile_activity', 'SDFile_experimental','computeMD_method', 'convert3D_method', 'ext_input', 'feature_selection',
                 'feature_number', 'imbalance', 'ionize_method', 'mol_batch', 'modelAutoscaling','quantitative'];
 
   ngOnInit() {
