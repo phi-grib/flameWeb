@@ -8,9 +8,16 @@ import { Model } from '../Model';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public model : Model ) { }
+  constructor(public model: Model ) { }
 
   ngOnInit() {
+  }
+
+  buildModel(): void {
+
+    console.log(this.model.parameters);
+    alert('Build');
+
   }
 
 }

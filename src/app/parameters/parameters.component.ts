@@ -19,11 +19,11 @@ export class ParametersComponent implements OnInit {
   trainigseriesCollapsed = true;
 
   constructor(private service: ParametersService, private model: Model) {}
- 
+
+  
   ngOnInit() {
 
     this.getParameters();
-
   }
 
   getParameters(): void {
@@ -31,7 +31,6 @@ export class ParametersComponent implements OnInit {
       result => {
        result = JSON.parse(result);
        this.model.parameters = result;
-       console.log(result);
         /////////////////////////////////
 
         ////////////////////////////////
@@ -44,5 +43,5 @@ export class ParametersComponent implements OnInit {
       }
     );
   }
-
+ 
 }
