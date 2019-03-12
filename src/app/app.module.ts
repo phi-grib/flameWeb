@@ -18,7 +18,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
-import { ConfigValidationComponent } from './config-validation/config-validation.component';
+import { ConfigPreferencesComponent } from './config-preferences/config-preferences.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { ConfigValidationComponent } from './config-validation/config-validation
     FileSelectDirective,
     ConfigTrainingComponent,
     ConfigModelComponent,
-    ConfigValidationComponent
+    ConfigPreferencesComponent
   ],
   imports: [
     BrowserModule,

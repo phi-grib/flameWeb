@@ -5,3 +5,9 @@ i {
 tr {
     cursor: pointer;
 }
+tr.selected {
+    background: #E69400;
+}
+/*.table tbody tr:hover {
+    background: #E6BC72;
+}*/

@@ -12,14 +12,23 @@ export class ConfigModelComponent implements OnInit {
 
   objectKeys = Object.keys;
 
-  infoModel = ['model', 'conformal', 'conformalSignificance', 'feature_number', 'feature_selection', 'imbalance'];
+  infoModel = ['model', 'conformal', 'conformalSignificance', 'feature_number', 'feature_selection', 'imbalance',
+              'ModelValidationCV', 'ModelValidationN', 'ModelValidationP'];
+  
   parametersModel = {
-                      RF: 'RF_parameters',
-                      PLSDA: 'PLSDA_parameters',
-                      PLSR: 'PLSR_parameters',
-                      GNB: 'GNB_parameters',
-                      SVM: 'SVM_parameters'
-                    };
+    RF: 'RF_parameters',
+    PLSDA: 'PLSDA_parameters',
+    PLSR: 'PLSR_parameters',
+    GNB: 'GNB_parameters',
+    SVM: 'SVM_parameters'
+  };
+  optimizeModel = {
+    RF: 'RF_optimize',
+    PLSDA: 'PLSDA_optimize',
+    PLSR: 'PLSR_optimize',
+    GNB: 'GNB_optimize',
+    SVM: 'SVM_optimize'
+  };
   ngOnInit() {
   }
 

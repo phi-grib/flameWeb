@@ -2,7 +2,7 @@
     <div class="card">
       <div class="card-header" id="headingOne">
         <h5 class="mb-0">
-            1- Training Series
+            1- Input
           <button class="btn btn-link pt-0 pb-0 float-right"  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           </button>
         </h5>
@@ -10,7 +10,7 @@
       </div>
   
       <div #trainigseries id="collapseOne" class="collapse show" aria-labelledby="headingOne" >
-        <div class="card-body">
+        <div class="card-body p-5">
             <app-config-training></app-config-training>
         </div>
       </div>
@@ -18,13 +18,13 @@
     <div class="card">
       <div class="card-header" id="headingTwo">
         <h5 class="mb-0">
-            2- Model
+            2- Learner
           <button class="btn btn-link pt-0 pb-0 float-right collapsed"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           </button>
         </h5>
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" >
-        <div class="card-body">
+        <div class="card-body p-5">
           <app-config-model></app-config-model>
         </div>
       </div>
@@ -32,14 +32,14 @@
     <div class="card">
       <div class="card-header" id="headingThree">
         <h5 class="mb-0">
-            3 - Model Validation
+            3 - Preferences
           <button class="btn btn-link pt-0 pb-0 float-right collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           </button>
         </h5>
       </div>
       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" >
-        <div class="card-body">
-          
+        <div class="card-body p-5">
+          <app-config-preferences></app-config-preferences>
         </div>
       </div>
     </div>

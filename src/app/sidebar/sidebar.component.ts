@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   buildModel(): void {
 
     console.log(this.model.parameters);
+    console.log(this.model.file);
     alert('Build');
 
   }

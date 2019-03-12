@@ -1,12 +1,10 @@
 <div class="form-row">
 
 <!--REST OF PARAMETERS-->
-
-<!--[(ngModel)="this.model.parameters[key].value"]-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">
     
     <div *ngIf="this.model.parameters[key].writable">
-      <label for="key"><strong>{{key}}:</strong></label>
+      <label class="text-capitalize" for="key"><strong>{{key}}:</strong></label>
       <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
       <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='integer'" id="key" type='number' placeholder="{{key}}" >
       <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01 >
@@ -14,19 +12,19 @@
     <div class="form-check mt-3 mb-2" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='boolean'">
     <br>
       <input class="form-check-input" type="checkbox" id="key" [(ngModel)]="this.model.parameters[key].value">
-      <label class="form-check-label" for="key">
+      <label class="form-check-label text-capitalize" for="key">
         <strong>{{key}}</strong>
       </label>
     </div>
     <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
-      <label for="key"><strong>{{key}}:</strong></label>
+      <label for="key" class="text-capitalize" ><strong>{{key}}:</strong></label>
       <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
         <option selected>Choose...</option>
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
       </select>
     </div>
     <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
-      <label for="key"><strong>{{key}}:</strong></label>
+      <label for="key" class="text-capitalize"><strong>{{key}}:</strong></label>
       <select multiple id="key" class="form-control">
         <option selected>Choose...</option>
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
@@ -37,14 +35,12 @@
     </small>  
   </div>
 </div>
-
+<!--MODEL PARAMETERS-->
 <fieldset class="border">  
-    <legend>{{this.model.parameters['model'].value}}</legend>
-<!--{{objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)}}-->
+    <legend>{{this.model.parameters['model'].value}} parameters</legend>
       <div class="form-inline m-3" *ngFor="let key of objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)" >
-        <!--{{this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable}}-->
         <div class="form-group" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable">
-          <label><strong>{{key}}:</strong></label>
+          <label class="text-capitalize" ><strong>{{key}}:</strong></label>
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='integer'" id="key" type='number' placeholder="{{key}}" >
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01>
@@ -54,7 +50,7 @@
         </div>
         <div class="form-check mt-3 mb-3" *ngIf="!this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='boolean'">
           <input class="form-check-input" type="checkbox" id="key" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value">
-          <label class="form-check-label" for="key">
+          <label class="form-check-label text-capitalize" for="key">
             <strong>{{key}}</strong>
           </label>
           <small id="key" class="text-muted">
@@ -62,7 +58,7 @@
         </small>
         </div>
         <div class="form-group" *ngIf="!this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type!='list' && this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type!='boolean'">
-          <label for="key"><strong>{{key}}:</strong></label>
+          <label for="key" class="text-capitalize"><strong>{{key}}:</strong></label>
           <select id="key" class="form-control-inline" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value">
             <option selected>Choose...</option>
             <option *ngFor="let value of this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].options">{{value}}</option>
@@ -83,5 +79,57 @@
         </div>
         
       </div>
-
+</fieldset>
+<!-- TUNE HARDCODED-->
+<div class="form-check mt-3 mb-2">
+  <br>
+    <input class="form-check-input" type="checkbox" id="key" [(ngModel)]="this.model.parameters['tune'].value">
+    <label class="form-check-label text-capitalize" for="key">
+      <strong>Tune</strong>
+    </label>
+</div>
+<!--MODEL OPTIMIZE-->
+<fieldset class="border" *ngIf="this.model.parameters['tune'].value">  
+  <legend>{{this.model.parameters['model'].value}} optimize</legend>
+    <div class="form-inline m-3" *ngFor="let key of objectKeys(this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value)" >
+      <div class="form-group" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable">
+        <label class="text-capitalize"><strong>{{key}}:</strong></label>
+          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
+          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='integer'" id="key" type='number' placeholder="{{key}}" >
+          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01>
+          <small id="key" class="text-muted">
+            {{this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].description}}
+          </small>
+      </div>
+      <div class="form-check mt-3 mb-3" *ngIf="!this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='boolean'">
+        <input class="form-check-input" type="checkbox" id="key" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value">
+        <label class="form-check-label text-capitalize" for="key">
+          <strong>{{key}}</strong>
+        </label>
+        <small id="key" class="text-muted">
+        {{this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].description}}
+      </small>
+      </div>
+      <div class="form-group" *ngIf="!this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type!='list' && this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type!='boolean'">
+        <label class="text-capitalize" for="key"><strong>{{key}}:</strong></label>
+        <select id="key" class="form-control-inline" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value">
+          <option selected>Choose...</option>
+          <option *ngFor="let value of this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].options">{{value}}</option>
+        </select>
+        <small id="key" class="text-muted">
+        {{this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].description}}
+      </small>
+      </div>
+      <div class="form-group" *ngIf="!this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='list' ">
+        <label for="key" class="text-capitalize"><strong>{{key}}:</strong></label>
+        <select multiple id="key" class="form-control">
+          <option selected>Choose...</option>
+          <option *ngFor="let value of this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].options">{{value}}</option>
+        </select>
+        <small id="key" class="text-muted">
+          {{this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].description}}
+        </small>
+      </div>
+      
+    </div>
 </fieldset>

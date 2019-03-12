@@ -76,7 +76,7 @@ export class TrainingSeriesComponent implements OnInit {
 
   public onChange(fileList: FileList): void {
     let file = fileList[0];
-    console.log(file.name);
+    this.model.file = file;
     const extension = file.name.split('.');
     this.type_file = extension[1];
     let fileReader: FileReader = new FileReader();

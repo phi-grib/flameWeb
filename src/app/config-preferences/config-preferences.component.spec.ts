@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfigValidationComponent } from './config-validation.component';
+import { ConfigPreferencesComponent } from './config-preferences.component';
 
-describe('ConfigValidationComponent', () => {
-  let component: ConfigValidationComponent;
-  let fixture: ComponentFixture<ConfigValidationComponent>;
+describe('ConfigPreferencesComponent', () => {
+  let component: ConfigPreferencesComponent;
+  let fixture: ComponentFixture<ConfigPreferencesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfigValidationComponent ]
+      declarations: [ ConfigPreferencesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfigValidationComponent);
+    fixture = TestBed.createComponent(ConfigPreferencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

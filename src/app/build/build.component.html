@@ -1,5 +1,5 @@
 <div class ="row">
-  <table class="table table-hover">
+  <table class="table">
     <thead>
       <tr>
         <!--<th scope="col"></th>-->
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let info of models" (click)= "selectModel(info.name, info.version, info.trained)">
+      <tr  *ngFor="let info of models" [ngClass]="{'selected': info.name===this.model.name}" (click)= "selectModel(info.name, info.version, info.trained)">
         <!--<th scope="row">
           <i class="far fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
           <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
