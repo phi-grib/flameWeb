@@ -13,8 +13,8 @@ export class BuildService {
   /**
    * Retrives the list of all models form the server
    */
-  getAllModels(): Observable<any> {
-    const url: string = environment.baseUrl + 'loadModels';
+  getModels(): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models';
     return this.http.get(url);
   }
   /**

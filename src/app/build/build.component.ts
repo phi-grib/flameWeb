@@ -24,8 +24,34 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.models = [];
-    this.getModelsInfo();
+    //this.getModelsInfo();
+    this.getModels();
   }
+
+  getModels(){
+
+    this.service.getModels().subscribe(
+        result => {
+          result = JSON.parse(result[1]);
+          console.log(result)
+          for (const model of result) { 
+            const modelName=model.text
+          
+            let trained = false;
+            const quality = {}
+            console.log(modelName)
+            for ( const info of model.nodes) {
+              let version = 'dev'
+              
+            }
+          }
+        },
+        error => {
+          alert('Error getALL models');
+        }
+    );
+  }
+
 
   getModelsInfo() {
 
@@ -82,19 +108,6 @@ export class BuildComponent implements OnInit {
     this.model.name = name;
     this.model.version = version;
     this.model.trained = trained;
-
-    /*this.service.getParameters(name).subscribe(
-      result => {
-       console.log(JSON.parse(result));
-      },
-      error => {
-        console.log(error);
-      },
-      () => { // when subscribe finishes
-        // console.log('actual parameters.yaml \n', parameters);
-        console.log('Hola');
-      }
-    );*/
 
   }
 
