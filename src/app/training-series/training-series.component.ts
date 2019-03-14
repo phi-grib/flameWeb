@@ -84,7 +84,6 @@ export class TrainingSeriesComponent implements OnInit {
     fileReader.onloadend = function(x) {
       self.fileContent = fileReader.result;
       self.num_of_mols = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
-      
     }
     fileReader.readAsText(file);
   }

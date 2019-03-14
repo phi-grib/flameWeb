@@ -20,23 +20,26 @@ export class ParametersComponent implements OnInit {
 
   constructor(private service: ParametersService, private model: Model) {}
 
-  
+
   ngOnInit() {
 
     this.getParameters();
   }
 
   getParameters(): void {
-    this.service.getParameters(this.model.name).subscribe(
+    this.service.getParameters(this.model.name, this.model.version).subscribe(
       result => {
-       result = JSON.parse(result);
-       this.model.parameters = result;
+        if (result[0]) {
+          this.model.parameters = result = JSON.parse(result[1]);
+        }
+
         /////////////////////////////////
 
         ////////////////////////////////
       },
       error => {
         console.log(error);
+        alert(error.status + ' : ' + error.statusText);
       },
       () => { // when subscribe finishes
         // console.log('actual parameters.yaml \n', parameters);

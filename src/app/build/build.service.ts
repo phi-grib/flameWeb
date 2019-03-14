@@ -13,19 +13,22 @@ export class BuildService {
   /**
    * Retrives the list of all models form the server
    */
-  getModels(): Observable<any> {
+  getModelList(): Observable<any> {
     const url: string = environment.baseUrl_manage + 'models';
+    return this.http.get(url);
+  }
+
+  getModel(model: string, version: number): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
     return this.http.get(url);
   }
   /**
    * Call to the server to create a new model with the given name
    * @param model Name of the model to add
    */
-  createNewModel(model: string): Observable<any> {
-    const url: string = environment.baseUrl + 'new_model';
-    let params = new HttpParams();
-    params = params.set('model', model);
-    return this.http.get(url, { params: params });
+  createModel(model: string): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models/' + model;
+    return this.http.post(url, null);
   }
   /**
    * Retrieves all the model info

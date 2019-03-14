@@ -18,5 +18,5 @@ export class Model {
   Delta parameters, empty by default, fills on clicking the parameters tab.
   When you change anything on the formulary, automatically changes the value for that key
   */
-  parameters: {} = undefined;
+  parameters: any = undefined;
 }

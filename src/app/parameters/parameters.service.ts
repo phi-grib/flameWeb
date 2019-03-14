@@ -14,10 +14,8 @@ export class ParametersService {
    * @param modelname The model name to recieve parameters
    * Version will be automatically set to 'dev'
    */
-  getParameters(modelname: string): Observable<any> {
-    const url: string = environment.baseUrl + 'get_parameters';
-    let params = new HttpParams();
-    params = params.set('modelName', modelname);
-    return this.http.get(url, { params: params });
+  getParameters(model: string, version: string): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version + '/parameters';
+    return this.http.get(url);
   }
 }
