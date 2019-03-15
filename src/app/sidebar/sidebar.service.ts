@@ -18,9 +18,8 @@ export class SidebarService {
     const formData = new FormData();
     formData.append('SDF', this.model.file);
     formData.append('parameters', JSON.stringify(this.model.parameters));
-    //formData.append('parameters',  this.model.parameters);
+    // formData.append('parameters',  this.model.parameters);
     const url: string = environment.baseUrl_build + 'models/' + this.model.name;
-    alert("Send");
     return this.http.post(url, formData);
   }
 }
