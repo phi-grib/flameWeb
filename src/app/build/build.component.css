@@ -11,3 +11,6 @@ tr.selected {
 /*.table tbody tr:hover {
     background: #E6BC72;
 }*/
+.custom {
+    width: 80%;
+}
