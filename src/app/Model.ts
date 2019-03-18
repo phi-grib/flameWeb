@@ -19,4 +19,5 @@ export class Model {
   When you change anything on the formulary, automatically changes the value for that key
   */
   parameters: any = undefined;
+  delta: any = {};
 }

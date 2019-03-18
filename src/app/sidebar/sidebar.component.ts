@@ -23,31 +23,31 @@ export class SidebarComponent implements OnInit {
   private recursiveDelta(dict_in: {}) {
 
     let dict_aux = {};
-    for (const key of Object.keys(this.model.parameters)) {
-      dict_aux = this.model.parameters[key];
+    let dict_out = {}
+    for (const key of Object.keys(dict_in)) {
+      dict_aux = dict_in[key];
       for (const key2 of Object.keys(dict_aux)) {
-        if (key2 === 'value' && this.isDict(dict_aux[key2])) {
-          console.log(key + ' : ' + dict_aux[key2] + '  ---  ');
-        }
-        else {
-          this.recursiveDelta(dict_aux[key2]);
-        }
-
+        if (key2 === 'value' ){
+          if (this.isDict(dict_aux[key2])) {
+            dict_out[key] = this.recursiveDelta(dict_aux[key2]);
+          }
+          else {
+            dict_out[key] = dict_aux[key2];
+          }
+        }  
       }
     }
-
+    return dict_out;
   }
-
 
   buildModel(): void {
 
     console.log(this.model.parameters);
     console.log(this.model.file);
 
-   this.recursiveDelta(this.model.parameters);
-    alert('creagted');
-
-   /* this.service.buildModel().subscribe(
+    this.model.delta = {}
+    this.model.delta = this.recursiveDelta(this.model.parameters);
+    this.service.buildModel().subscribe(
       result => {
         console.log(result);
         alert('OK');
@@ -56,6 +56,6 @@ export class SidebarComponent implements OnInit {
         console.log(error);
         alert('error');
       }
-    );*/
+    );
   }
 }
