@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/build',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'build',
@@ -36,11 +37,10 @@ const routes: Routes = [
   },
 ];
 
-
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   exports: [RouterModule],
   declarations: []

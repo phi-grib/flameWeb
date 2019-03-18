@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BuildComponent } from './build/build.component';
 import { PredictComponent } from './predict/predict.component';
@@ -48,4 +49,5 @@ import { ConfigPreferencesComponent } from './config-preferences/config-preferen
   providers: [Model],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

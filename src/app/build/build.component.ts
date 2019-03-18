@@ -1,6 +1,5 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { BuildService } from './build.service';
-import { Router } from '@angular/router';
 import {Model} from '../Model';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +13,6 @@ export class BuildComponent implements OnInit {
 
   constructor(private service: BuildService,
     private viewRef: ViewContainerRef,
-    private router: Router,
     public model: Model,
     private toastr: ToastrService) { }
 
@@ -24,8 +22,8 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.models = [];
-    //this.getModelsInfo();
     this.getModelList();
+    alert("GET LIST");
   }
 
   getModelList() {
@@ -44,7 +42,7 @@ export class BuildComponent implements OnInit {
               //INFO OF EACH MODEL
               this.service.getModel(modelName, version).subscribe(
                 result2 => {
-                  if (result2[0]) {
+                  if (result2[0]) { //True is trained
                     trained = true;
                     const dict_info = {};
                     for ( const info of JSON.parse(result2[1])) {
@@ -79,53 +77,6 @@ export class BuildComponent implements OnInit {
     );
   }
 
-
-  /*getModelsInfo() {
-
-    this.service.getAll().subscribe(
-      result => {
-        result = JSON.parse(result);
-       
-        for (const model of result) {
-          const modelName = model[0];
-          let version = '-';
-          let trained = false;
-          const quality = {};
-         
-          if (model[1].length > 0) {
-            for (const versions of model[1]) {
-              trained =  true;
-              version = versions[0];
-              version = (version == '0') ? 'dev' : version;
-              const dict_info = {};
-              for ( const info of versions[1]) {
-                dict_info[info[0]] = info[2];
-              }
-              for ( const info of Object.keys(dict_info)) {
-                if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
-                    && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
-                    && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
-
-                      quality[info] = dict_info[info].toFixed(3);
-                }
-              }
-              this.models.push({name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
-              variables: dict_info['nvarx'], type: dict_info['model'], quality: quality});
-            }
-          }
-          else {
-            this.models.push({name: modelName, version: version, trained: trained, numMols: '-',
-              variables: '-', type: '-', quality: {}});
-          }
-        }
-      },
-      error => {
-        alert('Error getALL models');
-      }
-
-    );
-
-  }*/
 
   selectModel(name: string, version: string, trained: boolean) {
 

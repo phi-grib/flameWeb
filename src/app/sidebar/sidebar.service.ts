@@ -21,6 +21,6 @@ export class SidebarService {
     // formData.append('parameters',  this.model.parameters);
     const url: string = environment.baseUrl_build + 'models/' + this.model.name;
     return this.http.post(url, formData);
-    
+
   }
 }

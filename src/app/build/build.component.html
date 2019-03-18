@@ -20,7 +20,12 @@
             <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>
             <i class="far fa-trash-alt" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
           </th>-->
-          <td class="text-center" ><i class="fas fa-circle"  [ngStyle]="{'color':info.trained ? '#51cf66' : 'red' }" aria-hidden="true"></i></td>
+
+          <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }"-->
+          <td class="text-center" ><i class="fas fa-circle"  
+                        [ngStyle]="{'color':this.model.trainig_models.includes(info.name + '-' + info.version) ? '#FDA50F' : (info.trained ? '#51cf66' : 'red' ) }" 
+                        aria-hidden="true"></i> 
+          </td>
           <td >{{info.name}}</td>
           <td class="text-center">{{info.version}}</td>
           <td class="text-center">{{info.numMols}}</td>
