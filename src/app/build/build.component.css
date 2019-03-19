@@ -14,3 +14,16 @@ tr.selected {
 .custom {
     width: 80%;
 }
+
+table {
+    width: 100%;
+}
+
+thead tr td{ display: block; }
+
+tbody {
+    height: 500px;
+    overflow-y: auto;
+}
+
+  

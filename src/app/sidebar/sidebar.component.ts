@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public model: Model, private service: SidebarService,private router: Router ) { }
+  constructor(public model: Model, private service: SidebarService,private router: Router ) {} 
+
 
   ngOnInit() {
   }
@@ -43,7 +44,6 @@ export class SidebarComponent implements OnInit {
 
   buildModel(name, version): void {
 
-    console.log(name + '--' + version);
     this.model.delta = {};
     this.model.delta = this.recursiveDelta(this.model.parameters);
     this.model.trainig_models.push(name + '-' + version);
@@ -53,12 +53,10 @@ export class SidebarComponent implements OnInit {
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
-        //this.router.navigate(['/']);
-        alert('Finish');
+        this.model.listModels[name + '-' + version].trained = true;
       },
       error => {
         console.log(error);
-        alert('error');
       }
     );
     this.router.navigate(['/']);

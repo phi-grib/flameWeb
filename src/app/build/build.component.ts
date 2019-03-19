@@ -2,6 +2,7 @@ import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@ang
 import { BuildService } from './build.service';
 import {Model} from '../Model';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,16 +15,15 @@ export class BuildComponent implements OnInit {
   constructor(private service: BuildService,
     private viewRef: ViewContainerRef,
     public model: Model,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {}
 
   models: Array<any>;
   modelName: string;
   objectKeys = Object.keys;
 
   ngOnInit() {
-    this.models = [];
+    this.model.listModels = {};
     this.getModelList();
-    alert("GET LIST");
   }
 
   getModelList() {
@@ -55,13 +55,13 @@ export class BuildComponent implements OnInit {
                             quality[info] = dict_info[info].toFixed(3);
                       }
                     }
-                    this.models.push({name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
-                    variables: dict_info['nvarx'], type: dict_info['model'], quality: quality});
+                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
+                    variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
 
                   }
                   else{
-                    this.models.push({name: modelName, version: version, trained: trained, numMols: '-',
-                    variables: '-', type: '-', quality: {}});
+                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: '-',
+                    variables: '-', type: '-', quality: {}};
                   }
                 },
                 error => {
@@ -100,7 +100,7 @@ export class BuildComponent implements OnInit {
               this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
               if (result.status[0] === true) {
                 this.modelName = '';
-                this.models = [];
+                //this.models = [];
                 this.getModelList();
               } else {
                   alert('ERROR1');

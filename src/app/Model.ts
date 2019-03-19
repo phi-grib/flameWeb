@@ -6,11 +6,12 @@ export class Model {
   version: string = undefined; // Version of the model selected in the first step
   file: any = undefined;  // Name of file uploaded in the second step
   trained: boolean = false; // Model is already trained
-  trainig_models = [];
   /*
   Delta parameters, empty by default, fills on clicking the parameters tab.
   When you change anything on the formulary, automatically changes the value for that key
   */
   parameters: any = undefined;
   delta: any = {};
+  trainig_models = [];
+  listModels = {}
 }
