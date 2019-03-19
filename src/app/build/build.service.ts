@@ -30,4 +30,14 @@ export class BuildService {
     const url: string = environment.baseUrl_manage + 'models/' + model;
     return this.http.post(url, null);
   }
+
+  deleteModel(model: string): Observable<any>  {
+    const url: string = environment.baseUrl_manage + 'models/' + model;
+    return this.http.delete(url);
+  }
+
+  deleteVersion(model: string, version: string) {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
+    return this.http.delete(url);
+  }
 }

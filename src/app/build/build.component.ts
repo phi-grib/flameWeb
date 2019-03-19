@@ -96,22 +96,51 @@ export class BuildComponent implements OnInit {
     const letters = /^[A-Za-z0-9_]+$/;
     if (this.modelName.match(letters)) {
         this.service.createModel(this.modelName).subscribe(
-            result => {
-              this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
-              if (result.status[0] === true) {
-                this.modelName = '';
-                //this.models = [];
-                this.getModelList();
-              } else {
-                  alert('ERROR1');
-              }
-            },
-            error => {
-                alert('ERROR2');
+          result => {
+            //this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
+            if (result.status[0] === true) {
+              this.modelName = '';
+              this.model.listModels = {};
+              this.getModelList();
+            } else {
+                alert('ERROR1');
             }
+          },
+          error => {
+              alert('ERROR2');
+          }
         );
     } else {
         alert('Invalid name');
     }
+  }
+
+  deleteModel() {
+
+    this.service.deleteModel(this.model.name).subscribe(
+      result => {
+        this.model.listModels = {};
+        this.getModelList();
+      },
+      error => {
+        console.log(error);
+        alert('Delete ERROR');
+      }
+    );
+  }
+
+  deleteVersion() {
+
+    this.service.deleteVersion(this.model.name, this.model.version).subscribe(
+      result => {
+        this.model.listModels = {};
+        this.getModelList();
+      },
+      error => {
+        console.log(error);
+        alert('Delete Version ERROR');
+      }
+    );
+
   }
 }
