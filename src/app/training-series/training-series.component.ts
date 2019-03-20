@@ -20,7 +20,7 @@ export class TrainingSeriesComponent implements OnInit {
     private model: Model,
     private router: Router,
   ) { }
-  fileContent = '';
+  fileContent: any;
   num_of_mols = 0;
   type_file: string;
 
@@ -42,6 +42,18 @@ export class TrainingSeriesComponent implements OnInit {
     fileReader.onloadend = function(x) {
       self.fileContent = fileReader.result;
       self.num_of_mols = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
+      const res_array = self.fileContent.match(/> <(.*)>/g);
+      const res_dict = {};
+      for (const variable of res_array) {
+        if (variable in res_dict) {
+          res_dict[variable] = res_dict[variable] + 1;
+        }
+        else {
+          res_dict[variable] = 1;
+        }
+      }
+      console.log (res_dict);
+
     }
     fileReader.readAsText(file);
   }

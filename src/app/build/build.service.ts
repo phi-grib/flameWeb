@@ -18,7 +18,7 @@ export class BuildService {
     return this.http.get(url);
   }
 
-  getModel(model: string, version: number): Observable<any> {
+  getModel(model: string, version: string): Observable<any> {
     const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
     return this.http.get(url);
   }
@@ -40,4 +40,10 @@ export class BuildService {
     const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
     return this.http.delete(url);
   }
+
+  cloneModel() {
+
+  }
+
+
 }

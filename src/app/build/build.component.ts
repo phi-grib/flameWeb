@@ -35,8 +35,11 @@ export class BuildComponent implements OnInit {
             const quality = {};
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
+              //CAST VERSION
+              version = version.replace('ver', '');
+              console.log(version);
               version = (version === 'dev') ? '0' : version;
-
+              version = Number(version);
               //INFO OF EACH MODEL
               this.service.getModel(modelName, version).subscribe(
                 result2 => {
@@ -131,22 +134,28 @@ export class BuildComponent implements OnInit {
   }
 
   deleteVersion() {
-   
+
     this.service.deleteVersion(this.model.name, this.model.version).subscribe(
       result => {
-        this.toastr.success('DELETE!', 'Model ' +this.model.name+ '.v' +this.model.version+ ' deleted',{
-          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+        this.toastr.success('DELETE!', 'Model ' + this.model.name + '.v' + this.model.version + ' deleted', {
+          timeOut: 4000, positionClass: 'toast-top-right'
         });
         this.model.listModels = {};
         this.getModelList();
       },
       error => {
         console.log(error);
-        this.toastr.error('DELETE!', 'Model ' +this.model.name+ '.v' +this.model.version+ ' NOT deleted',{
-          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-        });;
+        this.toastr.error('DELETE!', 'Model ' + this.model.name + '.v' + this.model.version + ' NOT deleted', {
+          timeOut: 4000, positionClass: 'toast-top-right'
+        });
       }
     );
+
+  }
+
+  cloneModel () {
+
+    
 
   }
 }

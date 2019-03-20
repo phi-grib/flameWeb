@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Model } from '../Model';
 import { SidebarService } from './sidebar.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public model: Model, private service: SidebarService,private router: Router ) {} 
+  constructor(public model: Model,
+    private service: SidebarService,
+    private router: Router,
+    private toastr: ToastrService ) {}
 
 
   ngOnInit() {
@@ -47,6 +51,9 @@ export class SidebarComponent implements OnInit {
     this.model.delta = {};
     this.model.delta = this.recursiveDelta(this.model.parameters);
     this.model.trainig_models.push(name + '-' + version);
+    const inserted = this.toastr.info('Running!', 'Model ' + this.model.name + '.v' + this.model.version , {
+      disableTimeOut: true, positionClass: 'toast-top-right'});
+
     this.service.buildModel().subscribe(
       result => {
         const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
@@ -54,6 +61,9 @@ export class SidebarComponent implements OnInit {
           this.model.trainig_models.splice(index, 1);
         }
         this.model.listModels[name + '-' + version].trained = true;
+        this.toastr.clear(inserted.toastId);
+        this.toastr.success('Created!', 'Model ' + this.model.name + '.v' + this.model.version , {
+          timeOut: 5000, positionClass: 'toast-top-right'});
       },
       error => {
         console.log(error);
