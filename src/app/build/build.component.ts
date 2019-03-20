@@ -2,8 +2,6 @@ import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@ang
 import { BuildService } from './build.service';
 import {Model} from '../Model';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-build',
@@ -119,6 +117,9 @@ export class BuildComponent implements OnInit {
 
     this.service.deleteModel(this.model.name).subscribe(
       result => {
+        this.toastr.success('DELETE!', 'Model ' +this.model.name+ ' deleted',{
+          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+        });
         this.model.listModels = {};
         this.getModelList();
       },
@@ -130,15 +131,20 @@ export class BuildComponent implements OnInit {
   }
 
   deleteVersion() {
-
+   
     this.service.deleteVersion(this.model.name, this.model.version).subscribe(
       result => {
+        this.toastr.success('DELETE!', 'Model ' +this.model.name+ '.v' +this.model.version+ ' deleted',{
+          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+        });
         this.model.listModels = {};
         this.getModelList();
       },
       error => {
         console.log(error);
-        alert('Delete Version ERROR');
+        this.toastr.error('DELETE!', 'Model ' +this.model.name+ '.v' +this.model.version+ ' NOT deleted',{
+          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+        });;
       }
     );
 
