@@ -3,7 +3,7 @@
 <!--REST OF PARAMETERS-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">
     
-    <div *ngIf="this.model.parameters[key].writable">
+    <div class = ".bmd-form-group" *ngIf="this.model.parameters[key].writable">
       <label class="text-capitalize" for="key"><strong>{{key}}:</strong></label>
       <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
       <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='integer'" id="key" type='number' placeholder="{{key}}" >

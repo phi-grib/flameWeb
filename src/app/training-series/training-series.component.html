@@ -19,12 +19,16 @@
 <input type="file" (change)="onChange($event.target.files)">-->
 <div class="form-group">
   <!--<button  for="exampleFormControlFile1" class="btn btn-primary mb-2">Confirm identity</button>-->
-  <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onChange($event.target.files)">
+  <input type="file" class="form-control-file"  (change)="onChange($event.target.files)">
 </div>
 
-<div *ngIf="this.num_of_mols>0">
+<label class="btn btn-primary" for="my-file-selector">
+    <input id="my-file-selector" type="file" style="display:none;" (change)="onChange($event.target.files)">
+    Button Text Here
+</label>
+<div *ngIf="this.model.file_info!==undefined">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" ><p class="m-0"><strong>Number of molecules: </strong> {{this.num_of_mols}}</p></li>
-    <li class="list-group-item" ><p class="m-0"><strong>Type file: </strong> {{this.type_file}} </p></li>
+    <li class="list-group-item" ><p class="m-0"><strong>Number of molecules: </strong> {{this.model.file_info['num_mols']}}</p></li>
+    <li class="list-group-item" ><p class="m-0"><strong>Type file: </strong> {{this.model.file_info['type_file']}} </p></li>
   </ul>
 </div>

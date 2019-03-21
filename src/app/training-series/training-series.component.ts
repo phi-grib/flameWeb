@@ -35,24 +35,27 @@ export class TrainingSeriesComponent implements OnInit {
   public onChange(fileList: FileList): void {
     const file = fileList[0];
     this.model.file = file;
+    this.model.file_info = {};
+    this.model.file_info['name'] = file.name;
     const extension = file.name.split('.');
-    this.type_file = extension[1];
+    this.model.file_info['type_file'] = extension[1];
     const fileReader: FileReader = new FileReader();
     const self = this;
     fileReader.onloadend = function(x) {
       self.fileContent = fileReader.result;
-      self.num_of_mols = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
-      const res_array = self.fileContent.match(/> <(.*)>/g);
+      self.model.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
+      const res_array = self.fileContent.match(/>( )*<(.*)>/g);
       const res_dict = {};
       for (const variable of res_array) {
-        if (variable in res_dict) {
-          res_dict[variable] = res_dict[variable] + 1;
+        let value = variable.replace(/[<> ]*/g,'')
+        if (value in res_dict) {
+          res_dict[value] = res_dict[value] + 1;
         }
         else {
-          res_dict[variable] = 1;
+          res_dict[value] = 1;
         }
       }
-      console.log (res_dict);
+      self.model.file_info= res_dict;
 
     }
     fileReader.readAsText(file);
