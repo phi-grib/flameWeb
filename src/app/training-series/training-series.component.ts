@@ -37,6 +37,7 @@ export class TrainingSeriesComponent implements OnInit {
     this.model.file = file;
     this.model.file_info = {};
     this.model.file_info['name'] = file.name;
+    this.model.file_info['size_M'] = ((file.size/1024)/1024).toFixed(2);
     const extension = file.name.split('.');
     this.model.file_info['type_file'] = extension[1];
     const fileReader: FileReader = new FileReader();
@@ -48,7 +49,6 @@ export class TrainingSeriesComponent implements OnInit {
       const res_dict = {};
       for (const variable of res_array) {
         let value = variable.replace(/[<> ]*/g, '');
-        console.log(value)
         if (value in res_dict) {
           res_dict[value] = res_dict[value] + 1;
         }
@@ -57,7 +57,6 @@ export class TrainingSeriesComponent implements OnInit {
         }
       }
       self.model.file_info['fields'] = res_dict;
-      console.log(self.model.file_info);
     };
     fileReader.readAsText(file);
   }

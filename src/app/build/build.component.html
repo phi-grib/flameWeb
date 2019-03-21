@@ -1,5 +1,6 @@
+
 <div class ="row h-100">
-  <div class="col-10" style="height: 100%;">
+  <div class="col-10 scrolltable" style="height: 100%;">
     <table class="table table-fixed">
       <thead>
         <tr>
@@ -14,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr  *ngFor="let key of objectKeys(model.listModels)" [ngClass]="{'selected': model.listModels[key].name===this.model.name}" (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained)">
+        <tr  *ngFor="let key of objectKeys(model.listModels)" [ngClass]="{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version)}" (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained)">
           <!--<th scope="row">
             <i class="far fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
             <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>

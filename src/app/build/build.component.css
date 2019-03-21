@@ -22,3 +22,5 @@ td {
    padding-left: 4px;
    padding-right: 4px;
 }
+
+.scrolltable { height: 100%; overflow: auto; }
