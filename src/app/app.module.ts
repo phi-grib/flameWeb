@@ -15,7 +15,6 @@ import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { ToastrModule } from 'ngx-toastr';
 import { Model } from './Model';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
@@ -32,7 +31,6 @@ import { ConfigPreferencesComponent } from './config-preferences/config-preferen
     SidebarComponent,
     ParametersComponent,
     ValidationsComponent,
-    FileSelectDirective,
     ConfigTrainingComponent,
     ConfigModelComponent,
     ConfigPreferencesComponent

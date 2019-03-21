@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Model} from '../Model';
 
+
 @Component({
   selector: 'app-config-training',
   templateUrl: './config-training.component.html',
@@ -20,6 +21,8 @@ export class ConfigTrainingComponent implements OnInit {
                 'convert3D_method', 'ext_input', 'ionize_method', 'modelAutoscaling'];
 
   ngOnInit() {
+
+
   }
 
 }

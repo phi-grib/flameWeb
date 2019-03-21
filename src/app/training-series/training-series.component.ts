@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-// import { SDFService } from './sdf.service';
-import { FileUploader, FileSelectDirective, FileItem } from 'ng2-file-upload';
+// import { SDFService } from './sdf.service';';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Model } from '../Model';
@@ -20,6 +19,7 @@ export class TrainingSeriesComponent implements OnInit {
     private model: Model,
     private router: Router,
   ) { }
+  objectKeys = Object.keys;
   fileContent: any;
   num_of_mols = 0;
   type_file: string;
@@ -47,7 +47,8 @@ export class TrainingSeriesComponent implements OnInit {
       const res_array = self.fileContent.match(/>( )*<(.*)>/g);
       const res_dict = {};
       for (const variable of res_array) {
-        let value = variable.replace(/[<> ]*/g,'')
+        let value = variable.replace(/[<> ]*/g, '');
+        console.log(value)
         if (value in res_dict) {
           res_dict[value] = res_dict[value] + 1;
         }
@@ -55,9 +56,9 @@ export class TrainingSeriesComponent implements OnInit {
           res_dict[value] = 1;
         }
       }
-      self.model.file_info= res_dict;
-
-    }
+      self.model.file_info['fields'] = res_dict;
+      console.log(self.model.file_info);
+    };
     fileReader.readAsText(file);
   }
 }
