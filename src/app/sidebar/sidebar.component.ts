@@ -50,20 +50,31 @@ export class SidebarComponent implements OnInit {
 
     this.model.delta = {};
     this.model.delta = this.recursiveDelta(this.model.parameters);
+    console.log('---------DELTA--------');
+    console.log(this.model.delta);
+    console.log('----------------------');
     this.model.trainig_models.push(name + '-' + version);
     const inserted = this.toastr.info('Running!', 'Model ' + this.model.name + '.v' + this.model.version , {
       disableTimeOut: true, positionClass: 'toast-top-right'});
 
     this.service.buildModel().subscribe(
       result => {
+        console.log(result);
+        //delete model from training models
         const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
-        this.model.listModels[name + '-' + version].trained = true;
         this.toastr.clear(inserted.toastId);
-        this.toastr.success('Created!', 'Model ' + this.model.name + '.v' + this.model.version , {
-          timeOut: 5000, positionClass: 'toast-top-right'});
+        if (result.buildStatus[0]) {
+          this.model.listModels[name + '-' + version].trained = true;
+          this.toastr.success('Created!', 'Model ' + this.model.name + '.v' + this.model.version , {
+            timeOut: 5000, positionClass: 'toast-top-right'});
+        }
+        else{
+          this.toastr.error('ERROR!', 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + result.buildStatus[1] , {
+            timeOut: 10000, positionClass: 'toast-top-right'});
+        }
       },
       error => {
         console.log(error);

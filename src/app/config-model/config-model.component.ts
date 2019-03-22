@@ -12,9 +12,8 @@ export class ConfigModelComponent implements OnInit {
 
   objectKeys = Object.keys;
 
-  infoModel = ['model', 'conformal', 'conformalSignificance', 'feature_number', 'feature_selection', 'imbalance',
-              'ModelValidationCV', 'ModelValidationN', 'ModelValidationP'];
-  
+  infoModel = ['imbalance'];
+
   parametersModel = {
     RF: 'RF_parameters',
     PLSDA: 'PLSDA_parameters',

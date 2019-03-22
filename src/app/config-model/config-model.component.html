@@ -1,9 +1,97 @@
+<!--Model-->
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label class="bmd-label-floating" for="model">model</label>
+    <select id="key" class="form-control" [(ngModel)]="this.model.parameters['model'].value">
+      <option *ngFor="let value of this.model.parameters['model'].options">{{value}}</option>
+    </select>
+    <small id="model" class="text-muted">
+        {{this.model.parameters['model'].description}}
+    </small> 
+  </div>
+  <!--CONFORMAL-->
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value=='RF'">
+    <div class="checkbox">
+      <label>
+        <input  type="checkbox" [(ngModel)]="this.model.parameters['conformal'].value">
+        conformal
+      </label>
+    </div>
+    <small id="conformal" class="text-muted">
+        {{this.model.parameters['conformal'].description}}
+    </small>
+  </div> 
+  <div class="form-group col-md-4">
+    <div *ngIf="(this.model.parameters['model'].value=='RF') && (this.model.parameters['conformal'].value)" style="margin-top: 11px;">
+        <label class="bmd-label-floating" for="conformalSignificance" style="margin-top: 11px;">conformalSignificance</label>
+      <input class="form-control" [(ngModel)]="this.model.parameters['conformalSignificance'].value" type='number' step="0.05">
+      <small id="conformalSignificance" class="text-muted">
+          {{this.model.parameters['conformalSignificance'].description}}
+      </small>
+    </div>
+  </div> 
+  <!--Conformal significance-->
+</div>
+<!--'ModelValidationCV', 'ModelValidationN' ,'ModelValidationP'-->
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label class="bmd-label-floating" for="key">ModelValidationCV</label>
+    <select id="ModelValidationCV" class="form-control" [(ngModel)]="this.model.parameters['ModelValidationCV'].value">
+      <option *ngFor="let value of this.model.parameters['ModelValidationCV'].options">{{value}}</option>
+    </select>
+    <small id="key" class="text-muted">
+        {{this.model.parameters['ModelValidationCV'].description}}
+    </small>  
+  </div>
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['ModelValidationCV'].value=='kfold'" style="margin-top: 11px;">
+      <label class="bmd-label-floating" for="ModelValidationN">ModelValidationN</label>
+    <input class="form-control" [(ngModel)]="this.model.parameters['ModelValidationN'].value" type='number' step="1">
+    <small id="ModelValidationN" class="text-muted">
+        {{this.model.parameters['ModelValidationN'].description}}
+    </small>
+  </div>
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['ModelValidationCV'].value=='lpo'" style="margin-top: 11px;">
+      <label class="bmd-label-floating" for="ModelValidationP">ModelValidationP</label>
+    <input class="form-control" [(ngModel)]="this.model.parameters['ModelValidationP'].value" type='number' step="1">
+    <small id="ModelValidationP" class="text-muted">
+        {{this.model.parameters['ModelValidationP'].description}}
+    </small>
+  </div>
+</div>
+<!--'feature_selection', 'feature_number'-->
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label class="bmd-label-floating" for="key">feature_selection</label>
+    <select id="feature_selection" class="form-control" [(ngModel)]="this.model.parameters['feature_selection'].value">
+      <option *ngFor="let value of this.model.parameters['feature_selection'].options">{{value}}</option>
+    </select>
+    <small id="feature_selection" class="text-muted">
+        {{this.model.parameters['feature_selection'].description}}
+    </small>  
+  </div>
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['feature_selection'].value=='Kbest'" style="margin-top: 11px;">
+      <label class="bmd-label-floating" for="feature_number">feature_number</label>
+    <input class="form-control" [(ngModel)]="this.model.parameters['feature_number'].value" type='text' step="1">
+    <small id="feature_number" class="text-muted">
+        {{this.model.parameters['feature_number'].description}}
+    </small>
+  </div>
+</div>
+
+
+
+ 
+
+  
+
+
+
 <div class="form-row">
 
 <!--REST OF PARAMETERS-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">
-    <div *ngIf="this.model.parameters[key].writable">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
+    <div *ngIf="this.model.parameters[key].writable" style="margin-top: 11px;">
+      <label class="bmd-label-floating" for="key" style="margin-top: 11px;">{{key}}</label>
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01 >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}">
@@ -27,18 +115,19 @@
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
       </select>
     </div>
-    <!--<small id="key" class="text-muted">
+    <small id="key" class="text-muted">
       {{this.model.parameters[key].description}}
-    </small>  -->
-    <span class="bmd-help">{{this.model.parameters['computeMD_method'].description}}</span> 
+    </small>
   </div>
 </div>
+
+
 <!--MODEL PARAMETERS-->
 <fieldset class="border">  
     <legend>{{this.model.parameters['model'].value}} parameters</legend>
-      <div class="form-inline m-3" *ngFor="let key of objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)" >
+      <div class="m-2 w-50" *ngFor="let key of objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)" >
         <div class="form-group" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable">
-          <label class="bmd-label-floating" >{{key}}</label>
+          <label class="bmd-label-floating">{{key}}</label>
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01>
@@ -86,7 +175,7 @@
 <!--MODEL OPTIMIZE-->
 <fieldset class="border" *ngIf="this.model.parameters['tune'].value">  
   <legend>{{this.model.parameters['model'].value}} optimize</legend>
-    <div class="form-inline m-3" *ngFor="let key of objectKeys(this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value)" >
+    <div class="m-2 w-50" *ngFor="let key of objectKeys(this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value)" >
       <div class="form-group" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable">
         <label class="bmd-label-floating">{{key}}</label>
           <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >

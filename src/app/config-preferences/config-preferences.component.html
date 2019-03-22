@@ -1,33 +1,32 @@
 <div class="form-row">
   <div *ngFor="let key of infoPreferences" class="form-group col-md-4">
-    <div *ngIf="this.model.parameters[key].writable">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
-        <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
-        <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01 >
-        <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}">
-        <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='list'" id="key" type='text' placeholder="{{key}}">
-    </div>
-    <div class="checkbox" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='boolean'">
-      <label>
-        <input  type="checkbox" [(ngModel)]="this.model.parameters[key].value">
-        {{key}}
-      </label>
-    </div>  
-    <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
-      <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
-        <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
-      </select>
-    </div>
-    <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
-      <select multiple id="key" class="form-control">
-        <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
-      </select>
-    </div>
-    <!--<small id="key" class="text-muted">
-      {{this.model.parameters[key].description}}
-    </small>  -->
-    <span class="bmd-help">{{this.model.parameters['computeMD_method'].description}}</span> 
+    <div *ngIf="this.model.parameters[key].writable" style="margin-top: 11px;">
+        <label class="bmd-label-floating" for="key" style="margin-top: 11px;">{{key}}</label>
+          <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
+          <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01 >
+          <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}">
+          <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='list'" id="key" type='text' placeholder="{{key}}">
+      </div>
+      <div class="checkbox" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='boolean'">
+        <label>
+          <input  type="checkbox" [(ngModel)]="this.model.parameters[key].value">
+          {{key}}
+        </label>
+      </div>  
+      <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
+        <label class="bmd-label-floating" for="key">{{key}}</label>
+        <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
+          <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
+        </select>
+      </div>
+      <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
+        <label class="bmd-label-floating" for="key">{{key}}</label>
+        <select multiple id="key" class="form-control">
+          <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
+        </select>
+      </div>
+      <small id="key" class="text-muted">
+        {{this.model.parameters[key].description}}
+      </small>
   </div>
 </div>

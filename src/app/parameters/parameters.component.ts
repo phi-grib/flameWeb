@@ -31,6 +31,7 @@ export class ParametersComponent implements OnInit {
       result => {
         if (result[0]) {
           this.model.parameters = result = JSON.parse(result[1]);
+          console.log(this.model.parameters);
         }
 
         /////////////////////////////////

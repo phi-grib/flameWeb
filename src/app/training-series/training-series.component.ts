@@ -48,7 +48,7 @@ export class TrainingSeriesComponent implements OnInit {
       const res_array = self.fileContent.match(/>( )*<(.*)>/g);
       const res_dict = {};
       for (const variable of res_array) {
-        let value = variable.replace(/[<> ]*/g, '');
+        const value = variable.replace(/[<> ]*/g, '');
         if (value in res_dict) {
           res_dict[value] = res_dict[value] + 1;
         }
