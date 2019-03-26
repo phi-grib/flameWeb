@@ -24,6 +24,7 @@
     "arrive": "^2.4.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "font-awesome-animation": "^0.2.1",
     "ngx-modal-dialog": "^3.0.0",
     "ngx-toastr": "^9.2.0",
     "rxjs": "~6.2.0",

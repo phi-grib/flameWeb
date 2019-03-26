@@ -6,7 +6,7 @@ tr {
     cursor: pointer;
 }
 tr.selected {
-    background: #E69400;
+    background: #E6BC72;
 }
 /*.table tbody tr:hover {
     background: #E6BC72;

@@ -41,8 +41,9 @@ export class BuildService {
     return this.http.delete(url);
   }
 
-  cloneModel() {
-
+  cloneModel(model: string) {
+    const url: string = environment.baseUrl_manage + 'models/' + model;
+    return this.http.put(url,null);
   }
 
 

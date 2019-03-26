@@ -1,13 +1,19 @@
 a:hover {
 
-    background: #E6BC72;
+    background: #E69400;
 }
 
 a.active {
-    background: #E69400;
-    border-color: #E69400;
+    background: #E6BC72;
+    border-color: #E6BC72;
 }
 a {
     background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);
    
+}
+.wrap {
+    cursor:not-allowed;
+}
+.disabled{
+   pointer-events: none 
 }

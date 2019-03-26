@@ -89,7 +89,7 @@ export class BuildComponent implements OnInit {
     this.model.trained = trained;
     this.model.file = undefined;
     this.model.file_info = undefined;
-    this.model.parameters = {};
+    this.model.parameters = undefined;
 
   }
 
@@ -123,7 +123,7 @@ export class BuildComponent implements OnInit {
 
     this.service.deleteModel(this.model.name).subscribe(
       result => {
-        this.toastr.success('DELETE!', 'Model ' +this.model.name+ ' deleted',{
+        this.toastr.success( 'Model ' +this.model.name+ ' deleted','DELETED',{
           timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
         });
         this.model.listModels = {};
@@ -140,7 +140,8 @@ export class BuildComponent implements OnInit {
 
     this.service.deleteVersion(this.model.name, this.model.version).subscribe(
       result => {
-        this.toastr.success('DELETE!', 'Model ' + this.model.name + '.v' + this.model.version + ' deleted', {
+        console.log(result);
+        this.toastr.success( 'Model ' + this.model.name + '.v' + this.model.version + ' deleted','DELETED', {
           timeOut: 4000, positionClass: 'toast-top-right'
         });
         this.model.listModels = {};
@@ -148,7 +149,7 @@ export class BuildComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.toastr.error('DELETE!', 'Model ' + this.model.name + '.v' + this.model.version + ' NOT deleted', {
+        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' NOT deleted', 'ERROR',{
           timeOut: 4000, positionClass: 'toast-top-right'
         });
       }
@@ -156,8 +157,18 @@ export class BuildComponent implements OnInit {
 
   }
 
-  cloneModel () {
+  cloneModel() {
 
+    this.service.cloneModel(this.model.name).subscribe(
+
+      result => {
+        this.model.listModels = {};
+        this.getModelList();
+      },
+      error => {
+       alert("Error cloning")
+      }
+    );
     
 
   }

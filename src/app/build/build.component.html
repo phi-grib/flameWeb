@@ -23,8 +23,8 @@
           </th>-->
 
           <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }"-->
-          <td class="text-center" ><i class="fas fa-circle"  
-                        [ngStyle]="{'color':this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#FDA50F' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
+          <td class="text-center" ><i class="fas fa-circle"  [ngClass]="{'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}"
+                        [ngStyle]="{'color':this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
                         aria-hidden="true"></i> 
           </td>
           <td >{{model.listModels[key].name}}</td>
@@ -57,7 +57,7 @@
     <div class="row">
       <fieldset class="form-group mt-3 ">
         <legend>Publish</legend>
-        <button type="button" class="btn btn-outline-primary m-1">Clone</button>
+        <button type="button" class="btn btn-outline-primary m-1" (click)="cloneModel()">Clone</button>
         <button type="button" class="btn btn-outline-primary m-1">Export</button>
       </fieldset>
     </div>
@@ -79,18 +79,7 @@
   </div>
   </div>
 </div>
-  <!--<div class="col-2" style=" background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);">
-    <div class="row">
-      <button type="button" class="btn btn-outline-primary m-2 custom" data-toggle="modal" data-target="#exampleModal">New Model</button> 
-    </div>
-    <div class="row"> 
-      <button type="button" class="btn btn-outline-success m-2 custom" [ngClass]="{'disabled':!model.trained}">Clone</button>
-    </div>
-    <div class="row">  
-      <button type="button" class="btn btn-outline-danger m-2 custom" [ngClass]="{'disabled':!model.trained}">Delete</button> 
-    </div>
-  </div>
-</div>-->
+ 
 
 
 <!-- Modal -->
