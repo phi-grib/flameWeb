@@ -56,7 +56,7 @@ export class TrainingSeriesComponent implements OnInit {
           res_dict[value] = 1;
         }
       }
-      self.model.file_info['fields'] = res_dict;
+      self.model.file_fields = res_dict;
     };
     fileReader.readAsText(file);
   }

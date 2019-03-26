@@ -32,11 +32,14 @@
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
       </select>
     </div>
-    <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
-      <select multiple id="key" class="form-control">
-        <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
-      </select>
+    <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list'">
+      <label id="key" class="bmd-label-floating mb-2 p-0">{{key}}</label>
+      <label id="key" class="mr-2 mb-2" *ngFor="let value of this.model.parameters[key].options">
+          <input id="key" type="checkbox"
+                [(checklist)]="this.model.parameters[key].value"
+                [checklistValue]="value" />
+              {{value}}
+      </label>
     </div>
     <small id="key" class="text-muted">
       {{this.model.parameters[key].description}}
@@ -44,62 +47,3 @@
     <!--<span class="bmd-help">{{this.model.parameters['computeMD_method'].description}}</span>--> 
   </div>
 </div>
-
-  <!--['input_type', 'quantitative', 'SDFile_name', 'SDFile_activity', 'model_set', 'normalize_method', 'computeMD_method',
-                'convert3D_method', 'ext_input', 'ionize_method', 'modelAutoscaling'];-->
-<!--<div class="form-row">
-  <div class="form-group col-md-4">    
-    <label for="input_type" class="bmd-label-floating">Input type</label>
-    <select class="form-control" id="input_type" [(ngModel)]="this.model.parameters['input_type'].value">
-      <option *ngFor="let value of this.model.parameters['input_type'].options">{{value}}</option>
-    </select>
-    <span class="bmd-help">{{this.model.parameters['input_type'].description}}</span>  
-  </div>
-  <div class="form-group col-md-4">
-    <div class="checkbox" [(ngModel)]="this.model.parameters['quantitative'].value">
-      <label>
-        <input type="checkbox"> Quantitative
-      </label>
-      <span class="bmd-help">{{this.model.parameters['quantitative'].description}}</span>
-    </div>  
-  </div>
-</div>-->
-
-<!--'SDFile_name', 'SDFile_activity'-->
-<!--<div class="form-row">
-  <div class="form-group col-md-4">
-    <label class="bmd-label-floating" for="SDFile_name">SDFile_name</label>
-    <input class="form-control" [(ngModel)]="this.model.parameters['SDFile_name'].value" id="SDFile_name" type='text' placeholder="{{this.model.parameters['SDFile_name'].value}}" >
-  </div>
-  <div class="form-group col-md-4">
-    <label class="bmd-label-floating" for="SDFile_activity">SDFile_activity</label>
-    <input class="form-control" [(ngModel)]="this.model.parameters['SDFile_activity'].value" id="SDFile_activity" type='text' placeholder="{{this.model.parameters['SDFile_name'].value}}" >
-  </div>
-</div>-->
-
-<!--'normalize_method', 'ionize_method', 'computeMD_method'-->
-<!--<div class="form-row">
-  <div class="form-group col-md-4">    
-    <label for="normalize_method" class="bmd-label-floating">Normalize_method</label>
-    <select class="form-control" id="normalize_method" [(ngModel)]="this.model.parameters['normalize_method'].value">
-      <option *ngFor="let value of this.model.parameters['normalize_method'].options">{{value}}</option>
-    </select>
-    <span class="bmd-help">{{this.model.parameters['normalize_method'].description}}</span>  
-  </div>
-   <div class="form-group col-md-4">    
-    <label for="ionize_method" class="bmd-label-floating">Ionize_method</label>
-    <select class="form-control" id="ionize_method" [(ngModel)]="this.model.parameters['ionize_method'].value">
-      <option *ngFor="let value of this.model.parameters['ionize_method'].options">{{value}}</option>
-    </select>
-    <span class="bmd-help">{{this.model.parameters['ionize_method'].description}}</span>  
-  </div>
-   <div class="form-group col-md-4">    
-    <label for="computeMD_method" class="bmd-label-floating">ComputeMD_method</label>
-    <select class="form-control" id="computeMD_method" [(ngModel)]="this.model.parameters['normalize_method'].value">
-      <option *ngFor="let value of this.model.parameters['computeMD_method'].options">{{value}}</option>
-    </select>
-    <span class="bmd-help">{{this.model.parameters['computeMD_method'].description}}</span>  
-  </div>
-</div>-->
-
-

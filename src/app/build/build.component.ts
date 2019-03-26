@@ -37,7 +37,6 @@ export class BuildComponent implements OnInit {
               let version = versionInfo.text;
               //CAST VERSION
               version = version.replace('ver', '');
-              console.log(version);
               version = (version === 'dev') ? '0' : version;
               version = Number(version);
               //INFO OF EACH MODEL
@@ -130,7 +129,6 @@ export class BuildComponent implements OnInit {
         this.getModelList();
       },
       error => {
-        console.log(error);
         alert('Delete ERROR');
       }
     );
@@ -140,7 +138,6 @@ export class BuildComponent implements OnInit {
 
     this.service.deleteVersion(this.model.name, this.model.version).subscribe(
       result => {
-        console.log(result);
         this.toastr.success( 'Model ' + this.model.name + '.v' + this.model.version + ' deleted','DELETED', {
           timeOut: 4000, positionClass: 'toast-top-right'
         });
@@ -169,7 +166,5 @@ export class BuildComponent implements OnInit {
        alert("Error cloning")
       }
     );
-    
-
   }
 }

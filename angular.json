@@ -30,7 +30,8 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "node_modules/arrive/src/arrive.js"
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"
               ]
           },
           "configurations": {

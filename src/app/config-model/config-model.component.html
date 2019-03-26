@@ -78,14 +78,6 @@
   </div>
 </div>
 
-
-
- 
-
-  
-
-
-
 <div class="form-row">
 
 <!--REST OF PARAMETERS-->
@@ -109,11 +101,14 @@
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
       </select>
     </div>
-    <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
-      <select multiple id="key" class="form-control">
-        <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
-      </select>
+    <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
+      <label id="key" class="bmd-label-floating mb-2 p-0">{{key}}</label>
+      <label id="key" class="mr-2 mb-2" *ngFor="let value of this.model.parameters[key].options">
+        <input id="key" type="checkbox"
+              [(checklist)]="this.model.parameters[key].value"
+              [checklistValue]="value" />
+            {{value}}
+      </label>
     </div>
     <small id="key" class="text-muted">
       {{this.model.parameters[key].description}}
@@ -151,13 +146,16 @@
           </select>
           <small id="key" class="text-muted">
           {{this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].description}}
-        </small>
+          </small>
         </div>
-        <div class="form-group" *ngIf="!this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='list' ">
-          <label for="key">{{key}}</label>
-          <select multiple id="key" class="form-control">
-            <option *ngFor="let value of this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].options">{{value}}</option>
-          </select>
+        <div class="checkbox mt-3" *ngIf="!this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable && this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='list' ">
+          <label id="key" class="bmd-label-floating mb-2 p-0">{{key}}</label>
+          <label id="key" class="mr-2 mb-2" *ngFor="let value of this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].options">
+            <input id="key" type="checkbox"
+                  [(checklist)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value"
+                  [checklistValue]="value" />
+                {{value}}
+          </label>
           <small id="key" class="text-muted">
             {{this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].description}}
           </small>

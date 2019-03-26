@@ -53,13 +53,13 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="this.model.file_info!==undefined" class="col-md-4">
+    <div *ngIf="this.model.file_fields!==undefined" class="col-md-4">
       <h4>SDFile fields</h4>
       <hr>
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-left p-1" *ngFor="let key of objectKeys(this.model.file_info['fields'])">
+        <li class="list-group-item d-flex justify-content-between align-items-left p-1" *ngFor="let key of objectKeys(this.model.file_fields)">
           <strong>{{key}}</strong>
-          <span class="badge badge-primary badge-pill">{{this.model.file_info["fields"][key]}}</span>
+          <span class="badge badge-primary badge-pill">{{this.model.file_fields[key]}}</span>
         </li>
       </ul>
     </div>

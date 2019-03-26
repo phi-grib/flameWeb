@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
 import { ConfigPreferencesComponent } from './config-preferences/config-preferences.component';
+import { ChecklistModule } from 'angular-checklist';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ConfigPreferencesComponent } from './config-preferences/config-preferen
     ConfigTrainingComponent,
     ConfigModelComponent,
     ConfigPreferencesComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { ConfigPreferencesComponent } from './config-preferences/config-preferen
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ChecklistModule
   ],
   entryComponents: [NewmodelComponent],
   providers: [Model],

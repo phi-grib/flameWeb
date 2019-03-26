@@ -50,7 +50,7 @@ export class SidebarComponent implements OnInit {
 
     this.model.delta = {};
     this.model.delta = this.recursiveDelta(this.model.parameters);
-    
+    console.log(this.model.delta);
     this.model.trainig_models.push(name + '-' + version);
     const inserted = this.toastr.info('Running!', 'Model ' + name + '.v' + version , {
       disableTimeOut: true, positionClass: 'toast-top-right'});
