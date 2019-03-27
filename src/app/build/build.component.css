@@ -6,11 +6,15 @@ tr {
     cursor: pointer;
 }
 tr.selected {
-    background: #E6BC72;
+    background: rgb(212, 207, 198);
 }
 /*.table tbody tr:hover {
     background: #E6BC72;
 }*/
+tr.version td{
+    border: none
+}
+
 .custom {
     width: 80%;
 }
@@ -21,6 +25,8 @@ tr.selected {
 td {
    padding-left: 4px;
    padding-right: 4px;
+   padding: 4px;
+
 }
 
 .scrolltable { height: 100%; overflow: auto; }
