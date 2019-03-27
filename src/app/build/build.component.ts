@@ -88,6 +88,7 @@ export class BuildComponent implements OnInit {
     this.model.trained = trained;
     this.model.file = undefined;
     this.model.file_info = undefined;
+    this.model.file_fields = undefined;
     this.model.parameters = undefined;
 
   }
