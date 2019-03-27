@@ -48,7 +48,7 @@ export class BuildComponent implements OnInit {
                     for ( const info of JSON.parse(result2[1])) {
                       dict_info[info[0]] = info[2];
                     }
-                    for ( const info of Object.keys(dict_info)) {
+                    for ( const info of (Object.keys(dict_info))) {
                       if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
                           && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
                           && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
@@ -70,6 +70,7 @@ export class BuildComponent implements OnInit {
               );
             }
           }
+          this.model.listModels;
         },
         error => {
           alert('Error getALL models');
@@ -126,6 +127,13 @@ export class BuildComponent implements OnInit {
         this.toastr.success( 'Model ' +this.model.name+ ' deleted','DELETED',{
           timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
         });
+        this.model.name = undefined ;
+        this.model.version = undefined;
+        this.model.trained = undefined;
+        this.model.file = undefined;
+        this.model.file_info = undefined;
+        this.model.file_fields = undefined;
+        this.model.parameters = undefined;
         this.model.listModels = {};
         this.getModelList();
       },

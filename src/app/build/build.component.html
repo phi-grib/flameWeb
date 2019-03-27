@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr  *ngFor="let key of objectKeys(model.listModels)" 
+        <tr *ngFor="let key of objectKeys(model.listModels).sort()" 
           [ngClass]="{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),
                       'version': model.listModels[key].version > 0}"
           (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained)">
@@ -30,15 +30,18 @@
                         [ngStyle]="{'color':this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
                         aria-hidden="true"></i> 
           </td>
-          <td ><div *ngIf="model.listModels[key].version === 0">{{model.listModels[key].name}}</div></td>
-          <td class="text-center">{{model.listModels[key].version}}  {{model.listModels[key].version >0}}</td>
+          <td *ngIf="model.listModels[key].version === 0">{{model.listModels[key].name}}</td>
+          <td class="text-center"*ngIf="model.listModels[key].version != 0"><i class="fas fa-level-up-alt fa-rotate-90 fa-lg"></i></td>
+         
+         
+          <td class="text-center">{{model.listModels[key].version}}</td>
           <td class="text-center">{{model.listModels[key].numMols}}</td>
           <td class="text-center">{{model.listModels[key].variables}}</td>
           <td class="text-capitalize">{{model.listModels[key].type}}</td>
           <td>
             
             <div  *ngIf="objectKeys(model.listModels[key].quality).length!=0">
-              <a class="btn btn-primary" data-toggle="collapse" href= "#collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}" role="button" aria-expanded="false" >
+              <a class="btn btn-primary m-0" data-toggle="collapse" href= "#collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}" role="button" aria-expanded="false" >
                         + INFO
               </a> 
                       

@@ -2,6 +2,12 @@ i {
     margin-right: 5px;
     cursor: pointer;
 }
+.table td {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.table td, .table th {
+    border-top: 4px solid rgba(0,0,0,.06);
+}
 tr {
     cursor: pointer;
 }
@@ -11,9 +17,10 @@ tr.selected {
 /*.table tbody tr:hover {
     background: #E6BC72;
 }*/
-tr.version td{
+tr.version td {
     border: none
 }
+
 
 .custom {
     width: 80%;
@@ -23,10 +30,10 @@ tr.version td{
     max-width: 100%;
 }
 td {
-   padding-left: 4px;
-   padding-right: 4px;
-   padding: 4px;
-
+    padding-left: 4px;
+    padding-right: 4px;
+    padding: 4px;
+    vertical-align: middle;
 }
 
 .scrolltable { height: 100%; overflow: auto; }

@@ -11,7 +11,7 @@
       </a>
       <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
           <strong>Training Series</strong>
-          <i class="fas fa-check" [ngClass]="{'fas fa-check':model.file}" [ngStyle]="{'color': model.file ? '#51cf66' : 'red' }" ></i>
+          <i class="fas fa-check" [ngClass]="{'fas fa-check':model.file || model.trained}" style="color: #51cf66;" ></i>
       </a>
       <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
         <strong>Parameters</strong>
@@ -24,6 +24,8 @@
     </div>
   </div>
   <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-      <button type="button" class="btn btn-outline-primary" [ngClass]="{'disabled': (!model.file || !model.parameters)}" (click)="buildModel(this.model.name,this.model.version)">Build model</button>
+      <button type="button" class="btn btn-outline-primary" 
+              [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
+              (click)="buildModel(this.model.name,this.model.version)">Build model</button>
   </div>
 </div>

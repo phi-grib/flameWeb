@@ -21,7 +21,7 @@
       </div>
       <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
         <label id="key" class="bmd-label-floating mb-2 p-0">{{key}}</label>
-        <label id="key" class="mr-2 mb-2" *ngFor="let value of this.model.parameters[key].options">
+        <label id="key" class="mr-2 mb-2 w-100" *ngFor="let value of this.model.parameters[key].options">
           <input id="key" type="checkbox"
                 [(checklist)]="this.model.parameters[key].value"
                 [checklistValue]="value" />
