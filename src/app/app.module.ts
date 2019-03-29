@@ -20,6 +20,7 @@ import { ConfigTrainingComponent } from './config-training/config-training.compo
 import { ConfigModelComponent } from './config-model/config-model.component';
 import { ConfigPreferencesComponent } from './config-preferences/config-preferences.component';
 import { ChecklistModule } from 'angular-checklist';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { ChecklistModule } from 'angular-checklist';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ChecklistModule
+    ChecklistModule,
+    ChartsModule
+    
   ],
   entryComponents: [NewmodelComponent],
   providers: [Model],

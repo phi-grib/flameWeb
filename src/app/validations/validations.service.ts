@@ -10,8 +10,8 @@ export class ValidationsService {
 
   constructor(private http: HttpClient) { }
 
-  getModel(model: string, version: string): Observable<any> {
-    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
+  getValidation(model: string, version: string): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version + '/validation';
     return this.http.get(url);
   }
 }
