@@ -80,7 +80,7 @@ export class BuildComponent implements OnInit {
   }
 
 
-  selectModel(name: string, version: string, trained: boolean) {
+  selectModel(name: string, version: string, trained: boolean,type: string) {
 
     if (version === '-' || version === 'dev') {
       version = '0';
@@ -92,7 +92,8 @@ export class BuildComponent implements OnInit {
     this.model.file_info = undefined;
     this.model.file_fields = undefined;
     this.model.parameters = undefined;
-
+    this.model.conformal = type.indexOf('conformal') === -1  ? false : true;
+    this.model.quantitative = type.indexOf('quantitative') === -1 ? false : true;
   }
 
   /**

@@ -18,7 +18,7 @@
         <tr *ngFor="let key of objectKeys(model.listModels).sort()" 
           [ngClass]="{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),
                       'version': model.listModels[key].version > 0}"
-          (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained)">
+          (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)">
           <!--<th scope="row">
             <i class="far fa-eye" aria-hidden="true" (click)="viewModel()" data-toggle="tooltip" data-placement="left" title="Validation"></i>
             <i class="fas fa-code-branch" aria-hidden="true" (click)="createVersion()" data-toggle="tooltip" data-placement="left" title="New Version"></i>

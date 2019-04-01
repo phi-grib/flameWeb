@@ -1,0 +1,50 @@
+<div class="row m-3">
+    <div class="col-4">
+        <div class="row justify-content-center">
+            <div class="card w-100" style="width: 18rem;">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Model info</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor = "let key of objectKeys(modelBuildInfo).sort()">
+                            <td class="text-left text-capitalize"  data-toggle="tooltip" data-placement="left" title="{{modelBuildInfo[key][0]}}"><strong>{{key}}</strong></td>
+                            <td class="text-right text-capitalize">{{modelBuildInfo[key][1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card w-100" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Model validation</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor = "let key of objectKeys(modelValidationInfo)">
+                            <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo[key][0]}}"><strong>{{key}}</strong></td>
+                            <td class="text-right text-capitalize">{{modelValidationInfo[key][1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card w-100" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div style="display: block">
+                  <canvas baseChart
+                    [datasets]="scatterChartData"
+                    [options]="scatterChartOptions"
+                    [labels]="scatterChartLabels"
+                    [chartType]="scatterChartType">
+                  </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

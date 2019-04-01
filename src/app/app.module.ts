@@ -21,6 +21,10 @@ import { ConfigModelComponent } from './config-model/config-model.component';
 import { ConfigPreferencesComponent } from './config-preferences/config-preferences.component';
 import { ChecklistModule } from 'angular-checklist';
 import { ChartsModule } from 'ng2-charts';
+import { QualitNoConformalComponent } from './qualit-no-conformal/qualit-no-conformal.component';
+import { QualitConformalComponent } from './qualit-conformal/qualit-conformal.component';
+import { QuantitNoConformalComponent } from './quantit-no-conformal/quantit-no-conformal.component';
+import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { ChartsModule } from 'ng2-charts';
     ValidationsComponent,
     ConfigTrainingComponent,
     ConfigModelComponent,
-    ConfigPreferencesComponent
+    ConfigPreferencesComponent,
+    QualitNoConformalComponent,
+    QualitConformalComponent,
+    QuantitNoConformalComponent,
+    QuantitConformalComponent
     
   ],
   imports: [

@@ -1,0 +1,112 @@
+<div class="row m-3">
+    <div class="col-4">
+        <div class="row justify-content-center">
+            <div class="card w-100" style="width: 18rem;">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Model info</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor = "let key of objectKeys(modelBuildInfo).sort()">
+                            <td class="text-left text-capitalize"  data-toggle="tooltip" data-placement="left" title="{{modelBuildInfo[key][0]}}"><strong>{{key}}</strong></td>
+                            <td class="text-right text-capitalize">{{modelBuildInfo[key][1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="card w-100" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Model validation</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor = "let key of objectKeys(modelValidationInfo)">
+                            <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo[key][0]}}"><strong>{{key}}</strong></td>
+                            <td class="text-right text-capitalize">{{modelValidationInfo[key][1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card w-100" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+
+                <div class="container h-60 text-center mb-5 bt-3">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-2">
+                            <div class="row">
+
+                            </div>
+                            <div class="row border-bottom border-top">
+                                Predicted +
+                            </div>
+                            <div class="row border-bottom">
+                                Predicted -
+                            </div>
+                                
+                        </div>
+                        <div class="col-6">
+                            <div class="row text-center align-middle border-bottom">
+                                <div class="col border-right border-left">
+                                    Actual +
+                                </div>
+                                <div class="col border-right">
+                                    Actual -
+                                </div>
+                                <div class="col">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col border-right border-left">
+                                    TP = {{this.modelValidationInfo['TP'][1]}}
+                                </div>
+                                <div class="col border-right">
+                                    FP = {{this.modelValidationInfo['FP'][1]}}
+                                </div>
+                                <div class="col"> PP = {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FP'][1]}} </div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col border-right border-left">
+                                    FN = {{this.modelValidationInfo['FN'][1]}}
+                                </div>
+                                <div class="col border-right">
+                                    TN = {{this.modelValidationInfo['TN'][1]}}
+                                </div>
+                                <div class="col">
+                                    PN = {{this.modelValidationInfo['FN'][1]+this.modelValidationInfo['TN'][1]}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col border-right border-left">
+                                        AP = {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]}}
+                                    </div>
+                                    <div class="col border-right">
+                                        AN = {{this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}
+                                    </div>
+                                    <div class="col">
+                                    {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]
+                                       +  this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                    <div style="display: block">
+                        <canvas baseChart
+                            [data]="polarAreaChartData"
+                            [labels]="polarAreaChartLabels"
+                            [legend]="polarAreaLegend"
+                            [chartType]="polarAreaChartType">
+                        </canvas>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
