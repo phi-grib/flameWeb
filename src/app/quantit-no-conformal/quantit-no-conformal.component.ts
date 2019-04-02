@@ -23,17 +23,32 @@ export class QuantitNoConformalComponent implements OnInit {
 
   public scatterChartOptions: ChartOptions = {
     responsive: true,
+    tooltips: {
+      callbacks: {
+         label: function(tooltipItem, data) {
+            var label = data.labels[tooltipItem.index];
+            return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+         }
+      }
+   }
   };
   public scatterChartLabels: Label[] = [];
 
   public scatterChartData: ChartDataSets[] = [
+    
     {
       data: [],
       label: 'Series A',
-      pointRadius: 2,
+      pointRadius: 3,
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      type: 'scatter'
+    },
+    {
+      data: [],
+      type: "line",
     },
   ];
-  public scatterChartType: ChartType = 'scatter';
+  public scatterChartType: ChartType[] = ['scatter','line'];
 
   ngOnInit() {
     this.getValidation();
@@ -69,6 +84,7 @@ export class QuantitNoConformalComponent implements OnInit {
             // tslint:disable-next-line:forin
             for (const i in info['ymatrix']) {
               this.scatterChartData[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
+              this.scatterChartData[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
               this.scatterChartLabels[i] = info['obj_nam'][i];
             }
           }, 50);
