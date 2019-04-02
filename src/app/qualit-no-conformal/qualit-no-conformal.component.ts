@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QualitNoConformalService } from './qualit-no-conformal.service';
 import {Model} from '../Model';
 import { SingleDataSet, Label } from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { ChartType, ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-qualit-no-conformal',
@@ -18,6 +18,10 @@ export class QualitNoConformalComponent implements OnInit {
     modelBuildInfo = {};
     modelValidationInfo = {};
     // PolarArea
+    public polarChartOptions: any = {
+      startAngle: -0.5 * Math.PI,
+      legend: true
+    };
     public polarAreaChartLabels: Label[] = ['TP', 'FP', 'FN', 'TN'];
     public polarAreaChartData: SingleDataSet = [0, 0, 0, 0];
     public polarAreaLegend = true;

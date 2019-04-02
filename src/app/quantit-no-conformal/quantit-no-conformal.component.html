@@ -38,10 +38,18 @@
                 <h5 class="card-title">Card title</h5>
                 <div style="display: block">
                   <canvas baseChart
-                    [datasets]="scatterChartData"
-                    [options]="scatterChartOptions"
-                    [labels]="scatterChartLabels"
-                    [chartType]="scatterChartType">
+                    [datasets]="ChartData"
+                    [options]="ChartOptions"
+                    [labels]="ChartLabels"
+                    [chartType]="ChartType">
+                  </canvas>
+                </div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [datasets]="ChartData2"
+                    [options]="ChartOptions"
+                    [labels]="ChartLabels"
+                    [chartType]="ChartType">
                   </canvas>
                 </div>
             </div>

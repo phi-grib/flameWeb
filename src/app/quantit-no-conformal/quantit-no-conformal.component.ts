@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QuantitNoConformalService } from './quantit-no-conformal.service';
 import {Model} from '../Model';
-import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts'
+import { ChartDataSets, ChartType, ChartOptions} from 'chart.js';
+import { Label} from 'ng2-charts'
 
 @Component({
   selector: 'app-quantit-no-conformal',
@@ -21,34 +21,73 @@ export class QuantitNoConformalComponent implements OnInit {
   modelValidationInfo = {};
   data: Array<any>;
 
-  public scatterChartOptions: ChartOptions = {
+  // Options
+  public ChartOptions: ChartOptions = {
     responsive: true,
     tooltips: {
       callbacks: {
          label: function(tooltipItem, data) {
-            var label = data.labels[tooltipItem.index];
-            return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+            return '(' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+         },
+         title: function(tooltipItem, data) {
+          const label = data.labels[tooltipItem[0].index];
+          return label;
          }
       }
-   }
+    },
+   scales: {
+      xAxes: [{
+        type: 'linear',
+        position: 'bottom'
+      }]
+    },
+    title: {
+      display: true,
+      text: 'Custom Chart Title'
+    },
+    legend: {
+      display: false
+    }
   };
-  public scatterChartLabels: Label[] = [];
 
-  public scatterChartData: ChartDataSets[] = [
-    
+  public ChartLabels: Label[] = [];
+
+  public ChartData: ChartDataSets[] = [
     {
       data: [],
-      label: 'Series A',
       pointRadius: 3,
       backgroundColor: 'rgba(255,0,0,0.3)',
-      type: 'scatter'
+      type: 'scatter',
+      showLine: false,
+      fill: false,
     },
     {
       data: [],
-      type: "line",
+      type: 'line', 
+      fill: false,
+      pointRadius: 1
     },
   ];
-  public scatterChartType: ChartType[] = ['scatter','line'];
+
+  public ChartData2: ChartDataSets[] = [
+    {
+      data: [],
+      pointRadius: 3,
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      type: '',
+      showLine: false,
+      fill: false
+    },
+    {
+      data: [],
+      type: 'line',
+     
+      fill: false,
+      pointRadius: 1
+    },
+  ];
+
+  public ChartType: ChartType = 'line';
 
   ngOnInit() {
     this.getValidation();
@@ -78,14 +117,14 @@ export class QuantitNoConformalComponent implements OnInit {
             }
           }
 
-
-         
           setTimeout(() => {
             // tslint:disable-next-line:forin
             for (const i in info['ymatrix']) {
-              this.scatterChartData[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
-              this.scatterChartData[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-              this.scatterChartLabels[i] = info['obj_nam'][i];
+              this.ChartData[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
+              this.ChartData[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+              this.ChartData2[0].data[i] = { x: info['ymatrix'][i], y: info['Y_adj'][i]};
+              this.ChartData2[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+              this.ChartLabels[i] = info['obj_nam'][i];
             }
           }, 50);
         }
