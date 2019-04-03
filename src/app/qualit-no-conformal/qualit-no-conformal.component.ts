@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QualitNoConformalService } from './qualit-no-conformal.service';
 import {Model} from '../Model';
 import { SingleDataSet, Label } from 'ng2-charts';
-import { ChartType, ChartOptions} from 'chart.js';
+import { ChartType, ChartOptions, ChartColor} from 'chart.js';
 
 @Component({
   selector: 'app-qualit-no-conformal',
@@ -27,6 +27,11 @@ export class QualitNoConformalComponent implements OnInit {
     public polarAreaChartData2: SingleDataSet = [0, 0, 0, 0];
     public polarAreaLegend = true;
     public polarAreaChartType: ChartType = 'polarArea';
+    public polarAreaChartColors = [
+      {
+        backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(255,0,0,0.3)', 'rgba(4,3,100,0.3)'],
+      },
+    ];
 
   ngOnInit() {
     this.getValidation();
@@ -37,6 +42,7 @@ export class QualitNoConformalComponent implements OnInit {
       result => {
         if (result[0]) { // True is trained
           const info = JSON.parse(result[1]);
+          console.log(info)
           // INFO ABOUT MODEL
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
@@ -53,7 +59,6 @@ export class QualitNoConformalComponent implements OnInit {
               this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
             }
           }
-          console.log(this.modelValidationInfo);
           setTimeout(() => {
             this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
             this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];

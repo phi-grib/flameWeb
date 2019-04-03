@@ -1,0 +1,12 @@
+.TP {
+    background-color: rgba(0,255,0,0.3);
+}
+.FP {
+    background-color:rgba(235,143,3,0.3);
+}
+.TN {
+    background-color:rgba(255,0,0,0.3);
+}
+.FN {
+    background-color: rgba(4,3,100,0.3);
+}

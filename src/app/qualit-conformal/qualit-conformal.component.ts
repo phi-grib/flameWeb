@@ -25,7 +25,6 @@ export class QualitConformalComponent implements OnInit {
           const info = JSON.parse(result[1]);
           console.log(info);
         }
-       
       },
       error => {
         alert('Error getting model');

@@ -26,6 +26,8 @@
     "bootstrap-material-design": "^4.1.1",
     "bootstrap-multiselect": "^0.9.13-1",
     "chart.js": "^2.8.0",
+    "chartjs-chart-box-and-violin-plot": "^2.0.0",
+    "chartjs-plugin-error-bars": "^1.2.0",
     "checklist-model": "^1.0.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
