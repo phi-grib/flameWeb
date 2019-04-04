@@ -13,7 +13,7 @@ export class ConfigPreferencesComponent implements OnInit {
   objectKeys = Object.keys;
   
 
-  infoPreferences = ['SDFile_experimental', 'ext_input', 'model_set', 'modelingToolkit', 'mol_batch', 'numCPUs',
+  infoPreferences = ['SDFile_experimental',  'modelingToolkit', 'mol_batch', 'numCPUs',
                     'output_format', 'output_md', 'verbose_error'];
 
   ngOnInit() {

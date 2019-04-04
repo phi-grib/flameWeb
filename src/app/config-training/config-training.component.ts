@@ -15,8 +15,9 @@ export class ConfigTrainingComponent implements OnInit {
 
   infoSeries = {
     'molecule': ['SDFile_name', 'SDFile_activity', 'SDFile_experimental', 'quantitative', 'normalize_method',
-     'computeMD_method', 'convert3D_method', 'ext_input', 'ionize_method', 'modelAutoscaling'],
-    'data': ['TSV_objnames', 'TSV_activity', 'TSV_varnames']
+     'computeMD_method', 'convert3D_method', 'ionize_method', 'modelAutoscaling'],
+    'data': ['TSV_objnames', 'TSV_activity', 'TSV_varnames'],
+    'ext_data':['model_set']
   };
 
 

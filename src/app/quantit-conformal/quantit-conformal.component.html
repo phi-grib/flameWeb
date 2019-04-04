@@ -1,5 +1,5 @@
 <div class="row m-3">
-    <div class="col-3">
+    <div class="col-4">
         <div class="row justify-content-center">
             <div class="card w-100" style="width: 18rem;">
                 
@@ -28,18 +28,10 @@
                 <div class="col-2 mt-5">
                     <table class="table table-sm table-striped">
                         <tbody>
-                         <!--   <tr>
-                                <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo['scoringR'][0]}}"><strong>ScoringR</strong></td>
-                                <td class="text-right text-capitalize">{{modelValidationInfo['scoringR'][1]}}</td>
+                            <tr *ngFor = "let key of objectKeys(modelValidationInfo)">
+                                <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo[key][0]}}"><strong>{{key}}</strong></td>
+                                <td class="text-right text-capitalize">{{modelValidationInfo[key][1]}}</td>
                             </tr>
-                            <tr>
-                                <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo['R2'][0]}}"><strong>R2</strong></td>
-                                <td class="text-right text-capitalize">{{modelValidationInfo['R2'][1]}}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{modelValidationInfo['SDEC'][0]}}"><strong>SDEC</strong></td>
-                                <td class="text-right text-capitalize">{{modelValidationInfo['SDEC'][1]}}</td>
-                            </tr>-->
                         </tbody>
                     </table>    
                 </div>

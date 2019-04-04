@@ -82,6 +82,10 @@ export class QuantitConformalComponent implements OnInit {
           scaleLabel: {
             display: true,
             labelString: 'Fitted'
+          },
+          ticks: {
+            min: -8,
+            max: -3, 
           }
         }]
       },
@@ -90,19 +94,9 @@ export class QuantitConformalComponent implements OnInit {
       },
       plugins: {
         chartJsPluginErrorBars: {
-          /**
-           * stroke color, or array of colors
-           * @default: derived from borderColor
-           */
           color: '#666',
-  
-          lineWidth: 2 | '2px',
-  
-          /**
-           * whether to interpet the plus/minus values, relative to the value itself (default) or absolute
-           * @default false
-           */
-          absoluteValues: false
+          lineWidth: 2,
+          absoluteValues: true
         }
       }
     };
@@ -128,11 +122,11 @@ export class QuantitConformalComponent implements OnInit {
   
     public ChartDataFitted: any[] = [
       {
+        errorBars : {},
         data: [],
         pointRadius: 3,
         showLine: false,
-        fill: false,
-        errorBars : {}
+        fill: false
       },
       {
         data: [],
@@ -181,9 +175,9 @@ export class QuantitConformalComponent implements OnInit {
                 //this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
                 //this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
                 this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i]};
-                this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {plus:1, minus:1}
-                //{ plus: this.modelConformal['Conformal_prediction_ranges'][i][0] - this.modelConformal['Conformal_interval_medians'][i],
-                //minus: this.modelConformal['Conformal_prediction_ranges'][i][1] - this.modelConformal['Conformal_interval_medians'][i]};
+                this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] =
+                { plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
+                 minus: this.modelConformal['Conformal_prediction_ranges'][i][1]}
                 this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
 
                 this.ChartLabels[i] = info['obj_nam'][i];
