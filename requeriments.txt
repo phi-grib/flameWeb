@@ -1,5 +1,0 @@
-npm i font-awesome
-npm install @fortawesome/fontawesome-free
-npm install ngx-toastr --save
-npm install @angular/animations --save
-npm install arrive --save
