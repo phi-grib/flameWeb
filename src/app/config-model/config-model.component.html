@@ -1,7 +1,7 @@
 <!--Model-->
 <div class="form-row">
   <div class="form-group col-md-4">
-    <label class="bmd-label-floating" for="model">model</label>
+    <label class="bmd-label-floating" for="model">Model</label>
     <select id="key" class="form-control" [(ngModel)]="this.model.parameters['model'].value">
       <option *ngFor="let value of this.model.parameters['model'].options">{{value}}</option>
     </select>
@@ -14,7 +14,7 @@
     <div class="checkbox">
       <label>
         <input  type="checkbox" [(ngModel)]="this.model.parameters['conformal'].value">
-        conformal
+        Conformal
       </label>
     </div>
     <small id="conformal" class="text-muted">
@@ -61,7 +61,7 @@
 <!--'feature_selection', 'feature_number'-->
 <div class="form-row">
   <div class="form-group col-md-4">
-    <label class="bmd-label-floating" for="key">feature_selection</label>
+    <label class="bmd-label-floating" for="key">Feature selection</label>
     <select id="feature_selection" class="form-control" [(ngModel)]="this.model.parameters['feature_selection'].value">
       <option *ngFor="let value of this.model.parameters['feature_selection'].options">{{value}}</option>
     </select>
@@ -70,7 +70,7 @@
     </small>  
   </div>
   <div class="form-group col-md-4" *ngIf="this.model.parameters['feature_selection'].value=='Kbest'" style="margin-top: 11px;">
-      <label class="bmd-label-floating" for="feature_number">feature_number</label>
+      <label class="bmd-label-floating" for="feature_number">Feature number</label>
     <input class="form-control" [(ngModel)]="this.model.parameters['feature_number'].value" type='text' step="1">
     <small id="feature_number" class="text-muted">
         {{this.model.parameters['feature_number'].description}}
@@ -83,7 +83,7 @@
 <!--REST OF PARAMETERS-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">
     <div *ngIf="this.model.parameters[key].writable" style="margin-top: 11px;">
-      <label class="bmd-label-floating" for="key" style="margin-top: 11px;">{{key}}</label>
+      <label class="bmd-label-floating" for="key" style="margin-top: 11px;">{{key.replace('_',' ')}}</label>
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01 >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text' placeholder="{{key}}">
@@ -92,17 +92,17 @@
     <div class="checkbox" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='boolean'">
       <label>
         <input  type="checkbox" [(ngModel)]="this.model.parameters[key].value">
-        {{key}}
+        {{key.replace('_',' ')}}
       </label>
     </div>  
     <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
-      <label class="bmd-label-floating" for="key">{{key}}</label>
+      <label class="bmd-label-floating" for="key">{{key.replace('_',' ')}}</label>
       <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
         <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
       </select>
     </div>
     <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
-      <label id="key" class="bmd-label-floating mb-2 p-0">{{key}}</label>
+      <label id="key" class="bmd-label-floating mb-2 p-0">{{key.replace('_',' ')}}</label>
       <label id="key" class="mr-2 mb-2 w-100" *ngFor="let value of this.model.parameters[key].options">
         <input id="key" type="checkbox"
               [(checklist)]="this.model.parameters[key].value"
