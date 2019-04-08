@@ -14,7 +14,7 @@
     max-width: 150vh;
 }
 
-::ng-deep button[data-toggle="collapse"]:after {
+::ng-deep .card-header[data-toggle="collapse"] button:after {
     display: inline-block;
     font: normal normal normal 10px/1 FontAwesome;
     font-size: 25px;
@@ -28,7 +28,7 @@
     color:#275B7D;
 
 }   
-::ng-deep button[data-toggle="collapse"].collapsed:after {
+::ng-deep .card-header[data-toggle="collapse"].collapsed button:after {
     
     transform: rotate(90deg) ;
     content: "\f055";

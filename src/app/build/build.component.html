@@ -11,7 +11,7 @@
           <th class="text-center">#Molecules</th>
           <th class="text-center">#Variables</th>
           <th>Type</th>
-          <th>Quality</th>
+          <th class="text-right">Quality</th>
         </tr>
       </thead>
       <tbody>
@@ -38,17 +38,17 @@
           <td class="text-center">{{model.listModels[key].numMols}}</td>
           <td class="text-center">{{model.listModels[key].variables}}</td>
           <td class="text-capitalize">{{model.listModels[key].type}}</td>
-          <td>
+          <td class="text-right">
             
             <div  *ngIf="objectKeys(model.listModels[key].quality).length!=0">
               <a class="btn btn-primary m-0" data-toggle="collapse" href= "#collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}" role="button" aria-expanded="false" >
                         + INFO
               </a> 
                       
-              <div class="collapse" id="collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}">
+              <div class="collapse" id="collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}" >
                 <div class="card card-body p-2">
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-0" *ngFor="let key2 of objectKeys(model.listModels[key].quality)"><p class="m-0"><strong>{{key2}} :</strong> {{model.listModels[key].quality[key2]}}</p></li>
+                    <li class="list-group-item p-0 justify-content-between" *ngFor="let key2 of objectKeys(model.listModels[key].quality)"><strong>{{key2}} :</strong> <p class="m-0">{{model.listModels[key].quality[key2]}}</p></li>
                   </ul>
                 </div>
               </div>

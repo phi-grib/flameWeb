@@ -2,8 +2,14 @@ i {
     margin-right: 5px;
     cursor: pointer;
 }
+.table th{
+    padding-left: 1px;
+    padding-right: 1px;
+}
 .table td {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 1px;
+    padding-right: 1px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .table td, .table th {
     border-top: 4px solid rgba(0,0,0,.06);
@@ -27,7 +33,7 @@ tr.version td {
 }
 
 .collapse {
-    max-width: 100%;
+    display: inline-flexbox;
 }
 td {
     padding-left: 4px;
@@ -40,4 +46,9 @@ td {
 
 .action {
     background: linear-gradient(to left, #D7D7D7 0% ,#F7F7F7 100%);
+}
+
+.modal-dialog {
+    width: 360px;
+    height: 360px;
 }

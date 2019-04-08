@@ -9,15 +9,15 @@
           </p>
         </strong>
       </a>
-      <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
+      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
           <strong>Training Series</strong>
           <i class="fas fa-check" [ngClass]="{'fas fa-check':model.file || model.trained}" style="color: #51cf66;" ></i>
       </a>
-      <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
+      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
         <strong>Parameters</strong>
         <i class="fas fa-check" [ngClass]="{'fas fa-check':model.parameters}" [ngStyle]="{'color': model.parameters ? '#51cf66' : 'red' }" ></i>
       </a>
-      <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled': !model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">
+      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled': !model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">
         <strong>Results</strong>
         <i class="fas fa-check" [ngClass]="{'fas fa-check':model.trained}" [ngStyle]="{'color': model.trained ? '#51cf66' : 'red' }" ></i>
       </a>

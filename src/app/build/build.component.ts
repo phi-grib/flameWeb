@@ -94,6 +94,7 @@ export class BuildComponent implements OnInit {
     this.model.parameters = undefined;
     this.model.conformal = type.indexOf('conformal') === -1  ? false : true;
     this.model.quantitative = type.indexOf('quantitative') === -1 ? false : true;
+    this.getParameters();
   }
 
   /**
@@ -174,7 +175,25 @@ export class BuildComponent implements OnInit {
         this.getModelList();
       },
       error => {
-       alert("Error cloning")
+       alert('Error cloning')
+      }
+    );
+  }
+
+  getParameters(): void {
+    this.service.getParameters(this.model.name, this.model.version).subscribe(
+      result => {
+        if (result[0]) {
+          this.model.parameters = result = JSON.parse(result[1]);
+          console.log(this.model.parameters);
+        }
+      },
+      error => {
+        console.log(error);
+        alert(error.status + ' : ' + error.statusText);
+      },
+      () => { // when subscribe finishes
+        // console.log('actual parameters.yaml \n', parameters);
       }
     );
   }

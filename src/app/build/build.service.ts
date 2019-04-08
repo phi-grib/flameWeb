@@ -46,5 +46,14 @@ export class BuildService {
     return this.http.put(url,null);
   }
 
+  /**
+   * @param modelname The model name to recieve parameters
+   * Version will be automatically set to 'dev'
+   */
+  getParameters(model: string, version: string): Observable<any> {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version + '/parameters';
+    return this.http.get(url);
+  }
+
 
 }
