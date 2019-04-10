@@ -30,7 +30,7 @@ export class QualitConformalComponent implements OnInit {
     public polarAreaChartType: ChartType = 'polarArea';
     public polarAreaChartColors = [
       {
-        backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(255,0,0,0.3)', 'rgba(4,3,100,0.3)'],
+        backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(3,49,155,0.3)', 'rgba(255,0,0,0.3)'],
       },
     ];
 

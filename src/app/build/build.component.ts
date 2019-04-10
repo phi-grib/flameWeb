@@ -32,7 +32,7 @@ export class BuildComponent implements OnInit {
           for (const model of result) {
             const modelName = model.text;
             let trained = false;
-            const quality = {};
+           
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
               //CAST VERSION
@@ -48,6 +48,7 @@ export class BuildComponent implements OnInit {
                     for ( const info of JSON.parse(result2[1])) {
                       dict_info[info[0]] = info[2];
                     }
+                    const quality = {};
                     for ( const info of (Object.keys(dict_info))) {
                       if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
                           && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
@@ -105,17 +106,25 @@ export class BuildComponent implements OnInit {
     if (this.modelName.match(letters)) {
         this.service.createModel(this.modelName).subscribe(
           result => {
-            //this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
             if (result.status[0] === true) {
               this.modelName = '';
               this.model.listModels = {};
               this.getModelList();
+              this.toastr.success('Model ' + this.modelName, 'CREATED', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
             } else {
-                alert('ERROR1');
+              this.toastr.error('Model ' + this.modelName + ' ' + result.status[1], 'ERROR', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
             }
           },
           error => {
+            console.log(error);
               alert('ERROR2');
+              this.toastr.error(error.error, 'ERROR', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
           }
         );
     } else {
