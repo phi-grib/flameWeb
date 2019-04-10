@@ -38,6 +38,9 @@ export class SidebarComponent implements OnInit {
             dict_out[key] = this.recursiveDelta(dict_aux[key2]);
           }
           else {
+            if (dict_aux[key2] == ''){
+              dict_aux[key2] = null;
+            }
             dict_out[key] = dict_aux[key2];
           }
         }

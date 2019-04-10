@@ -83,10 +83,6 @@ export class QuantitConformalComponent implements OnInit {
             display: true,
             labelString: 'Fitted'
           },
-          ticks: {
-            min: -8,
-            max: -3, 
-          }
         }]
       },
       legend: {

@@ -16,7 +16,14 @@
       <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
         <label class="bmd-label-floating" for="key">{{key.replace('_',' ')}}</label>
         <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
-          <option *ngFor="let value of this.model.parameters[key].options">{{value}}</option>
+          <option *ngFor="let value of this.model.parameters[key].options" [value]='value'>
+            <div *ngIf="value==null">
+              --none--
+            </div>
+            <div *ngIf="value!=null">
+              {{value}}
+            </div>   
+          </option>
         </select>
       </div>
       <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list' ">
