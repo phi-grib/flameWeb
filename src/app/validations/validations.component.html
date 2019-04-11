@@ -1,12 +1,14 @@
-<div *ngIf="!this.model.quantitative && !this.model.conformal">
-    <app-qualit-no-conformal></app-qualit-no-conformal>
-</div>
-<div *ngIf="!this.model.quantitative && this.model.conformal">
-    <app-qualit-conformal></app-qualit-conformal>
-</div>
-<div *ngIf="this.model.quantitative && !this.model.conformal">
-    <app-quantit-no-conformal></app-quantit-no-conformal>
-</div>
-<div *ngIf="this.model.quantitative && this.model.conformal">
-    <app-quantit-conformal></app-quantit-conformal>
+<div *ngIf="this.model.quantitative != undefined && this.model.conformal != undefined">
+    <div *ngIf="!this.model.quantitative && !this.model.conformal">
+        <app-qualit-no-conformal></app-qualit-no-conformal>
+    </div>
+    <div *ngIf="!this.model.quantitative && this.model.conformal">
+        <app-qualit-conformal></app-qualit-conformal>
+    </div>
+    <div *ngIf="this.model.quantitative && !this.model.conformal">
+        <app-quantit-no-conformal></app-quantit-no-conformal>
+    </div>
+    <div *ngIf="this.model.quantitative && this.model.conformal">
+        <app-quantit-conformal></app-quantit-conformal>
+    </div>
 </div>

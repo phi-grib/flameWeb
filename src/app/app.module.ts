@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BuildComponent } from './build/build.component';
-import { PredictComponent } from './predict/predict.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { NewmodelComponent } from './newmodel/newmodel.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
@@ -30,10 +28,8 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
   declarations: [
     AppComponent,
     BuildComponent,
-    PredictComponent,
     TrainingSeriesComponent,
     TabsComponent,
-    NewmodelComponent,
     SidebarComponent,
     ParametersComponent,
     ValidationsComponent,
@@ -44,7 +40,6 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
     QualitConformalComponent,
     QuantitNoConformalComponent,
     QuantitConformalComponent
-    
   ],
   imports: [
     BrowserModule,
@@ -55,9 +50,7 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
     ToastrModule.forRoot(),
     ChecklistModule,
     ChartsModule
-    
   ],
-  entryComponents: [NewmodelComponent],
   providers: [Model],
   bootstrap: [AppComponent]
 })

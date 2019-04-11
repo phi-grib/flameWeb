@@ -25,10 +25,15 @@
             <i class="far fa-trash-alt" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
           </th>-->
 
-          <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }"-->
-          <td class="text-center" ><i class="fas fa-circle"  [ngClass]="{'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}"
-                        [ngStyle]="{'color':this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
+          <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }" fas fa-circle, fas fa-square -->
+          <td class="text-center" >
+          <i class = "fas" [ngClass]="{'fa-grip-lines': model.listModels[key].type.indexOf('quantitative')==-1,
+                        'fa-circle': model.listModels[key].type.indexOf('quantitative')!=-1,
+                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}"
+                        [ngStyle]="{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
                         aria-hidden="true"></i> 
+         
+                        
           </td>
           <td *ngIf="model.listModels[key].version === 0">{{model.listModels[key].name}}</td>
           <td class="text-center"*ngIf="model.listModels[key].version != 0"><i class="fas fa-level-up-alt fa-rotate-90 fa-lg"></i></td>
@@ -90,7 +95,7 @@
 
 <!-- Modal -->
 <div #modalWindow class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="c" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">New Model</h5>

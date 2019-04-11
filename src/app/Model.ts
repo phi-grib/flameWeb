@@ -9,8 +9,8 @@ export class Model {
   trained = false; // Model is already trained
   file_info = undefined; //Info file ej. num mols, variables
   file_fields = undefined;
-  quantitative: boolean;
-  conformal: boolean;
+  quantitative: boolean = undefined;
+  conformal: boolean = undefined;
   /*
   Delta parameters, empty by default, fills on clicking the parameters tab.
   When you change anything on the formulary, automatically changes the value for that key

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuildComponent } from './build/build.component';
-import { PredictComponent } from './predict/predict.component';
 import { CommonModule } from '@angular/common';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { ParametersComponent } from './parameters/parameters.component';

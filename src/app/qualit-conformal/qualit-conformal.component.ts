@@ -43,7 +43,6 @@ export class QualitConformalComponent implements OnInit {
       result => {
         if (result[0]) { // True is trained
           const info = JSON.parse(result[1]);
-          console.log(info)
           // INFO ABOUT MODEL
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
