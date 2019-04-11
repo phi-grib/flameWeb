@@ -1,4 +1,5 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
+import { CommonService } from '../common.service';
 import { BuildService } from './build.service';
 import {Model} from '../Model';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BuildComponent implements OnInit {
 
   constructor(private service: BuildService,
+    private commonService : CommonService,
     private viewRef: ViewContainerRef,
     public model: Model,
     private toastr: ToastrService) {}
@@ -26,7 +28,7 @@ export class BuildComponent implements OnInit {
 
   getModelList() {
 
-    this.service.getModelList().subscribe(
+    this.commonService.getModelList().subscribe(
         result => {
           result = JSON.parse(result[1]);
           for (const model of result) {
@@ -40,7 +42,7 @@ export class BuildComponent implements OnInit {
               version = (version === 'dev') ? '0' : version;
               version = Number(version);
               //INFO OF EACH MODEL
-              this.service.getModel(modelName, version).subscribe(
+              this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
                   if (result2[0]) { //True is trained
                     trained = true;
@@ -75,7 +77,8 @@ export class BuildComponent implements OnInit {
           this.model.listModels;
         },
         error => {
-          alert('Error getALL models');
+          console.log(error.message)
+          alert(error.message);
         }
     );
   }
@@ -89,12 +92,11 @@ export class BuildComponent implements OnInit {
     this.model.name = name;
     this.model.version = version;
     this.model.trained = trained;
+    this.model.type = type;
     this.model.file = undefined;
     this.model.file_info = undefined;
     this.model.file_fields = undefined;
     this.model.parameters = undefined;
-    this.model.conformal = type.indexOf('conformal') === -1  ? false : true;
-    this.model.quantitative = type.indexOf('quantitative') === -1 ? false : true;
     this.getParameters();
   }
 
@@ -108,7 +110,6 @@ export class BuildComponent implements OnInit {
           result => {
             if (result.status[0] === true) {
               this.modelName = '';
-              this.model.listModels = {};
               this.getModelList();
               this.toastr.success('Model ' + this.modelName, 'CREATED', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true

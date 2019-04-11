@@ -5,6 +5,7 @@ export class Model {
   name: string = undefined;   // Name of the model selected in the first step
   version: string = undefined; // Version of the model selected in the first step
   file: any = undefined;  // Name of file uploaded in the second step
+  type: string;
   trained = false; // Model is already trained
   file_info = undefined; //Info file ej. num mols, variables
   file_fields = undefined;

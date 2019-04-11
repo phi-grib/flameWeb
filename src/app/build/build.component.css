@@ -48,7 +48,7 @@ td {
     background: linear-gradient(to left, #D7D7D7 0% ,#F7F7F7 100%);
 }
 
-.modal-dialog {
-    max-width: 360px;
-    max-height: 360px;
+.model-content {
+    max-width: 350px;
+    max-height: 350px;
 }

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NewmodelService } from './newmodel.service';
+import { CommonService } from './common.service';
 
-describe('NewmodelService', () => {
+describe('CommonService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NewmodelService = TestBed.get(NewmodelService);
+    const service: CommonService = TestBed.get(CommonService);
     expect(service).toBeTruthy();
   });
 });
