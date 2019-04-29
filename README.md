@@ -7,9 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Flame should have been already installed in this computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how create a flame conda environment and install the software. 
 
-Flame_API should have been also installed and be running on port 8000. Refer to to the [flame_AP](https://github.com/phi-grib/flame_API) manual for full instructions of how install and run the API.
-
-We assume ng 
+Flame_API should have been also installed and be running. Refer to to the [flame_AP](https://github.com/phi-grib/flame_API) manual for full instructions of how install and run the API.
 
 Download the repository:
 
@@ -23,9 +21,7 @@ Go to the source repository directory
 cd flameWeb
 ```
 
-For running the development server you must have Angular installed in your computer. Refer to [this page]https://angular.io/cli for full instructions
-
-Once Angular is installed, type
+For running the development server you must have Angular installed in your computer. Refer to [this page]https://angular.io/cli for full instructions. Once Angular is installed, type
 
 ```
 ng serve
