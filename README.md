@@ -21,7 +21,7 @@ Go to the source repository directory
 cd flameWeb
 ```
 
-For running the development server you must have Angular installed in your computer. Refer to [this page]https://angular.io/cli for full instructions. Once Angular is installed, type
+For running the development server you must have Angular installed in your computer. Refer to [this page](https://angular.io/cli) for full instructions. Once Angular is installed, type
 
 ```
 ng serve
