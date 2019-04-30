@@ -152,8 +152,8 @@
         <div class="form-group" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable">
           <label class="bmd-label-static">{{key}}</label>
             <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
-            <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
-            <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01>
+            <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='int'" id="key" type='number'>
+            <input class="form-control" [(ngModel)]="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' step=0.01>
             <small id="key" class="text-muted">
               {{this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].description}}
             </small>
@@ -212,8 +212,8 @@
       <div class="form-group" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].writable">
         <label class="bmd-label-static">{{key}}</label>
           <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='string'" id="key" type='text' placeholder="{{key}}" >
-          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='int'" id="key" type='number' placeholder="{{key}}" >
-          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' placeholder="{{key}}" step=0.01>
+          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='int'" id="key" type='number'>
+          <input class="form-control" [(ngModel)]="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].value" *ngIf="this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].object_type==='float'" id="key" type='number' step=0.01>
           <small id="key" class="text-muted">
             {{this.model.parameters[optimizeModel[this.model.parameters['model'].value]].value[key].description}}
           </small>

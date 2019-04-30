@@ -9,7 +9,7 @@ import { Model} from '../Model';
 })
 export class ConfigTrainingComponent implements OnInit {
 
-  constructor(private model: Model) { }
+  constructor(public model: Model) { }
 
   objectKeys = Object.keys;
 

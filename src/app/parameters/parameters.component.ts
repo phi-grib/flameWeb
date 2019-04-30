@@ -8,5 +8,5 @@ import { Model } from '../Model';
 })
 export class ParametersComponent {
 
-  constructor(private model: Model) {}
+  constructor(public model: Model) {}
 }

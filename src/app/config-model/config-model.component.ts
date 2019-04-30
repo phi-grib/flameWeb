@@ -8,7 +8,7 @@ import { Model} from '../Model';
 })
 export class ConfigModelComponent implements OnInit {
 
-  constructor(private model: Model) { }
+  constructor(public model: Model) { }
 
   objectKeys = Object.keys;
 

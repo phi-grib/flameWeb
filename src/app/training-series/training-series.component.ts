@@ -16,7 +16,7 @@ export class TrainingSeriesComponent implements OnInit {
   constructor(
     private http: HttpClient,
     // private molService: SDFService,
-    private model: Model,
+    public model: Model,
     private router: Router,
   ) { }
   objectKeys = Object.keys;
