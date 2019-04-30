@@ -4,19 +4,22 @@ a:hover {
 }
 
 a.active {
-    background: rgb(212, 207, 198);
-    border-color: rgb(212, 207, 198);
+    background: #EBAB39;
+    border-color: #EBAB39;
 }
 a {
-    background: linear-gradient(to left,#FFFFFF 0% , #F7F7F7 50%,  #D7D7D7 100%);
+    
+    background:white;
    
 }
 .wrap {
     cursor:not-allowed;
 }
 .disabled{
-   pointer-events: none 
+    background:white;
+    pointer-events: none 
 }
 div {
-    background: linear-gradient(to left, #F7F7F7 0%,  #D7D7D7 100%);
+    /*background: linear-gradient(to left, #F7F7F7 0%,  #D7D7D7 100%);*/
+    background: #F7F9EA;
 }

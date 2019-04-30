@@ -2,7 +2,7 @@
 <div class="d-flex align-items-start flex-column" style="height: 100%;">
   <div class="mb-auto w-100">
     <div class="list-group list-group-flush wrap">
-      <a class="list-group-item list-group-item-action  border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
+      <a class="list-group-item list-group-item-action border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
         <strong> Models 
           <p class="font-weight-bold p-1 m-0" *ngIf="this.model.name">
               <i class="fas fa-reply fa-rotate-180 "></i> {{this.model.name}} v.{{this.model.version}}
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-      <button type="button" class="btn btn-outline-primary" 
+      <button type="button" class="btn btn-raised btn-primary" 
               [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
               (click)="buildModel(this.model.name,this.model.version)">Build model</button>
   </div>
