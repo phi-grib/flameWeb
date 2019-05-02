@@ -2,3 +2,20 @@
 #toast-container > div {
     opacity:1;
 }
+
+.btn.bmd-btn-fab.btn-etransafe,
+.bmd-btn-fab.btn-etransafe.custom-file-control::before, 
+.btn.btn-raised.btn-etransafe, 
+.btn-raised.btn-etransafe.custom-file-control::before, 
+.btn-group-raised 
+.btn.btn-etransafe, 
+.btn-group-raised 
+.btn-etransafe.custom-file-control::before {
+    background-color: #22577A;
+    color:white;
+}
+.badge-etransafe {
+    color: white;
+    background-color: #22577A;
+}
+ 

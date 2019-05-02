@@ -19,7 +19,19 @@ a {
     background:white;
     pointer-events: none 
 }
-div {
-    /*background: linear-gradient(to left, #F7F7F7 0%,  #D7D7D7 100%);*/
+ul {
     background: #F7F9EA;
 }
+ul li a {
+    background: #F7F9EA;
+}
+
+ul li a.active{
+    background: white;
+}
+
+ 
+  
+  
+  
+  
