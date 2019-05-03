@@ -1,17 +1,17 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { CommonService } from '../common.service';
-import { BuildService } from './build.service';
+import { ModelListService } from './model-list.service';
 import {Model} from '../Model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-build',
-  templateUrl: './build.component.html',
-  styleUrls: ['./build.component.css']
+  selector: 'app-model-list',
+  templateUrl: './model-list.component.html',
+  styleUrls: ['./model-list.component.css']
 })
-export class BuildComponent implements OnInit {
+export class ModelListComponent implements OnInit {
 
-  constructor(private service: BuildService,
+  constructor(private service: ModelListService,
     private commonService : CommonService,
     private viewRef: ViewContainerRef,
     public model: Model,

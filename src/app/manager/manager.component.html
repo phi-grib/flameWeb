@@ -1,0 +1,23 @@
+<div class="row">
+    <fieldset class="form-group mt-3 pl-3">
+      <legend>Publish</legend>
+      <button type="button" class="btn btn-outline-primary m-1" (click)="cloneModel()">Clone</button>
+      <button type="button" class="btn btn-outline-primary m-1">Export</button>
+    </fieldset>
+  </div>
+  <hr class="line">
+  <div class="row">
+    <fieldset class="form-group mt-3 pl-3">
+      <legend>Delete</legend>
+      <button type="button" class="btn btn-outline-danger m-1" (click)="deleteModel()">Model</button>
+      <button type="button" class="btn btn-outline-danger m-1" (click)="deleteVersion()">Version</button>
+    </fieldset>
+  </div>
+  <hr class="line">
+  <div class="row">
+    <fieldset class="form-group mt-3 pl-3">
+      <legend>Create</legend>
+      <button type="button" class="btn btn-outline-primary m-1" data-toggle="modal" data-target="#exampleModal">New model</button>
+      <button type="button" class="btn btn-outline-success m-1">Import</button>
+    </fieldset>
+  </div>

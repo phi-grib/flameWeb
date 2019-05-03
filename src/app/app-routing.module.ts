@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BuildComponent } from './build/build.component';
+import { ModelListComponent } from './model-list/model-list.component';
 import { CommonModule } from '@angular/common';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { ParametersComponent } from './parameters/parameters.component';
@@ -14,12 +14,12 @@ const routes: Routes = [
   },*/
   {
     path: '',
-    redirectTo: '/build',
+    redirectTo: '/listModel',
     pathMatch: 'full'
   },
   {
-    path: 'build',
-    component: BuildComponent
+    path: 'listModel',
+    component: ModelListComponent
   },
   {
     path: 'parameters',

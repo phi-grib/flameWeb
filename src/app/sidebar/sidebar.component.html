@@ -12,68 +12,13 @@
 </ul>
 <div class="tab-content mb-auto w-100" id="myTabContent">
   <div class="tab-pane fade show active" id="build" role="tabpanel" aria-labelledby="build-tab">
-  
-    <div class="d-flex align-items-start flex-column" style="height: 100%;">
-      <div class="mb-auto w-100">
-        <div class="list-group list-group-flush wrap pt-0">
-          <a class="list-group-item list-group-item-action border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
-            Models
-            <p class="font-weight-bold p-1 m-0" *ngIf="this.model.name">
-              <i class="fas fa-caret-right"></i> {{this.model.name}} v.{{this.model.version}}
-            </p>
-            
-          </a>
-          <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
-            Training Series
-             <p class="font-weight-bold p-1 m-0" *ngIf="model.file || model.trained">
-              <i class="fas fa-caret-right"></i> {{this.model.file}} v.{{this.model.version}}
-            </p>
-          </a>
-          <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
-            Parameters
-            <p class="font-weight-bold p-1 m-0" *ngIf="model.parameters">
-              <i class="fas fa-caret-right"></i> {{this.model.parameters['model'].value}}
-            </p>
-          </a>
-          <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled': !model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">
-            Results
-          </a>
-        </div>
-      </div>
-      <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-          <button type="button" class="btn btn-raised btn-etransafe" 
-                  [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
-                  (click)="buildModel(this.model.name,this.model.version)">Build model</button>
-      </div>
-    </div>
-  
+    <app-builder></app-builder>
   </div>
-  <div class="tab-pane fade" id="predict" role="tabpanel" aria-labelledby="predict-tab">predict</div>
+  <div class="tab-pane fade" id="predict" role="tabpanel" aria-labelledby="predict-tab">
+      <app-predicter></app-predicter>
+  </div>
   <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
-  
-    <div class="row">
-      <fieldset class="form-group mt-3 pl-3">
-        <legend>Publish</legend>
-        <button type="button" class="btn btn-outline-primary m-1" (click)="cloneModel()">Clone</button>
-        <button type="button" class="btn btn-outline-primary m-1">Export</button>
-      </fieldset>
-    </div>
-    <hr class="line">
-    <div class="row">
-      <fieldset class="form-group mt-3 pl-3">
-        <legend>Delete</legend>
-        <button type="button" class="btn btn-outline-danger m-1" (click)="deleteModel()">Model</button>
-        <button type="button" class="btn btn-outline-danger m-1" (click)="deleteVersion()">Version</button>
-      </fieldset>
-    </div>
-    <hr class="line">
-    <div class="row">
-      <fieldset class="form-group mt-3 pl-3">
-        <legend>Create</legend>
-        <button type="button" class="btn btn-outline-primary m-1" data-toggle="modal" data-target="#exampleModal">New model</button>
-        <button type="button" class="btn btn-outline-success m-1">Import</button>
-      </fieldset>
-    </div>
+    <app-manager></app-manager>
   </div>
 </div>
 

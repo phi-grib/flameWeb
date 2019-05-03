@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { BuildComponent } from './build/build.component';
+import { ModelListComponent } from './model-list/model-list.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -23,11 +23,15 @@ import { QualitNoConformalComponent } from './qualit-no-conformal/qualit-no-conf
 import { QualitConformalComponent } from './qualit-conformal/qualit-conformal.component';
 import { QuantitNoConformalComponent } from './quantit-no-conformal/quantit-no-conformal.component';
 import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal.component';
+import { BuilderComponent } from './builder/builder.component';
+import { PredicterComponent } from './predicter/predicter.component';
+import { ManagerComponent } from './manager/manager.component';
+import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuildComponent,
+    ModelListComponent,
     TrainingSeriesComponent,
     TabsComponent,
     SidebarComponent,
@@ -39,7 +43,11 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
     QualitNoConformalComponent,
     QualitConformalComponent,
     QuantitNoConformalComponent,
-    QuantitConformalComponent
+    QuantitConformalComponent,
+    BuilderComponent,
+    PredicterComponent,
+    ManagerComponent,
+    PredictionSeriesComponent
   ],
   imports: [
     BrowserModule,
