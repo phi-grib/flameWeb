@@ -12,7 +12,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { ToastrModule } from 'ngx-toastr';
-import { Model } from './Model';
+import { Model, Prediction, Globlas } from './Global';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
@@ -24,7 +24,7 @@ import { QualitConformalComponent } from './qualit-conformal/qualit-conformal.co
 import { QuantitNoConformalComponent } from './quantit-no-conformal/quantit-no-conformal.component';
 import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal.component';
 import { BuilderComponent } from './builder/builder.component';
-import { PredicterComponent } from './predicter/predicter.component';
+import { PredictorComponent } from './predictor/predictor.component';
 import { ManagerComponent } from './manager/manager.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 
@@ -45,7 +45,7 @@ import { PredictionSeriesComponent } from './prediction-series/prediction-series
     QuantitNoConformalComponent,
     QuantitConformalComponent,
     BuilderComponent,
-    PredicterComponent,
+    PredictorComponent,
     ManagerComponent,
     PredictionSeriesComponent
   ],
@@ -59,7 +59,7 @@ import { PredictionSeriesComponent } from './prediction-series/prediction-series
     ChecklistModule,
     ChartsModule
   ],
-  providers: [Model],
+  providers: [Model, Prediction, Globlas],
   bootstrap: [AppComponent]
 })
 

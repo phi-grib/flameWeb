@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Model } from '../Model';
+import { Model } from '../Global';
 import { SidebarService } from './sidebar.service';
 import { CommonService } from '../common.service'
 import { Router } from '@angular/router';

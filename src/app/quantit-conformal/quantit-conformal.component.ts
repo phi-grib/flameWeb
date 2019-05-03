@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuantitConformalService } from './quantit-conformal.service';
-import {Model} from '../Model';
+import {Model} from '../Global';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import 'chartjs-plugin-error-bars';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Model } from '../Model';
+import { Model } from '../Global';
 import { BuilderService } from './builder.service';
 import { CommonService } from '../common.service'
 import { Router } from '@angular/router';

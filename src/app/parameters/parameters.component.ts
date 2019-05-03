@@ -1,5 +1,5 @@
 import { Component, ComponentRef} from '@angular/core';
-import { Model } from '../Model';
+import { Model } from '../Global';
 
 @Component({
   selector: 'app-parameters',

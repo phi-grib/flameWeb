@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 // import { SDFService } from './sdf.service';';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { Model } from '../Model';
+import { Model } from '../Global';
 import { environment } from '../../environments/environment';
 
 @Component({

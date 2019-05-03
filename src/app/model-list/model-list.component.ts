@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { CommonService } from '../common.service';
 import { ModelListService } from './model-list.service';
-import {Model} from '../Model';
+import { Model, Globlas, Prediction } from '../Global';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,9 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class ModelListComponent implements OnInit {
 
   constructor(private service: ModelListService,
-    private commonService : CommonService,
+    private commonService: CommonService,
     private viewRef: ViewContainerRef,
     public model: Model,
+    public prediction: Prediction,
+    public globals: Globlas,
     private toastr: ToastrService) {}
 
   models: Array<any>;
@@ -34,17 +36,16 @@ export class ModelListComponent implements OnInit {
           for (const model of result) {
             const modelName = model.text;
             let trained = false;
-           
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
-              //CAST VERSION
+              // CAST VERSION
               version = version.replace('ver', '');
               version = (version === 'dev') ? '0' : version;
               version = Number(version);
-              //INFO OF EACH MODEL
+              // INFO OF EACH MODEL
               this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
-                  if (result2[0]) { //True is trained
+                  if (result2[0]) { // True is trained
                     trained = true;
                     const dict_info = {};
                     for ( const info of JSON.parse(result2[1])) {
@@ -52,19 +53,17 @@ export class ModelListComponent implements OnInit {
                     }
                     const quality = {};
                     for ( const info of (Object.keys(dict_info))) {
-                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
+                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
                           && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
                           && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
                             quality[info] =  parseFloat(dict_info[info].toFixed(3));
-                           
                       }
                     }
-                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
-                    variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
+                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained,
+                    numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
 
-                  }
-                  else{
-                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: '-',
+                  } else {
+                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained, numMols: '-',
                     variables: '-', type: '-', quality: {}};
                   }
                 },
@@ -74,7 +73,6 @@ export class ModelListComponent implements OnInit {
               );
             }
           }
-          this.model.listModels;
         },
         error => {
           console.log(error.message)
@@ -89,15 +87,26 @@ export class ModelListComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    this.model.name = name;
-    this.model.version = version;
-    this.model.trained = trained;
-    this.model.type = type;
-    this.model.file = undefined;
-    this.model.file_info = undefined;
-    this.model.file_fields = undefined;
-    this.model.parameters = undefined;
-    this.getParameters();
+    alert(this.globals.actualTab);
+    if (this.globals.actualTab === 'builder') {
+      this.model.name = name;
+      this.model.version = version;
+      this.model.trained = trained;
+      this.model.type = type;
+      this.model.file = undefined;
+      this.model.file_info = undefined;
+      this.model.file_fields = undefined;
+      this.model.parameters = undefined;
+      this.getParameters();
+    }
+
+    if (this.globals.actualTab === 'predict') {
+      this.prediction.name = name;
+      this.prediction.version = version;
+      this.prediction.file = undefined;
+      this.prediction.file_info = undefined;
+      this.prediction.file_fields = undefined;
+    }
   }
 
   /**

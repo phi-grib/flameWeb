@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuantitNoConformalService } from './quantit-no-conformal.service';
-import {Model} from '../Model';
+import {Model} from '../Global';
 import { ChartDataSets, ChartType, ChartOptions} from 'chart.js';
 import { Label} from 'ng2-charts';
 

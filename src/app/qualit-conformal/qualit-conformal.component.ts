@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QualitConformalService } from './qualit-conformal.service';
-import {Model} from '../Model';
+import {Model} from '../Global';
 import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType, ChartOptions, ChartColor} from 'chart.js';
 
