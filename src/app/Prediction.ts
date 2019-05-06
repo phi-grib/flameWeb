@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class Model {
+export class Prediction {
     name: string = undefined;   // Name of the model selected in the first step
     version: string = undefined; // Version of the model selected in the first step
     file: any = undefined;  // Name of file uploaded in the second step
@@ -12,4 +12,8 @@ export class Model {
     When you change anything on the formulary, automatically changes the value for that key
     */
     results = [];
+}
+@Injectable()
+export class Globlas {
+    actualTab: string;
 }

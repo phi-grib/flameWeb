@@ -36,5 +36,5 @@ export class Prediction {
 }
 @Injectable()
 export class Globlas {
-    actualTab = 'builder';
+    actualTab = 'build';
 }

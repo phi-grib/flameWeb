@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
+import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'validation',
     component: ValidationsComponent
+  },
+  {
+    path: 'predictionseries',
+    component: PredictionSeriesComponent
   },
 ];
 

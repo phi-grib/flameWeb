@@ -16,7 +16,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let key of objectKeys(model.listModels).sort()" 
-          [ngClass]="{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),
+          [ngClass]="{'selected': ((globals.actualTab==='build') && (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version))
+                                  || ((globals.actualTab==='predict') && (model.listModels[key].name===this.prediction.name) && (model.listModels[key].version===this.prediction.version)),
                       'version': model.listModels[key].version > 0}"
           (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)">
           <!--<th scope="row">
