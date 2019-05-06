@@ -27,6 +27,7 @@ import { BuilderComponent } from './builder/builder.component';
 import { PredictorComponent } from './predictor/predictor.component';
 import { ManagerComponent } from './manager/manager.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
+import { PredictionComponent } from './prediction/prediction.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PredictionSeriesComponent } from './prediction-series/prediction-series
     BuilderComponent,
     PredictorComponent,
     ManagerComponent,
-    PredictionSeriesComponent
+    PredictionSeriesComponent,
+    PredictionComponent
   ],
   imports: [
     BrowserModule,

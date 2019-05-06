@@ -6,6 +6,7 @@ import { TrainingSeriesComponent } from './training-series/training-series.compo
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
+import { PredictionComponent } from './prediction/prediction.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'predictionseries',
     component: PredictionSeriesComponent
+  },
+  {
+    path: 'prediction',
+    component: PredictionComponent
   },
 ];
 

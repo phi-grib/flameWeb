@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Prediction } from '../Global';
-import { CommonService } from '../common.service';
+import { PredictorService } from './predictor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,8 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PredictorComponent implements OnInit {
 
-  constructor(public prediction: Prediction) { }
+  constructor(public prediction: Prediction, public service: PredictorService) { }
 
   ngOnInit() {
+  }
+
+  predict(){
+    this.service.predict().subscribe(
+      result => {
+        if (result.buildStatus[0]) {
+          this.prediction.result = JSON.parse(result.buildStatus[1]);
+          console.log(this.prediction.result);
+        }
+      },
+      error => {
+      }
+    );
   }
 }

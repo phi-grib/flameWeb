@@ -87,7 +87,6 @@ export class ModelListComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    alert(this.globals.actualTab );
     if (this.globals.actualTab === 'build') {
       this.model.name = name;
       this.model.version = version;
