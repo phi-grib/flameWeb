@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Model } from '../Global';
 import { BuilderService } from './builder.service';
 import { CommonService } from '../common.service'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+declare var $: any;
 
 @Component({
   selector: 'app-builder',
   templateUrl: './builder.component.html',
   styleUrls: ['./builder.component.css']
 })
-export class BuilderComponent implements OnInit {
+export class BuilderComponent implements OnInit, OnChanges {
 
   constructor(public model: Model,
     private service: BuilderService,
@@ -18,9 +19,12 @@ export class BuilderComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService ) { }
 
+  @Input() tabChange;
   ngOnInit() {
   }
-
+  ngOnChanges(){
+    $('#options a:first-child').tab('show') // Select first tab
+  }
 
   private isDict(v) {
     return typeof v === 'object' && v !== null && !(v instanceof Array) && !(v instanceof Date);

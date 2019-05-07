@@ -12,7 +12,7 @@
 </ul>
 <div class="tab-content mb-auto w-100" id="myTabContent">
   <div class="tab-pane fade show active" id="build" role="tabpanel" aria-labelledby="build-tab">
-    <app-builder></app-builder>
+    <app-builder [tabChange] = globals.actualTab></app-builder>
   </div>
   <div class="tab-pane fade" id="predict" role="tabpanel" aria-labelledby="predict-tab">
       <app-predictor></app-predictor>

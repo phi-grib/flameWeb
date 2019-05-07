@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Model, Globlas } from '../Global';
-import { SidebarService } from './sidebar.service';
-import { CommonService } from '../common.service'
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 export class SidebarComponent implements OnInit {
 
   constructor(public model: Model,
-    public globals: Globlas ) {}
+    public globals: Globlas,
+    private router: Router ) {}
 
 
   ngOnInit() {
@@ -21,6 +19,7 @@ export class SidebarComponent implements OnInit {
 
   changeTab(tab: string) {
     this.globals.actualTab = tab;
+    this.router.navigate(['/']);
 
   }
 

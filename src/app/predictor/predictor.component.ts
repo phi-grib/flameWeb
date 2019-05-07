@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Prediction } from '../Global';
 import { PredictorService } from './predictor.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+declare var $: any;
 
 @Component({
   selector: 'app-predictor',
   templateUrl: './predictor.component.html',
   styleUrls: ['./predictor.component.css']
 })
-export class PredictorComponent implements OnInit {
+export class PredictorComponent implements OnInit, OnChanges {
 
   constructor(public prediction: Prediction, public service: PredictorService) { }
 
   ngOnInit() {
+  }
+  ngOnChanges() {
+    $('#options a:first-child').tab('show') // Select first tab
   }
 
   predict(){
