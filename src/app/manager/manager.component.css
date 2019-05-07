@@ -1,0 +1,14 @@
+.container .actions {
+    background: white;
+}
+a.active {
+    background: #EBAB39;
+    border-color: #EBAB39;
+    color:white;
+}
+.wrap {
+    cursor:not-allowed;
+}
+.disabled{
+    pointer-events: none 
+}

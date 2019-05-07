@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Model} from '../Global';
+import { Model} from '../Globals';
 
 @Component({
   selector: 'app-config-preferences',
@@ -11,7 +11,7 @@ export class ConfigPreferencesComponent implements OnInit {
   constructor(private model: Model) { }
 
   objectKeys = Object.keys;
-  
+
 
   infoPreferences = ['SDFile_experimental',  'modelingToolkit', 'mol_batch', 'numCPUs',
                     'output_format', 'output_md', 'verbose_error'];

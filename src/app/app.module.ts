@@ -12,7 +12,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { ToastrModule } from 'ngx-toastr';
-import { Model, Prediction, Globlas } from './Global';
+import { Model, Prediction, Globals, Manager } from './Globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
@@ -61,7 +61,7 @@ import { PredictionComponent } from './prediction/prediction.component';
     ChecklistModule,
     ChartsModule
   ],
-  providers: [Model, Prediction, Globlas],
+  providers: [Model, Prediction, Globals, Manager],
   bootstrap: [AppComponent]
 })
 

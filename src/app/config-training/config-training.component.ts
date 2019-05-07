@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Model} from '../Global';
+import { Model} from '../Globals';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ConfigTrainingComponent implements OnInit {
     'molecule': ['SDFile_name', 'SDFile_activity', 'SDFile_experimental', 'quantitative', 'normalize_method',
      'convert3D_method', 'ionize_method', 'modelAutoscaling', 'computeMD_method'],
     'data': ['TSV_objnames', 'TSV_activity', 'TSV_varnames'],
-    'ext_data':['model_set']
+    'ext_data': ['model_set']
   };
 
 

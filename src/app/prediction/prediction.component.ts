@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
-import { Prediction } from '../Global';
+import { Prediction } from '../Globals';
 import * as SmilesDrawer from 'smiles-drawer';
 
 @Component({
@@ -25,7 +25,7 @@ export class PredictionComponent implements OnInit, AfterViewInit {
           smilesDrawer.draw(tree, child.nativeElement.id, 'light', false);
           }, function (err) {
             console.log(err);
-          });    
+          });
       });
     }
   }

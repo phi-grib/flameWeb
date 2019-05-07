@@ -1,43 +1,87 @@
-<div class="container">
-  <div class="row ml-2">
-    <div class="row">
-      <h4>Publish</h4>
+
+<div class="d-flex align-items-start flex-column" style="height: 100%;">
+  <div class="mb-auto w-100">
+    <div id="options" class="list-group list-group-flush wrap pt-0">
+      <a class="list-group-item list-group-item-action border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
+        <div class="container p-0">
+          <div class="row">
+            <div class="col-12">Models</div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="font-italic p-1 m-0" *ngIf="this.manage.name">
+                <i class="mr-1 fas fa-caret-right"></i> {{this.manage.name}} v.{{this.manage.version}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="cloneModel()">Clone</button>
+    <div class="container actions">
+      <div class="row">
+        <div class="col">
+          <h4>Publish</h4>
+        </div>
       </div>
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1">Export</button>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="cloneModel()">Clone</button>
+          <button type="button" class="btn btn-raised btn-etransafe m-1">Export</button>
+        </div>
       </div>
-    </div>
-  </div>
-  <hr class="line">
-  <div class="row ml-2">
-    <div class="row">
-      <h4>Delete</h4>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteModel()">Model</button>
+      <hr class="line">
+      <div class="row">
+        <div class="col">
+          <h4>Delete</h4>
+        </div>
       </div>
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()">Version</button>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteModel()">Model</button>
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()">Version</button>
+        </div>
       </div>
-    </div>
-  </div>
-  <hr class="line">
-  <div class="row ml-2">
-    <div class="row">
-      <h4>Create</h4>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1" data-toggle="modal" data-target="#exampleModal">New model</button>
+      <hr class="line">
+      <div class="row">
+        <div class="col">
+          <h4>Create</h4>
+        </div>
       </div>
-      <div class="col">
-        <button type="button" class="btn btn-raised btn-etransafe m-1">Import</button>
-      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-raised btn-etransafe m-1" data-toggle="modal" data-target="#exampleModal">New model</button>
+          <button type="button" class="btn btn-raised btn-etransafe m-1">Import</button>
+        </div>
+      </div>    
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div #modalWindow class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Model</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row form-inline" >
+                <div class="form-group mx-sm-3 mb-2">
+                  <label for="model_name">Model name: </label>
+                  <input type="text" class="form-control ml-2" [(ngModel)]="modelName" placeholder="name">
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="createModel()">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

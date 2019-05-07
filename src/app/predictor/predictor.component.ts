@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Prediction } from '../Global';
+import { Prediction } from '../Globals';
 import { PredictorService } from './predictor.service';
 declare var $: any;
 

@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { CommonService } from '../common.service';
 import { ModelListService } from './model-list.service';
-import { Model, Globlas, Prediction } from '../Global';
+import { Model, Globals, Prediction, Manager } from '../Globals';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,11 +16,11 @@ export class ModelListComponent implements OnInit {
     private viewRef: ViewContainerRef,
     public model: Model,
     public prediction: Prediction,
-    public globals: Globlas,
+    public globals: Globals,
+    public manage: Manager,
     private toastr: ToastrService) {}
 
   models: Array<any>;
-  modelName: string;
   objectKeys = Object.keys;
 
   ngOnInit() {
@@ -106,96 +106,11 @@ export class ModelListComponent implements OnInit {
       this.prediction.file_info = undefined;
       this.prediction.file_fields = undefined;
     }
-  }
 
-  /**
-   * Creates a new model with the given name and informs the user with a toastr
-   */
-  createModel(): void {
-    const letters = /^[A-Za-z0-9_]+$/;
-    if (this.modelName.match(letters)) {
-        this.service.createModel(this.modelName).subscribe(
-          result => {
-            if (result.status[0] === true) {
-              this.modelName = '';
-              this.getModelList();
-              this.toastr.success('Model ' + this.modelName, 'CREATED', {
-                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-              });
-            } else {
-              this.toastr.error('Model ' + this.modelName + ' ' + result.status[1], 'ERROR', {
-                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-              });
-            }
-          },
-          error => {
-            console.log(error);
-              alert('ERROR2');
-              this.toastr.error(error.error, 'ERROR', {
-                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-              });
-          }
-        );
-    } else {
-        alert('Invalid name');
+    if (this.globals.actualTab === 'manage') {
+      this.manage.name = name;
+      this.manage.version = version;
     }
-  }
-
-  deleteModel() {
-
-    this.service.deleteModel(this.model.name).subscribe(
-      result => {
-        this.toastr.success( 'Model ' +this.model.name+ ' deleted','DELETED',{
-          timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-        });
-        this.model.name = undefined ;
-        this.model.version = undefined;
-        this.model.trained = undefined;
-        this.model.file = undefined;
-        this.model.file_info = undefined;
-        this.model.file_fields = undefined;
-        this.model.parameters = undefined;
-        this.model.listModels = {};
-        this.getModelList();
-      },
-      error => {
-        alert('Delete ERROR');
-      }
-    );
-  }
-
-  deleteVersion() {
-
-    this.service.deleteVersion(this.model.name, this.model.version).subscribe(
-      result => {
-        this.toastr.success( 'Model ' + this.model.name + '.v' + this.model.version + ' deleted','DELETED', {
-          timeOut: 4000, positionClass: 'toast-top-right'
-        });
-        this.model.listModels = {};
-        this.getModelList();
-      },
-      error => {
-        console.log(error);
-        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' NOT deleted', 'ERROR',{
-          timeOut: 4000, positionClass: 'toast-top-right'
-        });
-      }
-    );
-
-  }
-
-  cloneModel() {
-
-    this.service.cloneModel(this.model.name).subscribe(
-
-      result => {
-        this.model.listModels = {};
-        this.getModelList();
-      },
-      error => {
-       alert('Error cloning')
-      }
-    );
   }
 
   getParameters(): void {

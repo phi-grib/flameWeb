@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Model, Globlas } from '../Global';
+import { Model, Globals } from '../Globals';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   constructor(public model: Model,
-    public globals: Globlas,
+    public globals: Globals,
     private router: Router ) {}
 
 

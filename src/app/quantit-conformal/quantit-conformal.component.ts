@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuantitConformalService } from './quantit-conformal.service';
-import {Model} from '../Global';
+import {Model} from '../Globals';
 import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
 import { Label, BaseChartDirective } from 'ng2-charts';
 import 'chartjs-plugin-error-bars';
@@ -163,8 +163,7 @@ export class QuantitConformalComponent implements OnInit {
               }
               if (typeof modelInfo[2] !== 'object') {
                 this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              }
-              else{
+              } else {
                 this.modelConformal[modelInfo[0]] = modelInfo[2];
               }
             }
@@ -175,8 +174,8 @@ export class QuantitConformalComponent implements OnInit {
               let min: number = null;
               // tslint:disable-next-line:forin
               for (const i in info['ymatrix']) {
-                //this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
-                //this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+                // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
+                // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
                 this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i]};
                 this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] =
                 { plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
@@ -186,25 +185,21 @@ export class QuantitConformalComponent implements OnInit {
                   if (max < this.modelConformal['Conformal_prediction_ranges'][i][0]) {
                       max = this.modelConformal['Conformal_prediction_ranges'][i][0];
                   }
-                }
-                else{
+                } else {
                   max = this.modelConformal['Conformal_prediction_ranges'][i][0];
                 }
                 if (min) {
                   if (min > this.modelConformal['Conformal_prediction_ranges'][i][1]) {
                       min = this.modelConformal['Conformal_prediction_ranges'][i][1];
                   }
-                }
-                else {
+                } else {
                   min = this.modelConformal['Conformal_prediction_ranges'][i][1];
                 }
                 this.ChartLabels[i] = info['obj_nam'][i];
               }
-              
-              //this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
-              //this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
-             
-              //console.log(this.QuantitConformalChart.nativeElement);
+              // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
+              // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
+              // console.log(this.QuantitConformalChart.nativeElement);
             }, 50);
           }
         },

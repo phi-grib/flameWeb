@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuantitNoConformalService } from './quantit-no-conformal.service';
-import {Model} from '../Global';
+import {Model} from '../Globals';
 import { ChartDataSets, ChartType, ChartOptions} from 'chart.js';
 import { Label} from 'ng2-charts';
 
@@ -43,7 +43,6 @@ export class QuantitNoConformalComponent implements OnInit {
           labelString: 'experimental',
         }
       }],
-      
       yAxes: [{
         scaleLabel: {
           display: true,

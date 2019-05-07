@@ -11,30 +11,6 @@ export class ModelListService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Call to the server to create a new model with the given name
-   * @param model Name of the model to add
-   */
-  createModel(model: string): Observable<any> {
-    const url: string = environment.baseUrl_manage + 'models/' + model;
-    return this.http.post(url, null);
-  }
-
-  deleteModel(model: string): Observable<any>  {
-    const url: string = environment.baseUrl_manage + 'models/' + model;
-    return this.http.delete(url);
-  }
-
-  deleteVersion(model: string, version: string) {
-    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
-    return this.http.delete(url);
-  }
-
-  cloneModel(model: string) {
-    const url: string = environment.baseUrl_manage + 'models/' + model;
-    return this.http.put(url,null);
-  }
-
-  /**
    * @param modelname The model name to recieve parameters
    * Version will be automatically set to 'dev'
    */

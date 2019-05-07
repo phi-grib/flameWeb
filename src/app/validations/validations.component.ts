@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Model} from '../Global';
+import {Model} from '../Globals';
 import { CommonService } from '../common.service';
 
 @Component({

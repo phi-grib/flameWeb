@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Prediction } from '../Global';
+import { Prediction } from '../Globals';
 
 @Component({
   selector: 'app-prediction-series',
