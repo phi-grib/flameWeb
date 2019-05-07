@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuantitNoConformalService } from './quantit-no-conformal.service';
-import {Model} from '../Model';
+import {Model} from '../Global';
 import { ChartDataSets, ChartType, ChartOptions} from 'chart.js';
 import { Label} from 'ng2-charts';
 
@@ -40,15 +40,20 @@ export class QuantitNoConformalComponent implements OnInit {
         position: 'bottom',
         scaleLabel: {
           display: true,
-          labelString: 'experimental'
+          labelString: 'experimental',
         }
       }],
+      
       yAxes: [{
         scaleLabel: {
           display: true,
           labelString: 'Predicted'
         }
-      }]
+      }],
+      ticks: {
+        min: -8,
+        max: -3,
+      }
     },
     legend: {
       display: false
@@ -136,7 +141,6 @@ export class QuantitNoConformalComponent implements OnInit {
       result => {
         if (result[0]) { // True is trained
           const info = JSON.parse(result[1]);
-          console.log(info);
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
               modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
@@ -145,7 +149,6 @@ export class QuantitNoConformalComponent implements OnInit {
             this.modelBuildInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
           }
           for (const modelInfo of info['model_valid_info']) {
-            console.log(typeof modelInfo[2]);
             if (typeof modelInfo[2] === 'number') {
               modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
               // do something
@@ -154,7 +157,6 @@ export class QuantitNoConformalComponent implements OnInit {
               this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
             }
           }
-          console.log(this.modelValidationInfo);
 
           setTimeout(() => {
             // tslint:disable-next-line:forin

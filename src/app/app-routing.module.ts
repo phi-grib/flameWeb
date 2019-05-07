@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BuildComponent } from './build/build.component';
-import { PredictComponent } from './predict/predict.component';
+import { ModelListComponent } from './model-list/model-list.component';
 import { CommonModule } from '@angular/common';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
+import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
+import { PredictionComponent } from './prediction/prediction.component';
 
 
 const routes: Routes = [
@@ -15,12 +16,12 @@ const routes: Routes = [
   },*/
   {
     path: '',
-    redirectTo: '/build',
+    redirectTo: '/listModel',
     pathMatch: 'full'
   },
   {
-    path: 'build',
-    component: BuildComponent
+    path: 'listModel',
+    component: ModelListComponent
   },
   {
     path: 'parameters',
@@ -33,6 +34,14 @@ const routes: Routes = [
   {
     path: 'validation',
     component: ValidationsComponent
+  },
+  {
+    path: 'predictionseries',
+    component: PredictionSeriesComponent
+  },
+  {
+    path: 'prediction',
+    component: PredictionComponent
   },
 ];
 

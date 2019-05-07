@@ -1,6 +1,6 @@
 
 <div class ="row h-100">
-  <div class="col-10 scrolltable" style="height: 100%;">
+  <div class="col-12 scrolltable" style="height: 100%;">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -16,7 +16,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let key of objectKeys(model.listModels).sort()" 
-          [ngClass]="{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),
+          [ngClass]="{'selected': ((globals.actualTab==='build') && (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version))
+                                  || ((globals.actualTab==='predict') && (model.listModels[key].name===this.prediction.name) && (model.listModels[key].version===this.prediction.version)),
                       'version': model.listModels[key].version > 0}"
           (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)">
           <!--<th scope="row">
@@ -25,10 +26,15 @@
             <i class="far fa-trash-alt" aria-hidden="true" (click)="deleteModel()" data-toggle="tooltip" data-placement="left" title="Delete"></i>
           </th>-->
 
-          <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }"-->
-          <td class="text-center" ><i class="fas fa-circle"  [ngClass]="{'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}"
-                        [ngStyle]="{'color':this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
+          <!--"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }" fas fa-circle, fas fa-square -->
+          <td class="text-center" >
+          <i class = "fas" [ngClass]="{'fa-grip-lines': model.listModels[key].type.indexOf('quantitative')==-1,
+                        'fa-circle': model.listModels[key].type.indexOf('quantitative')!=-1,
+                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}"
+                        [ngStyle]="{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }" 
                         aria-hidden="true"></i> 
+         
+                        
           </td>
           <td *ngIf="model.listModels[key].version === 0">{{model.listModels[key].name}}</td>
           <td class="text-center"*ngIf="model.listModels[key].version != 0"><i class="fas fa-level-up-alt fa-rotate-90 fa-lg"></i></td>
@@ -59,7 +65,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-2 action" style="height: 100%;">
+  <!--<div class="col-2 action" style="height: 100%;">
     <div class="row">
       <fieldset class="form-group mt-3 pl-3">
         <legend>Publish</legend>
@@ -84,7 +90,7 @@
       </fieldset>
   </div>
   </div>
-</div>
+</div>-->
  
 
 

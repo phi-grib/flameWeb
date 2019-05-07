@@ -1,29 +1,7 @@
-<!--div class="box">
-  <input type="file" #file name="file" id="file" ng2FileSelect [uploader]="uploader" accept=".sdf" />
-  <button type="button" class="btn btn-success" (click)="uploader.uploadAll(); " [disabled]="!uploader.getNotUploadedItems().length">
-    Upload
-  </button>
-  <div class="progress mt-3" style="border-radius: 5px">
-    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">{{uploader.progress}}%</div>
-  </div>
-  <div class='properties' *ngIf="model.file!==undefined">
-    <h4>SDFile fields</h4>
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let field of model.fileFields" class="list-group-item">
-        {{field}}
-      </li>
-    </ul>
-  </div>
-</div>-->
-<!--
-<input type="file" (change)="onChange($event.target.files)">-->
-<!--div class="form-group">
-  <input type="file" class="form-control-file"  (change)="onChange($event.target.files)">
-</div>-->
 <div class="container m-5">
   <div class="form-row mb-4">
     <div class="col-md-3">
-      <label class="btn btn-outline-primary" for="my-file-selector">
+      <label class="btn btn-raised btn-etransafe" for="my-file-selector">
           <input id="my-file-selector" type="file" style="display:none;" (change)="onChange($event.target.files)">
           Browse File
       </label>
@@ -31,35 +9,35 @@
   </div>
   <hr>
   <div class="form-row">
-    <div *ngIf="this.model.file_info!==undefined" class="col-md-4">
+    <div *ngIf="this.prediction.file_info!==undefined" class="col-md-4">
         <h4>File Info</h4>
         <hr>
       <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-left p-1" >
               <strong>File name: </strong> 
-            {{this.model.file_info['name']}}
+            {{this.prediction.file_info['name']}}
             </li>
         <li class="list-group-item d-flex justify-content-between align-items-left p-1" >
           <strong>Type file: </strong> 
-          {{this.model.file_info['type_file']}}
+          {{this.prediction.file_info['type_file']}}
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-left p-1" >
             <strong>Size: </strong> 
-            {{this.model.file_info['size_M']}} MB
+            {{this.prediction.file_info['size_M']}} MB
           </li>
         <li class="list-group-item d-flex justify-content-between align-items-left p-1" >
           <strong>Number of molecules: </strong> 
-          <span class="badge badge-primary badge-pill">{{this.model.file_info['num_mols']}}</span>
+          <span class="badge badge-etransafe badge-pill">{{this.prediction.file_info['num_mols']}}</span>
         </li>
       </ul>
     </div>
-    <div *ngIf="this.model.file_fields!==undefined" class="col-md-4">
+    <div *ngIf="this.prediction.file_fields!==undefined" class="col-md-4">
       <h4>SDFile fields</h4>
       <hr>
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-left p-1" *ngFor="let key of objectKeys(this.model.file_fields)">
+        <li class="list-group-item d-flex justify-content-between align-items-left p-1" *ngFor="let key of objectKeys(this.prediction.file_fields)">
           <strong>{{key}}</strong>
-          <span class="badge badge-primary badge-pill">{{this.model.file_fields[key]}}</span>
+          <span class="badge badge-etransafe badge-pill">{{this.prediction.file_fields[key]}}</span>
         </li>
       </ul>
     </div>

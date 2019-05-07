@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QualitConformalService } from './qualit-conformal.service';
-import {Model} from '../Model';
+import {Model} from '../Global';
 import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType, ChartOptions, ChartColor} from 'chart.js';
 
@@ -30,7 +30,7 @@ export class QualitConformalComponent implements OnInit {
     public polarAreaChartType: ChartType = 'polarArea';
     public polarAreaChartColors = [
       {
-        backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(255,0,0,0.3)', 'rgba(4,3,100,0.3)'],
+        backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(3,49,155,0.3)', 'rgba(255,0,0,0.3)'],
       },
     ];
 
@@ -43,7 +43,6 @@ export class QualitConformalComponent implements OnInit {
       result => {
         if (result[0]) { // True is trained
           const info = JSON.parse(result[1]);
-          console.log(info)
           // INFO ABOUT MODEL
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {

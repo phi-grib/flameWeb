@@ -4,11 +4,10 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Model} from '../Global';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class SidebarService {
+export class BuilderService {
 
   constructor(private http: HttpClient, private model: Model) { }
 

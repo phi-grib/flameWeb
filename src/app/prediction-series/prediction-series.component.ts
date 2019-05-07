@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Model } from '../Global';
+import { Prediction } from '../Global';
 
 @Component({
-  selector: 'app-training-series',
-  templateUrl: './training-series.component.html',
-  styleUrls: ['./training-series.component.css']
+  selector: 'app-prediction-series',
+  templateUrl: './prediction-series.component.html',
+  styleUrls: ['./prediction-series.component.css']
 })
-export class TrainingSeriesComponent implements OnInit {
+export class PredictionSeriesComponent implements OnInit {
 
-  constructor(public model: Model) { }
+  constructor(public prediction: Prediction) { }
   objectKeys = Object.keys;
   fileContent: any;
   num_of_mols = 0;
@@ -24,17 +24,17 @@ export class TrainingSeriesComponent implements OnInit {
 
   public onChange(fileList: FileList): void {
     const file = fileList[0];
-    this.model.file = file;
-    this.model.file_info = {};
-    this.model.file_info['name'] = file.name;
-    this.model.file_info['size_M'] = ((file.size/1024)/1024).toFixed(2);
+    this.prediction.file = file;
+    this.prediction.file_info = {};
+    this.prediction.file_info['name'] = file.name;
+    this.prediction.file_info['size_M'] = ((file.size/1024)/1024).toFixed(2);
     const extension = file.name.split('.');
-    this.model.file_info['type_file'] = extension[1];
+    this.prediction.file_info['type_file'] = extension[1];
     const fileReader: FileReader = new FileReader();
     const self = this;
     fileReader.onloadend = function(x) {
       self.fileContent = fileReader.result;
-      self.model.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
+      self.prediction.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
       const res_array = self.fileContent.match(/>( )*<(.*)>/g);
       const res_dict = {};
       for (const variable of res_array) {
@@ -46,8 +46,9 @@ export class TrainingSeriesComponent implements OnInit {
           res_dict[value] = 1;
         }
       }
-      self.model.file_fields = res_dict;
+      self.prediction.file_fields = res_dict;
     };
     fileReader.readAsText(file);
   }
+
 }

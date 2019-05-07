@@ -1,0 +1,21 @@
+a:hover {
+
+    background: #E7E7E7;
+}
+
+a.active {
+    background: #EBAB39;
+    border-color: #EBAB39;
+}
+a {
+    
+    background:white;
+   
+}
+.wrap {
+    cursor:not-allowed;
+}
+.disabled{
+    background:white;
+    pointer-events: none 
+}

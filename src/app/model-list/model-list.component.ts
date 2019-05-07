@@ -1,18 +1,22 @@
 import { Component, OnInit , ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
-import { BuildService } from './build.service';
-import {Model} from '../Model';
+import { CommonService } from '../common.service';
+import { ModelListService } from './model-list.service';
+import { Model, Globlas, Prediction } from '../Global';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-build',
-  templateUrl: './build.component.html',
-  styleUrls: ['./build.component.css']
+  selector: 'app-model-list',
+  templateUrl: './model-list.component.html',
+  styleUrls: ['./model-list.component.css']
 })
-export class BuildComponent implements OnInit {
+export class ModelListComponent implements OnInit {
 
-  constructor(private service: BuildService,
+  constructor(private service: ModelListService,
+    private commonService: CommonService,
     private viewRef: ViewContainerRef,
     public model: Model,
+    public prediction: Prediction,
+    public globals: Globlas,
     private toastr: ToastrService) {}
 
   models: Array<any>;
@@ -26,42 +30,40 @@ export class BuildComponent implements OnInit {
 
   getModelList() {
 
-    this.service.getModelList().subscribe(
+    this.commonService.getModelList().subscribe(
         result => {
           result = JSON.parse(result[1]);
           for (const model of result) {
             const modelName = model.text;
             let trained = false;
-            const quality = {};
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
-              //CAST VERSION
+              // CAST VERSION
               version = version.replace('ver', '');
               version = (version === 'dev') ? '0' : version;
               version = Number(version);
-              //INFO OF EACH MODEL
-              this.service.getModel(modelName, version).subscribe(
+              // INFO OF EACH MODEL
+              this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
-                  if (result2[0]) { //True is trained
+                  if (result2[0]) { // True is trained
                     trained = true;
                     const dict_info = {};
                     for ( const info of JSON.parse(result2[1])) {
                       dict_info[info[0]] = info[2];
                     }
+                    const quality = {};
                     for ( const info of (Object.keys(dict_info))) {
-                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') //HARCODED: NEED TO IMPROVE
+                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
                           && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
                           && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
                             quality[info] =  parseFloat(dict_info[info].toFixed(3));
-                           
                       }
                     }
-                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: dict_info['nobj'],
-                    variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
+                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained,
+                    numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
 
-                  }
-                  else{
-                    this.model.listModels[modelName + '-' + version]={name: modelName, version: version, trained: trained, numMols: '-',
+                  } else {
+                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained, numMols: '-',
                     variables: '-', type: '-', quality: {}};
                   }
                 },
@@ -71,10 +73,10 @@ export class BuildComponent implements OnInit {
               );
             }
           }
-          this.model.listModels;
         },
         error => {
-          alert('Error getALL models');
+          console.log(error.message)
+          alert(error.message);
         }
     );
   }
@@ -85,16 +87,25 @@ export class BuildComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    this.model.name = name;
-    this.model.version = version;
-    this.model.trained = trained;
-    this.model.file = undefined;
-    this.model.file_info = undefined;
-    this.model.file_fields = undefined;
-    this.model.parameters = undefined;
-    this.model.conformal = type.indexOf('conformal') === -1  ? false : true;
-    this.model.quantitative = type.indexOf('quantitative') === -1 ? false : true;
-    this.getParameters();
+    if (this.globals.actualTab === 'build') {
+      this.model.name = name;
+      this.model.version = version;
+      this.model.trained = trained;
+      this.model.type = type;
+      this.model.file = undefined;
+      this.model.file_info = undefined;
+      this.model.file_fields = undefined;
+      this.model.parameters = undefined;
+      this.getParameters();
+    }
+
+    if (this.globals.actualTab === 'predict') {
+      this.prediction.name = name;
+      this.prediction.version = version;
+      this.prediction.file = undefined;
+      this.prediction.file_info = undefined;
+      this.prediction.file_fields = undefined;
+    }
   }
 
   /**
@@ -105,17 +116,24 @@ export class BuildComponent implements OnInit {
     if (this.modelName.match(letters)) {
         this.service.createModel(this.modelName).subscribe(
           result => {
-            //this.toastr.success('Model ' + this.modelName + ' created', 'Success', { closeButton: true});
             if (result.status[0] === true) {
               this.modelName = '';
-              this.model.listModels = {};
               this.getModelList();
+              this.toastr.success('Model ' + this.modelName, 'CREATED', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
             } else {
-                alert('ERROR1');
+              this.toastr.error('Model ' + this.modelName + ' ' + result.status[1], 'ERROR', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
             }
           },
           error => {
+            console.log(error);
               alert('ERROR2');
+              this.toastr.error(error.error, 'ERROR', {
+                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+              });
           }
         );
     } else {

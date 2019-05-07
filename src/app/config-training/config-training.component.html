@@ -2,7 +2,7 @@
 <!--Input type-->
 <div class="form-row">
   <div class="form-group col-md-4">
-    <label class="bmd-label-floating" for="input_type">Input type</label>
+    <label class="bmd-label-static" for="input_type">Input type</label>
     <select id="key" class="form-control" [(ngModel)]="this.model.parameters['input_type'].value">
       <option *ngFor="let value of this.model.parameters['input_type'].options">{{value}}</option>
     </select>
@@ -12,9 +12,9 @@
 
 
 <div class="form-row">
-  <div *ngFor="let key of infoSeries[this.model.parameters['input_type'].value]" class="form-group col-md-4 mb-4">
+  <div *ngFor="let key of infoSeries[this.model.parameters['input_type'].value]" class="form-group col-md-4 mb-4 is-filled">
     <div *ngIf="this.model.parameters[key].writable" style="margin-top: 11px;">
-      <label class="bmd-label-floating" for="key" style="margin-top: 11px;">{{key.replace('_',' ')}}</label>
+      <label class="bmd-label-static" for="key" style="margin-top: 11px;">{{key.replace('_',' ')}}</label>
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='int'" id="key" type='number'  >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='float'" id="key" type='number' step=0.01 >
         <input class="form-control" [(ngModel)]="this.model.parameters[key].value" *ngIf="this.model.parameters[key].object_type==='string'" id="key" type='text'>
@@ -27,15 +27,20 @@
       </label>
     </div>  
     <div *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type!='list' && this.model.parameters[key].object_type!='boolean'">
-      <label class="bmd-label-floating" for="key">{{key.replace('_',' ')}}</label>
-      <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value">
-        <option *ngFor="let value of this.model.parameters[key].options">
+      <label class="bmd-label-static" for="key">{{key.replace('_',' ')}}</label>
+      <select id="key" class="form-control" [(ngModel)]="this.model.parameters[key].value"> 
+        <option *ngFor="let value of this.model.parameters[key].options" [value]='value'>
+          <div *ngIf="value==null">
+            --none--
+          </div>
+          <div *ngIf="value!=null">
             {{value}}
+          </div>   
         </option>
       </select>
     </div>
     <div class="checkbox mt-3" *ngIf="!this.model.parameters[key].writable && this.model.parameters[key].object_type==='list'">
-      <label id="key" class="bmd-label-floating mb-2 p-0">{{key.replace('_',' ')}}</label>
+      <label id="key" class="bmd-label-static mb-2 p-0">{{key.replace('_',' ')}}</label>
       <label id="key" class="mr-2 mb-2 w-100" *ngFor="let value of this.model.parameters[key].options">
         <input id="key" type="checkbox"
               [(checklist)]="this.model.parameters[key].value"

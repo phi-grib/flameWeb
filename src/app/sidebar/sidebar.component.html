@@ -1,31 +1,39 @@
 
-<div class="d-flex align-items-start flex-column" style="height: 100%;">
-  <div class="mb-auto w-100">
-    <div class="list-group list-group-flush wrap">
-      <a class="list-group-item list-group-item-action  border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="build">
-        <strong> Models 
-          <p class="font-weight-bold p-1 m-0" *ngIf="this.model.name">
-              <i class="fas fa-reply fa-rotate-180 "></i> {{this.model.name}} v.{{this.model.version}}
-          </p>
-        </strong>
-      </a>
-      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="trainigserie" routerLink="trainigseries">
-          <strong>Training Series</strong>
-          <i class="fas fa-check" [ngClass]="{'fas fa-check':model.file || model.trained}" style="color: #51cf66;" ></i>
-      </a>
-      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled':!model.name}" data-toggle="list" role="tab" aria-controls="parameters" routerLink="parameters">
-        <strong>Parameters</strong>
-        <i class="fas fa-check" [ngClass]="{'fas fa-check':model.parameters}" [ngStyle]="{'color': model.parameters ? '#51cf66' : 'red' }" ></i>
-      </a>
-      <a class="list-group-item list-group-item-action border-bottom justify-content-between" [ngClass]="{'disabled': !model.trained}" data-toggle="list" role="tab" aria-controls="results" routerLink="validation">
-        <strong>Results</strong>
-        <i class="fas fa-check" [ngClass]="{'fas fa-check':model.trained}" [ngStyle]="{'color': model.trained ? '#51cf66' : 'red' }" ></i>
-      </a>
-    </div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="build-tab" data-toggle="tab" href="#build" role="tab" aria-controls="build" aria-selected="true" (click)="changeTab('build')">Build</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="predict-tab" data-toggle="tab" href="#predict" role="tab" aria-controls="predict" aria-selected="false" (click)="changeTab('predict')">Predict</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false" (click)="changeTab('manage')">Manage</a>
+  </li>
+</ul>
+<div class="tab-content mb-auto w-100" id="myTabContent">
+  <div class="tab-pane fade show active" id="build" role="tabpanel" aria-labelledby="build-tab">
+    <app-builder [tabChange] = globals.actualTab></app-builder>
   </div>
-  <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-      <button type="button" class="btn btn-outline-primary" 
-              [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
-              (click)="buildModel(this.model.name,this.model.version)">Build model</button>
+  <div class="tab-pane fade" id="predict" role="tabpanel" aria-labelledby="predict-tab">
+      <app-predictor></app-predictor>
+  </div>
+  <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+    <app-manager></app-manager>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

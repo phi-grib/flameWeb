@@ -5,16 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { BuildComponent } from './build/build.component';
-import { PredictComponent } from './predict/predict.component';
+import { ModelListComponent } from './model-list/model-list.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { NewmodelComponent } from './newmodel/newmodel.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { ToastrModule } from 'ngx-toastr';
-import { Model } from './Model';
+import { Model, Prediction, Globlas } from './Global';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
@@ -25,15 +23,18 @@ import { QualitNoConformalComponent } from './qualit-no-conformal/qualit-no-conf
 import { QualitConformalComponent } from './qualit-conformal/qualit-conformal.component';
 import { QuantitNoConformalComponent } from './quantit-no-conformal/quantit-no-conformal.component';
 import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal.component';
+import { BuilderComponent } from './builder/builder.component';
+import { PredictorComponent } from './predictor/predictor.component';
+import { ManagerComponent } from './manager/manager.component';
+import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
+import { PredictionComponent } from './prediction/prediction.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuildComponent,
-    PredictComponent,
+    ModelListComponent,
     TrainingSeriesComponent,
     TabsComponent,
-    NewmodelComponent,
     SidebarComponent,
     ParametersComponent,
     ValidationsComponent,
@@ -43,8 +44,12 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
     QualitNoConformalComponent,
     QualitConformalComponent,
     QuantitNoConformalComponent,
-    QuantitConformalComponent
-    
+    QuantitConformalComponent,
+    BuilderComponent,
+    PredictorComponent,
+    ManagerComponent,
+    PredictionSeriesComponent,
+    PredictionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +60,8 @@ import { QuantitConformalComponent } from './quantit-conformal/quantit-conformal
     ToastrModule.forRoot(),
     ChecklistModule,
     ChartsModule
-    
   ],
-  entryComponents: [NewmodelComponent],
-  providers: [Model],
+  providers: [Model, Prediction, Globlas],
   bootstrap: [AppComponent]
 })
 
