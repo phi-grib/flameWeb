@@ -106,6 +106,8 @@ export class ModelListComponent implements OnInit {
       this.prediction.file = undefined;
       this.prediction.file_info = undefined;
       this.prediction.file_fields = undefined;
+      this.prediction.result = undefined;
+      this.prediction.predicting = false;
     }
 
     if (this.globals.actualTab === 'manage') {

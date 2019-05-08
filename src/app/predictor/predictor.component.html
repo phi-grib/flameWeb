@@ -30,8 +30,10 @@
             </div>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action border-bottom" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction">
-          Results
+        <a class="list-group-item list-group-item-action border-bottom" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
+            [ngClass]="{'disabled':!prediction.predicting}">
+          Results 
+          <div [ngClass]="{ 'loading': prediction.result === undefined}"></div>
         </a>
       </div>
     </div>

@@ -22,8 +22,7 @@ export class PredictorComponent implements OnInit, OnChanges {
   }
 
   predict() {
-    $('#options a:last-child').tab('show'); // Select first tab 
-    this.router.navigate(['/prediction']);
+    this.prediction.predicting = true;
     this.service.predict().subscribe(
       result => {
         if (result.buildStatus[0]) {
@@ -33,5 +32,9 @@ export class PredictorComponent implements OnInit, OnChanges {
       error => {
       }
     );
+    setTimeout(() => {
+      $('#options a:last-child').tab('show'); // Select first tab
+      this.router.navigate(['/prediction']);
+    }, 300);
   }
 }
