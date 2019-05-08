@@ -37,7 +37,7 @@
     </div>
     <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
         <button type="button" class="btn btn-raised btn-etransafe"
-         [ngClass]="{'disabled': ((prediction.file === undefined) || prediction.name === undefined)}" 
+         [ngClass]="{'disabled': prediction.file === undefined || !prediction.trained}" 
                 (click)="predict()">Predict</button>
     </div>
   </div>

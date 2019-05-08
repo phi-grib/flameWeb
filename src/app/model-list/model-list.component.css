@@ -2,6 +2,13 @@ i {
     margin-right: 5px;
     cursor: pointer;
 }
+.table {
+     background-color: white;
+    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
+    background: white;
+    /*border: 1px solid;*/
+    box-shadow: 5px 10px #888888;
+}
 .table th{
     padding-left: 1px;
     padding-right: 1px;
@@ -43,7 +50,13 @@ td {
     vertical-align: middle;
 }
 
-.scrolltable { height: 100%; overflow: auto; }
+.scrolltable { 
+    height: 100%; 
+    overflow: auto;
+    background-color: #F7F9EA;
+    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
+    background: #F7F9EA;
+ }
 
 .action {
     background: linear-gradient(to left, #D7D7D7 0% ,#F7F7F7 100%);

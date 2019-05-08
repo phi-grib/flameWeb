@@ -1,5 +1,4 @@
-
-<div class="row m-3"> 
+<div class="row m-3" [ngClass]="{ 'loading': prediction.result === undefined}"> 
 
   <div class="offset-1 col-4" *ngIf="(prediction.result != undefined) && (!prediction.result.warning)">
     <div class="card w-100" style="width: 18rem;">

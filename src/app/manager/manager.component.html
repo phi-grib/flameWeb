@@ -17,45 +17,40 @@
         </div>
       </a>
     </div>
-    <div class="container actions pt-4 pb-4">
-      <div class="row">
-        <div class="col">
-            <p class="font-italic">
-                Publish
-            </p>
-         
+    <div class="container actions pt-2 pb-4">
+      <div class="row align-items-center">
+        <div class="col-3">   
+          Publish   
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="cloneModel()">Clone</button>
-          <button type="button" class="btn btn-raised btn-etransafe m-1">Export</button>
-        </div>
-      </div>
-      <hr class="line m-1">
-      <div class="row">
-        <div class="col">
-            <p class="font-italic">
-                Delete
-            </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteModel()">Model</button>
-          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()">Version</button>
+        <div class="col-9">
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="cloneModel()"
+                  [ngClass]="{'disabled': manage.name === undefined}" >Clone
+          </button>
+
+          <button type="button" class="btn btn-raised btn-etransafe m-1"
+                  [ngClass]="{'disabled': manage.name === undefined}" >Export
+          </button>
         </div>
       </div>
       <hr class="line m-1">
-      <div class="row">
-        <div class="col">
-            <p class="font-italic">
-                Create
-            </p>
+      <div class="row align-items-center">
+        <div class="col-3">          
+          Delete
+        </div>
+        <div class="col-9">
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteModel()"
+                  [ngClass]="{'disabled': manage.name === undefined ||  manage.version != 0}" >Model
+          </button>
+          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()"
+                  [ngClass]="{'disabled': manage.name === undefined ||  manage.version == 0}">Version</button>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
+      <hr class="line m-1">
+      <div class="row align-items-center">
+        <div class="col-3">   
+          Create  
+        </div>
+        <div class="col-9">
           <button type="button" class="btn btn-raised btn-etransafe m-1" data-toggle="modal" data-target="#exampleModal">New</button>
           <button type="button" class="btn btn-raised btn-etransafe m-1">Import</button>
         </div>

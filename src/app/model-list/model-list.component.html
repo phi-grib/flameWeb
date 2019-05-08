@@ -1,6 +1,6 @@
 
 <div class ="row h-100">
-  <div class="col-12 scrolltable" style="height: 100%;">
+  <div class="col-12 scrolltable p-0 pr-2" style="height: 100%;">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -17,7 +17,8 @@
       <tbody>
         <tr *ngFor="let key of objectKeys(model.listModels).sort()" 
           [ngClass]="{'selected': ((globals.actualTab==='build') && (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version))
-                                  || ((globals.actualTab==='predict') && (model.listModels[key].name===this.prediction.name) && (model.listModels[key].version===this.prediction.version)),
+                                  || ((globals.actualTab==='predict') && (model.listModels[key].name===this.prediction.name) && (model.listModels[key].version===this.prediction.version))
+                                  || ((globals.actualTab==='manage') && (model.listModels[key].name===this.manage.name) && (model.listModels[key].version===this.manage.version)),
                       'version': model.listModels[key].version > 0}"
           (click)= "selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)">
           <!--<th scope="row">

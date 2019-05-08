@@ -92,9 +92,9 @@ export class ModelListComponent implements OnInit {
       this.model.version = version;
       this.model.trained = trained;
       this.model.type = type;
-      this.model.file = undefined;
+     /* this.model.file = undefined;
       this.model.file_info = undefined;
-      this.model.file_fields = undefined;
+      this.model.file_fields = undefined;*/
       this.model.parameters = undefined;
       this.getParameters();
     }
@@ -102,6 +102,7 @@ export class ModelListComponent implements OnInit {
     if (this.globals.actualTab === 'predict') {
       this.prediction.name = name;
       this.prediction.version = version;
+      this.prediction.trained = trained;
       this.prediction.file = undefined;
       this.prediction.file_info = undefined;
       this.prediction.file_fields = undefined;

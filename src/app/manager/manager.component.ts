@@ -70,8 +70,8 @@ export class ManagerComponent implements OnInit {
         this.model.file = undefined;
         this.model.file_info = undefined;
         this.model.file_fields = undefined;
-        this.model.parameters = undefined;
-        this.model.listModels = {};*/
+        this.model.parameters = undefined;*/
+        this.model.listModels = {};
         this.getModelList();
       },
       error => {
