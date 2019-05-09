@@ -28,6 +28,7 @@ import { PredictorComponent } from './predictor/predictor.component';
 import { ManagerComponent } from './manager/manager.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 import { PredictionComponent } from './prediction/prediction.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PredictionComponent } from './prediction/prediction.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ChecklistModule,
-    ChartsModule
+    ChartsModule,
+    DataTablesModule
   ],
   providers: [Model, Prediction, Globals, Manager],
   bootstrap: [AppComponent]

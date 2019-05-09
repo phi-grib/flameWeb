@@ -31,6 +31,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
+              "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/smiles-drawer/dist/smiles-drawer.min.js",
               "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.js",
               "node_modules/arrive/src/arrive.js"

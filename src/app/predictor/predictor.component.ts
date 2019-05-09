@@ -27,14 +27,13 @@ export class PredictorComponent implements OnInit, OnChanges {
       result => {
         if (result.buildStatus[0]) {
           this.prediction.result = JSON.parse(result.buildStatus[1]);
+          console.log(this.prediction.result);
+          $('#options a:last-child').tab('show'); // Select first tab
+          this.router.navigate(['/prediction']);
         }
       },
       error => {
       }
     );
-    setTimeout(() => {
-      $('#options a:last-child').tab('show'); // Select first tab
-      this.router.navigate(['/prediction']);
-    }, 300);
   }
 }

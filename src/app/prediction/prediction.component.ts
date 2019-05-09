@@ -1,15 +1,20 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Prediction } from '../Globals';
 import * as SmilesDrawer from 'smiles-drawer';
+
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
 
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
   styleUrls: ['./prediction.component.css']
-})
+}
 export class PredictionComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('cmp') components: QueryList<ElementRef>;
+  dataTable: any;
 
   constructor(public prediction: Prediction) { }
 
@@ -17,6 +22,8 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    const table: any = $('#info');
+    this.dataTable = table.DataTable();
     if (this.components !== undefined) {
       this.components.forEach((child) => {
         const options = {'width': 300, 'height': 150};
