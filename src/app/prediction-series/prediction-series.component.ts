@@ -41,8 +41,7 @@ export class PredictionSeriesComponent implements OnInit {
         const value = variable.replace(/[<> ]*/g, '');
         if (value in res_dict) {
           res_dict[value] = res_dict[value] + 1;
-        }
-        else {
+        } else {
           res_dict[value] = 1;
         }
       }

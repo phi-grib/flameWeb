@@ -28,7 +28,7 @@ import { PredictorComponent } from './predictor/predictor.component';
 import { ManagerComponent } from './manager/manager.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 import { PredictionComponent } from './prediction/prediction.component';
-import { DataTablesModule } from 'angular-datatables';
+import { DataTableModule } from 'angular-6-datatable';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { DataTablesModule } from 'angular-datatables';
     ToastrModule.forRoot(),
     ChecklistModule,
     ChartsModule,
-    DataTablesModule
+    DataTableModule
+
   ],
   providers: [Model, Prediction, Globals, Manager],
   bootstrap: [AppComponent]

@@ -10,7 +10,7 @@ import 'datatables.net-bs4';
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
   styleUrls: ['./prediction.component.css']
-}
+})
 export class PredictionComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('cmp') components: QueryList<ElementRef>;
@@ -22,8 +22,6 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const table: any = $('#info');
-    this.dataTable = table.DataTable();
     if (this.components !== undefined) {
       this.components.forEach((child) => {
         const options = {'width': 300, 'height': 150};
@@ -35,5 +33,7 @@ export class PredictionComponent implements OnInit, AfterViewInit {
           });
       });
     }
+    const table: any = $('#info');
+    this.dataTable = table.DataTable();
   }
 }
