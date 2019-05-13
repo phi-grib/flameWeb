@@ -7,7 +7,6 @@ i {
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
     background: white;
     /*border: 1px solid;*/
-    box-shadow: 5px 10px #888888;
 }
 .table th{
     padding-left: 1px;
@@ -18,9 +17,6 @@ i {
     padding-left: 1px;
     padding-right: 1px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.table td, .table th {
-    border-top: 4px solid rgba(0,0,0,.06);
 }
 tr {
     cursor: pointer;

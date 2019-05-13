@@ -9,7 +9,7 @@ import 'datatables.net-bs4';
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
-  styleUrls: ['./prediction.component.css']
+  styleUrls: ['./prediction.component.css'],
 })
 export class PredictionComponent implements OnInit, AfterViewInit {
 
@@ -34,6 +34,11 @@ export class PredictionComponent implements OnInit, AfterViewInit {
       });
     }
     const table: any = $('#info');
-    this.dataTable = table.DataTable();
+    this.dataTable = table.DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'csv', 'excel', 'pdf'
+      ]
+    });
   }
 }
