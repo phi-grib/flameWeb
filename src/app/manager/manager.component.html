@@ -39,17 +39,10 @@
         </div>
         <div class="col-9">
           <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteModel()"
-<<<<<<< HEAD
-                  [ngClass]="{'disabled': manage.name === undefined ||  manage.version != 0}" >Model
-          </button>
-          <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()"
-                  [ngClass]="{'disabled': manage.name === undefined ||  manage.version == 0}">Version</button>
-=======
                   [ngClass]="{'disabled': manage.name === undefined ||  manage.version != '0'}" >Model
           </button>
           <button type="button" class="btn btn-raised btn-etransafe m-1" (click)="deleteVersion()"
                   [ngClass]="{'disabled': manage.name === undefined ||  manage.version == '0'}">Version</button>
->>>>>>> 5aeea2af1a6193728c63d8b8ab2382f3b5459f5e
         </div>
       </div>
       <hr class="line m-1">

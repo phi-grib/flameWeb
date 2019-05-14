@@ -9,11 +9,7 @@ import 'datatables.net-bs4';
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
-<<<<<<< HEAD
   styleUrls: ['./prediction.component.css']
-=======
-  styleUrls: ['./prediction.component.css'],
->>>>>>> 5aeea2af1a6193728c63d8b8ab2382f3b5459f5e
 })
 export class PredictionComponent implements OnInit, AfterViewInit {
 
