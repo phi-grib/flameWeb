@@ -2,11 +2,10 @@
     color: #E69400;
 }
 .main {
-    max-height: 100vh;
     min-height: 100vh;
     padding-bottom: 10px;
 }
-.sidebar {
+.main {
     background-color: #F7F9EA;
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
     background: #F7F9EA;

@@ -9,7 +9,11 @@ import 'datatables.net-bs4';
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
+<<<<<<< HEAD
   styleUrls: ['./prediction.component.css']
+=======
+  styleUrls: ['./prediction.component.css'],
+>>>>>>> 5aeea2af1a6193728c63d8b8ab2382f3b5459f5e
 })
 export class PredictionComponent implements OnInit, AfterViewInit {
 
@@ -22,8 +26,6 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const table: any = $('#info');
-    this.dataTable = table.DataTable();
     if (this.components !== undefined) {
       this.components.forEach((child) => {
         const options = {'width': 300, 'height': 150};
@@ -35,5 +37,12 @@ export class PredictionComponent implements OnInit, AfterViewInit {
           });
       });
     }
+    const table: any = $('#info');
+    this.dataTable = table.DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'csv', 'excel', 'pdf'
+      ]
+    });
   }
 }
