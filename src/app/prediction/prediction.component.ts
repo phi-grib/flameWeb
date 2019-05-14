@@ -10,7 +10,7 @@ import 'datatables.net-bs4';
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
   styleUrls: ['./prediction.component.css']
-}
+})
 export class PredictionComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('cmp') components: QueryList<ElementRef>;
