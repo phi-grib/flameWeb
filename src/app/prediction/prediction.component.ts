@@ -5,6 +5,10 @@ import * as SmilesDrawer from 'smiles-drawer';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+
 
 @Component({
   selector: 'app-prediction',
@@ -19,6 +23,12 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   constructor(public prediction: Prediction) { }
 
   ngOnInit() {
+  }
+
+  save() {
+    const doc = new jsPDF();
+    doc.autoTable({html: '#info'});
+    doc.save('table.pdf');
   }
 
   ngAfterViewInit() {

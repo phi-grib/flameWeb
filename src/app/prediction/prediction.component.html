@@ -21,14 +21,21 @@
   </div>
 </div>
 <div class="row justify-content-center m-3" *ngIf="(prediction.result != undefined) && (prediction.result.warning)">
-  <div class="col-10">
+  <div class=" col-10">
     <div class="alert alert-danger text-center" role="alert">
         {{prediction.result.warning}}
     </div>
   </div>
 </div>
+<div class="row justify-content-end m-3" *ngIf="prediction.result != undefined">
+    <div class="col-2 align-self-end">
+      <button type="button" class="btn btn-raised btn-etransafe" (click)="save()"><i class="far fa-file-pdf"></i>  PDF</button>
+    </div>
+  </div>
 <div class="row justify-content-center m-3">
+    
   <div class="col-10">
+   
  
     <table id="info" class="table table-fixed table-bordered table-striped m-2 table-light" *ngIf="prediction.result != undefined">
       <thead>
