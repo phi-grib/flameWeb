@@ -63,12 +63,13 @@
         </a>
       </div>
     </div>
-    
-    <div class="row justify-content-center">
-      <div class="col-4 align-self-center">
-        <button type="button" class="btn btn-outline-light btn-lg" 
-                [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
-                (click)="buildModel(this.model.name,this.model.version)">Build model</button>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8 align-self-center">
+          <button type="button" class="btn btn-outline-light btn-block btn-lg" 
+                  [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
+                  (click)="buildModel(this.model.name,this.model.version)">Build model</button>
+        </div>
       </div>
     </div>
   </div>

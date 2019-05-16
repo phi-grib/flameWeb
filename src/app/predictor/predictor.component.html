@@ -4,7 +4,7 @@
         <a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
           <div class="container p-0">
             <div class="row">
-              <div class="col-12">Models</div>
+              <div class="col-12">MODELS</div>
             </div>
             <div class="row">
               <div class="col-12">
@@ -18,7 +18,7 @@
         <a class="list-group-item list-group-item-action" [ngClass]="{'disabled':!prediction.name}" data-toggle="list" role="tab" aria-controls="predictionseries" routerLink="predictionseries">
           <div class="container p-0">
             <div class="row">
-              <div class="col-12">Prediction Series</div>
+              <div class="col-12">PREDICTION SERIES</div>
             </div>
             <div class="row">
               <div class="col-12">
@@ -32,16 +32,18 @@
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
             [ngClass]="{'disabled':prediction.result === undefined}">
-          Results 
+          RESULTS 
           <div [ngClass]="{ 'loading': this.prediction.predicting}"></div>
         </a>
       </div>
     </div>
-   <div class="row justify-content-center">
-      <div class="col-3 align-self-center">
-        <button type="button" class="btn btn-outline-light btn-lg"
-         [ngClass]="{'disabled': prediction.file === undefined || !prediction.trained}" 
-                (click)="predict()">Predict</button>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8 align-self-center">
+          <button type="button" class="btn btn-outline-light btn-block btn-lg"
+          [ngClass]="{'disabled': prediction.file === undefined || !prediction.trained}" 
+                  (click)="predict()">Predict</button>
+        </div>
       </div>
     </div>
   </div>

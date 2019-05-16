@@ -13,6 +13,6 @@ btn.bmd-btn-fab.btn-etransafe,
 .btn.btn-etransafe, 
 .btn-group-raised 
 .btn-etransafe.custom-file-control::before {
-    background-color: #B8DCED;
-    color:white;
+    background-color: #B8DCED !important;
+    color:#22577a !important;
 }

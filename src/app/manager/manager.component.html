@@ -1,10 +1,9 @@
 <div class="d-flex align-items-start flex-column" style="height: 100%;">
   <div class="mb-auto w-100">
-    <div id="options" class="list-group list-group-flush wrap p-0">
-      <a class="list-group-item list-group-item-action border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
-        <div class="container p-0">
+    <div id="options" class="list-group list-group-flush wrap pb-0 pt-0">
+      <a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
           <div class="row">
-            <div class="col-12">Models</div>
+            <div class="col-12">MODELS</div>
           </div>
           <div class="row">
             <div class="col-12">
@@ -13,43 +12,47 @@
               </p>
             </div>
           </div>
-        </div>
       </a>
     </div>
-    <div class="container pt-2 pb-4">
+    <div class="container pb-4">
       <div class="row align-items-center justify-content-between actions">
-        <div class="col-3">   
+        <div class="col-2">   
           PUBLISH   
         </div>
-        <div class="col-9">
-          <button type="button" class="btn btn-raised btn-light m-1" (click)="cloneModel()"
+        <div class="col-3 offset-4 p-1">
+          <button type="button" class="btn btn-raised btn-etransafe btn-block" (click)="cloneModel()"
                   [ngClass]="{'disabled': manage.name === undefined}" >Clone
           </button>
-
-          <button type="button" class="btn btn-raised btn-light  m-1"
+        </div>
+        <div class="col-3 p-1">
+          <button type="button" class="btn btn-raised btn-etransafe btn-block"
                   [ngClass]="{'disabled': manage.name === undefined}" >Export
           </button>
         </div>
       </div>
       <div class="row align-items-center actions">
-        <div class="col-3">          
+        <div class="col-2">          
           DELETE
         </div>
-        <div class="col-9">
-          <button type="button" class="btn btn-raised btn-light m-1" (click)="deleteModel()"
+        <div class="col-3 offset-4 p-1">
+          <button type="button" class="btn btn-raised btn-etransafe btn-block " (click)="deleteModel()"
                   [ngClass]="{'disabled': manage.name === undefined ||  manage.version != '0'}" >Model
           </button>
-          <button type="button" class="btn btn-raised btn-light m-1" (click)="deleteVersion()"
+        </div>
+        <div class="col-3 p-1">
+          <button type="button" class="btn btn-raised btn-etransafe btn-block " (click)="deleteVersion()"
                   [ngClass]="{'disabled': manage.name === undefined ||  manage.version == '0'}">Version</button>
         </div>
       </div>
       <div class="row align-items-center actions">
-        <div class="col-3">   
+        <div class="col-2">   
           CREATE  
         </div>
-        <div class="col-9">
-          <button type="button" class="btn btn-raised btn-light m-1" data-toggle="modal" data-target="#exampleModal">New</button>
-          <button type="button" class="btn btn-raised btn-light m-1">Import</button>
+        <div class="col-3 offset-4 p-1">
+          <button type="button" class="btn btn-raised btn-etransafe btn-block " data-toggle="modal" data-target="#exampleModal">New</button>
+        </div>
+        <div class="col-3 p-1"> 
+          <button type="button" class="btn btn-raised btn-etransafe btn-block ">Import</button>
         </div>
       </div>    
     </div>
@@ -77,7 +80,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal" (click)="createModel()">Create</button>
+          <button type="button" class="btn btn-etransafe" data-dismiss="modal" (click)="createModel()">Create</button>
         </div>
       </div>
     </div>
