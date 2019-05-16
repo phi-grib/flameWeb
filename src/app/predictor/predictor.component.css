@@ -5,19 +5,22 @@ a:hover {
 
 a.active {
     background: #EBAB39;
-    border-color: #EBAB39;
+    border-bottom: 2px solid #0076a3;
 }
 a {
     
-    background:white;
+    background:#22577a;
+    color: #f7f9ea;
+    border-bottom: 2px solid #0076a3;
    
 }
 .wrap {
     cursor:not-allowed;
 }
-.disabled{
-    background:white;
-    pointer-events: none 
+a.disabled{
+    background:#22577a;
+    pointer-events: none;
+    color: #f7f9ea; 
 }
 .loading {
     position: relative;

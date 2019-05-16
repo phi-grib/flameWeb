@@ -3,41 +3,37 @@ i {
     cursor: pointer;
 }
 .table {
-     background-color: white;
+    background-color: white;
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
     background: white;
+    color: #22577A;
     /*border: 1px solid;*/
 }
 .table th{
     padding-left: 1px;
     padding-right: 1px;
-    color: #22577A;
+    background: #B8DCED;
+    color:#0076a3;
 }
 .table td {
     padding-left: 1px;
     padding-right: 1px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-bottom: 2px solid #B8DCED;
 }
 tr {
     cursor: pointer;
 }
+
+
 tr.selected {
     background: rgb(212, 207, 198);
 }
-/*.table tbody tr:hover {
+.table tbody tr:hover {
     background: #E6BC72;
-}*/
+}
 tr.version td {
     border: none
-}
-
-
-.custom {
-    width: 80%;
-}
-
-.collapse {
-    display: inline-flexbox;
 }
 td {
     padding-left: 4px;
@@ -49,14 +45,9 @@ td {
 .scrolltable { 
     height: 100%; 
     overflow: auto;
-    background-color: #F7F9EA;
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
-    background: #F7F9EA;
  }
 
-.action {
-    background: linear-gradient(to left, #D7D7D7 0% ,#F7F7F7 100%);
-}
 
 .model-content {
     max-width: 350px;

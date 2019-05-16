@@ -1,16 +1,12 @@
 ul {
-    background: #F7F9EA;
+    background: #0076a3;
 }
 ul li a {
-    background: #F7F9EA;
+    background: #0076a3;
+    color: #B8DCED;
 }
 
 ul li a.active{
-    background: white;
+    background: #22577a;
+    color: white;
 }
-
- 
-  
-  
-  
-  

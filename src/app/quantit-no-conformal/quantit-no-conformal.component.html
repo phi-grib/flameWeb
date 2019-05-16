@@ -2,9 +2,8 @@
     <div class="col-3">
         <div class="row justify-content-center">
             <div class="card w-100" style="width: 18rem;">
-                
+                <div class="card-header"><h5>Model info</h5></div>
                 <div class="card-body">
-                    <h5 class="card-title">Model info</h5>
                     <table class="table table-striped">
                         <tbody>
                             <tr *ngFor = "let key of objectKeys(modelBuildInfo).sort()">
@@ -22,8 +21,8 @@
 <!------------------------------------------------------------------------>
 <div class="row m-3">
     <div class="card w-100" style="width: 18rem;">
+        <div class="card-header"><h5>Fitting</h5></div>
         <div class="card-body">
-            <h5 class="card-title">Fitting</h5>
             <div class="row justify-content-between">
                 <div class="col-2 mt-5">
                     <table class="table table-sm table-striped">
@@ -59,8 +58,8 @@
 </div>
 <div class="row m-3">
     <div class="card w-100" style="width: 18rem;">
+        <div class="card-header"><h5>Prediction (cross-validation)</h5></div>
         <div class="card-body">
-            <h3 class="card-title">Prediction (cross-validation)</h3>
             <div class="row justify-content-between">
                 <div class="col-2 mt-5">
                     <table class="table table-sm table-striped">

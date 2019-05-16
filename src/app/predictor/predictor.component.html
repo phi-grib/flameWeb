@@ -1,7 +1,7 @@
 <div class="d-flex align-items-start flex-column" style="height: 100%;">
     <div class="mb-auto w-100">
       <div id="options" class="list-group list-group-flush wrap pt-0">
-        <a class="list-group-item list-group-item-action border-bottom active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
+        <a class="list-group-item list-group-item-action active" data-toggle="list" role="tab" aria-controls="model" routerLink="listModel">
           <div class="container p-0">
             <div class="row">
               <div class="col-12">Models</div>
@@ -15,7 +15,7 @@
             </div>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action border-bottom" [ngClass]="{'disabled':!prediction.name}" data-toggle="list" role="tab" aria-controls="predictionseries" routerLink="predictionseries">
+        <a class="list-group-item list-group-item-action" [ngClass]="{'disabled':!prediction.name}" data-toggle="list" role="tab" aria-controls="predictionseries" routerLink="predictionseries">
           <div class="container p-0">
             <div class="row">
               <div class="col-12">Prediction Series</div>
@@ -30,16 +30,18 @@
             </div>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action border-bottom" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
+        <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
             [ngClass]="{'disabled':prediction.result === undefined}">
           Results 
           <div [ngClass]="{ 'loading': this.prediction.predicting}"></div>
         </a>
       </div>
     </div>
-    <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-        <button type="button" class="btn btn-raised btn-primary"
+   <div class="row justify-content-center">
+      <div class="col-3 align-self-center">
+        <button type="button" class="btn btn-outline-light btn-lg"
          [ngClass]="{'disabled': prediction.file === undefined || !prediction.trained}" 
                 (click)="predict()">Predict</button>
+      </div>
     </div>
   </div>

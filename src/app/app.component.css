@@ -4,9 +4,17 @@
 .main {
     min-height: 100vh;
     padding-bottom: 10px;
-}
-.main {
-    background-color: #F7F9EA;
+    background-color:white;
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
-    background: #F7F9EA;
+    background:white;
+    color:#0076a3;
+}
+.sidebar {
+    min-height: 100vh;
+    padding-bottom: 10px;
+    background-color:#0076a3;
+    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
+    background: #0076a3;
+    border-right: 5px solid #B8DCED; 
+    
 }

@@ -1,3 +1,6 @@
 #toast-container > div {
     opacity:1;
 }
+body {
+    border-top: 15px solid #e59300;
+}

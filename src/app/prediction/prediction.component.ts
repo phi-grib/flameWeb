@@ -5,6 +5,10 @@ import * as SmilesDrawer from 'smiles-drawer';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+
 
 @Component({
   selector: 'app-prediction',
@@ -23,6 +27,12 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
+  save() {
+    const pdf = new jsPDF();
+    pdf.autoTable({html: '#info'});
+    pdf.save('table.pdf');
+  }
+
   ngAfterViewInit() {
     if (this.components !== undefined) {
       this.components.forEach((child) => {
@@ -36,11 +46,6 @@ export class PredictionComponent implements OnInit, AfterViewInit {
       });
     }
     const table: any = $('#info');
-    this.dataTable = table.DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
-    });
+    this.dataTable = table.DataTable();
   }
 }
