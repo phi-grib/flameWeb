@@ -4,3 +4,15 @@
 body {
     border-top: 15px solid #e59300;
 }
+
+btn.bmd-btn-fab.btn-etransafe,
+.bmd-btn-fab.btn-etransafe.custom-file-control::before, 
+.btn.btn-raised.btn-etransafe, 
+.btn-raised.btn-etransafe.custom-file-control::before, 
+.btn-group-raised 
+.btn.btn-etransafe, 
+.btn-group-raised 
+.btn-etransafe.custom-file-control::before {
+    background-color: #B8DCED;
+    color:white;
+}
