@@ -26,9 +26,9 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    const doc = new jsPDF();
-    doc.autoTable({html: '#info'});
-    doc.save('table.pdf');
+    const pdf = new jsPDF();
+    pdf.autoTable({html: '#info'});
+    pdf.save('table.pdf');
   }
 
   ngAfterViewInit() {
