@@ -31,14 +31,14 @@
           </div>
         </a>
         <a class="list-group-item list-group-item-action border-bottom" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
-            [ngClass]="{'disabled':!prediction.predicting}">
+            [ngClass]="{'disabled':prediction.result === undefined}">
           Results 
-          <div [ngClass]="{ 'loading': prediction.result === undefined}"></div>
+          <div [ngClass]="{ 'loading': this.prediction.predicting}"></div>
         </a>
       </div>
     </div>
     <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-        <button type="button" class="btn btn-raised btn-etransafe"
+        <button type="button" class="btn btn-raised btn-primary"
          [ngClass]="{'disabled': prediction.file === undefined || !prediction.trained}" 
                 (click)="predict()">Predict</button>
     </div>

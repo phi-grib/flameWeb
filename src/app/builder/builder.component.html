@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="w-100 d-flex flex-row-reverse  pr-3 pb-5 wrap">
-        <button type="button" class="btn btn-raised btn-etransafe" 
+        <button type="button" class="btn btn-raised btn-primary" 
                 [ngClass]="{'disabled': ((model.file === undefined && model.trained === false) || model.parameters === undefined)}" 
                 (click)="buildModel(this.model.name,this.model.version)">Build model</button>
     </div>

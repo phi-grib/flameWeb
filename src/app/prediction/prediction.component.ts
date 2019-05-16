@@ -9,7 +9,9 @@ import 'datatables.net-bs4';
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
-  styleUrls: ['./prediction.component.css']
+  styleUrls: ['./prediction.component.css',
+  '../../assets/css/buttons.dataTables.min.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PredictionComponent implements OnInit, AfterViewInit {
 
@@ -37,7 +39,7 @@ export class PredictionComponent implements OnInit, AfterViewInit {
     this.dataTable = table.DataTable({
       dom: 'Bfrtip',
       buttons: [
-        'csv', 'excel', 'pdf'
+          'copy', 'csv', 'excel', 'pdf', 'print'
       ]
     });
   }

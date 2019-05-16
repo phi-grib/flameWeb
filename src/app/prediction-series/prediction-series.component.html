@@ -1,7 +1,7 @@
 <div class="container m-5">
     <div class="form-row mb-4">
       <div class="col-md-3">
-        <label class="btn btn-raised btn-etransafe" for="my-file-selector">
+        <label class="btn btn-raised btn-primary" for="my-file-selector">
             <input id="my-file-selector" type="file" style="display:none;" (change)="onChange($event.target.files)">
             Browse File
         </label>
@@ -27,7 +27,7 @@
             </li>
           <li class="list-group-item d-flex justify-content-between align-items-left p-1" >
             <strong>Number of molecules: </strong> 
-            <span class="badge badge-etransafe badge-pill">{{this.prediction.file_info['num_mols']}}</span>
+            <span class="badge badge-primary badge-pill">{{this.prediction.file_info['num_mols']}}</span>
           </li>
         </ul>
       </div>
@@ -37,7 +37,7 @@
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-left p-1" *ngFor="let key of objectKeys(this.prediction.file_fields)">
             <strong>{{key}}</strong>
-            <span class="badge badge-etransafe badge-pill">{{this.prediction.file_fields[key]}}</span>
+            <span class="badge badge-primary badge-pill">{{this.prediction.file_fields[key]}}</span>
           </li>
         </ul>
       </div>
