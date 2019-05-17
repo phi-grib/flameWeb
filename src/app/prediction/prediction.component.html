@@ -29,7 +29,11 @@
 </div>
 <div class="row justify-content-end m-3" *ngIf="prediction.result != undefined">
     <div class="col-2 align-self-end">
-      <button type="button" class="btn btn-raised btn-etransafe" (click)="save()"><i class="far fa-file-pdf"></i>  PDF</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-raised btn-etransafe" (click)="savePDF()"><i class="far fa-file-pdf"></i>  PDF</button>
+            <button type="button" class="btn btn-raised btn-etransafe" (click)="saveEXCEL()"><i class="fas fa-file-excel"></i>  Excel</button>
+          </div>
+      
     </div>
   </div>
 <div class="row justify-content-center m-3">

@@ -18,7 +18,7 @@ export class PredictorComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges() {
-    $('#options a:first-child').tab('show') // Select first tab
+    $('#options a:first-child').tab('show'); // Select first tab
   }
 
   predict() {
@@ -27,6 +27,7 @@ export class PredictorComponent implements OnInit, OnChanges {
       result => {
         if (result.buildStatus[0]) {
           this.prediction.result = JSON.parse(result.buildStatus[1]);
+          console.log(this.prediction.result);
           this.router.navigate(['/prediction']);
           this.prediction.predicting = false;
           setTimeout(function () {
