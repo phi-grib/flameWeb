@@ -26,3 +26,7 @@ a.disabled{
     color: #f7f9ea;
     border-bottom: 2px solid #0076a3;
 }
+button.disabled {
+    cursor: not-allowed;
+    pointer-events: none !important;
+}

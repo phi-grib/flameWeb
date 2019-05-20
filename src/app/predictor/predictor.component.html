@@ -32,8 +32,12 @@
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" aria-controls="results" routerLink="prediction"
             [ngClass]="{'disabled':prediction.result === undefined}">
-          RESULTS 
-          <div [ngClass]="{ 'loading': this.prediction.predicting}"></div>
+          <div class="container p-0 m-0">
+            <div class="w-100 row  justify-content-between">
+              <div class="col">RESULTS</div> 
+              <div class="col-2"><div [ngClass]="{ 'loading': this.prediction.predicting}" ></div></div> 
+            </div>
+          </div>
         </a>
       </div>
     </div>

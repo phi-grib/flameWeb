@@ -28,7 +28,7 @@ a.disabled{
     z-index: 1;
     width: 20px;
     height: 20px;
-    margin: 0 0 0 -60px;
+    margin: 0 0 0 0px;
     border: 5px solid #e6901a;
     border-radius: 60%;
     border-top: 5px solid #B8DCED;
