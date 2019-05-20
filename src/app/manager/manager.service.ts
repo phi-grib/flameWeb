@@ -33,4 +33,9 @@ export class ManagerService {
     const url: string = environment.baseUrl_manage + 'models/' + model;
     return this.http.put(url,null);
   }
+
+  /*exportModel(model string): Observable<Blob> {
+    const url: string = environment.baseUrl_manage + 'models/' + model + '/export';
+    return this.http.get(url, {responseType: 'blob'});
+  }*/
 }

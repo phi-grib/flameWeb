@@ -27,7 +27,7 @@ export class TrainingSeriesComponent implements OnInit {
     this.model.file = file;
     this.model.file_info = {};
     this.model.file_info['name'] = file.name;
-    this.model.file_info['size_M'] = ((file.size/1024)/1024).toFixed(2);
+    this.model.file_info['size_M'] = ((file.size / 1024) / 1024).toFixed(2);
     const extension = file.name.split('.');
     this.model.file_info['type_file'] = extension[1];
     const fileReader: FileReader = new FileReader();

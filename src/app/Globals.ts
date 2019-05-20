@@ -37,6 +37,7 @@ export class Prediction {
 export class Manager {
     name: string = undefined;   // Name of the model selected in the first step
     version: string = undefined; // Version of the model selected in the first step
+    file: any = undefined;  // Name of file uploaded in the second step
 }
 
 @Injectable()

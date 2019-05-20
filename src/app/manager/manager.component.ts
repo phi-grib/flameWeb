@@ -3,6 +3,7 @@ import { Manager, Model } from '../Globals';
 import { CommonService } from '../common.service';
 import { ManagerService } from './manager.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-manager',
@@ -18,7 +19,7 @@ export class ManagerComponent implements OnInit {
               private toastr: ToastrService) { }
 
   modelName: string;
-
+  objectKeys = Object.keys;
   ngOnInit() {
 
   }
@@ -64,15 +65,13 @@ export class ManagerComponent implements OnInit {
         this.toastr.success( 'Model ' + this.manage.name + ' deleted', 'DELETED' , {
           timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
         });
+        for (const key of this.objectKeys(this.model.listModels)) {
+          if (key.indexOf(this.manage.name) === 0) {
+            delete this.model.listModels[key];
+          }
+        }
         this.manage.name = undefined ;
         this.manage.version = undefined;
-        /*this.model.trained = undefined;
-        this.model.file = undefined;
-        this.model.file_info = undefined;
-        this.model.file_fields = undefined;
-        this.model.parameters = undefined;*/
-        this.model.listModels = {};
-        this.getModelList();
       },
       error => {
         alert('Delete ERROR');
@@ -87,8 +86,7 @@ export class ManagerComponent implements OnInit {
         this.toastr.success( 'Model ' + this.manage.name + '.v' + this.manage.version + ' deleted','DELETED', {
           timeOut: 4000, positionClass: 'toast-top-right'
         });
-        this.model.listModels = {};
-        this.getModelList();
+        delete this.model.listModels[this.manage.name + '-' + this.manage.version];
       },
       error => {
         console.log(error);
@@ -105,7 +103,7 @@ export class ManagerComponent implements OnInit {
     this.service.cloneModel(this.manage.name).subscribe(
 
       result => {
-        this.model.listModels = {};
+        // this.model.listModels = {};
         this.getModelList();
       },
       error => {
@@ -114,6 +112,31 @@ export class ManagerComponent implements OnInit {
     );
   }
 
+  exportModel() {
+    const url: string = environment.baseUrl_manage + 'models/' + this.manage.name + '/export';
+    window.open(url);
+    /*this.service.exportModel(this.manage.name).subscribe(
+      result => {
+        console.log(result);
+        const blob = new Blob([result], { type: 'application/tgz' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+      },
+      error => {
+        console.log('--------------------');
+        console.log('Error getting model');
+        console.log(error);
+        console.log('--------------------');
+      }
+    );*/
+  }
+
+  importModel(fileList: FileList) {
+
+    const file = fileList[0];
+    this.manage.file = file;
+
+  }
   getModelList() {
 
     this.commonService.getModelList().subscribe(

@@ -22,9 +22,9 @@ export class ModelListComponent implements OnInit {
 
   models: Array<any>;
   objectKeys = Object.keys;
+  
 
   ngOnInit() {
-    this.model.listModels = {};
     this.getModelList();
   }
 
