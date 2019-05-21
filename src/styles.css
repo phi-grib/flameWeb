@@ -4,6 +4,9 @@
 body {
     border-top: 15px solid #e59300;
 }
+.btn{
+    white-space:normal !important;
+}
 
 btn.bmd-btn-fab.btn-etransafe,
 .bmd-btn-fab.btn-etransafe.custom-file-control::before, 
@@ -15,4 +18,8 @@ btn.bmd-btn-fab.btn-etransafe,
 .btn-etransafe.custom-file-control::before {
     background-color: #B8DCED !important;
     color:#22577a !important;
+}
+
+.responsive-width {
+    font-size: 3vw;
 }
