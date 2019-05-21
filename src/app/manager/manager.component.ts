@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ViewContainerRef, ComponentFactoryResolver,
+  ComponentRef, ComponentFactory } from '@angular/core';
 import { Manager, Model } from '../Globals';
 import { CommonService } from '../common.service';
 import { ManagerService } from './manager.service';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';;
 
 @Component({
   selector: 'app-manager',
@@ -12,18 +14,18 @@ import { environment } from '../../environments/environment';
 })
 export class ManagerComponent implements OnInit {
 
+  modelName: string;
+  objectKeys = Object.keys;
+
   constructor(public manage: Manager,
               private commonService: CommonService,
               public service: ManagerService,
               public model: Model,
               private toastr: ToastrService) { }
 
-  modelName: string;
-  objectKeys = Object.keys;
+
   ngOnInit() {
-
   }
-
 
   /**
    * Creates a new model with the given name and informs the user with a toastr
@@ -132,10 +134,8 @@ export class ManagerComponent implements OnInit {
   }
 
   importModel(fileList: FileList) {
-
     const file = fileList[0];
     this.manage.file = file;
-
   }
   getModelList() {
 
@@ -189,5 +189,4 @@ export class ManagerComponent implements OnInit {
         }
     );
   }
-
 }

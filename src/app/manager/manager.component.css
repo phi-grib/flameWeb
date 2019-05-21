@@ -30,3 +30,7 @@ button.disabled {
     cursor: not-allowed;
     pointer-events: none !important;
 }
+
+.btn{
+   min-width: 90px !important;
+}

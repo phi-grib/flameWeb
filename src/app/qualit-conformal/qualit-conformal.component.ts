@@ -20,7 +20,16 @@ export class QualitConformalComponent implements OnInit {
     // PolarArea
     public polarChartOptions: any = {
       responsive: true,
-      startAngle : 1 * Math.PI
+      startAngle : 1 * Math.PI,
+      scale: {
+        gridLines: {
+          color: 'rgba(0, 0, 0, 0.5)'
+        },
+        ticks: {
+          color: 'rgba(0, 0, 0, 0.5)',
+          fontStyle : 'bold'
+        }
+      }
     };
     public polarAreaChartLabels: Label[] = ['TP', 'FP', 'TN', 'FN'];
     public polarAreaChartData: SingleDataSet = [0, 0, 0, 0];
