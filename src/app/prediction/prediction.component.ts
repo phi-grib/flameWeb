@@ -3,7 +3,7 @@ import { Prediction } from '../Globals';
 import * as SmilesDrawer from 'smiles-drawer';
 
 import * as $ from 'jquery';
-import 'datatables.net';
+//import 'datatables.net';
 import 'datatables.net-bs4';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -15,9 +15,8 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-prediction',
   templateUrl: './prediction.component.html',
-  styleUrls: ['./prediction.component.css',
-  '../../assets/css/buttons.dataTables.min.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./prediction.component.css']/*,
+  encapsulation: ViewEncapsulation.ShadowDom*/
 })
 export class PredictionComponent implements OnInit, AfterViewInit {
 

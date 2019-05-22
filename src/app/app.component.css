@@ -3,6 +3,8 @@
 }
 .main {
     min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
     padding-bottom: 10px;
     background-color:white;
     /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/

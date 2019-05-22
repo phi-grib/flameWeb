@@ -68,7 +68,7 @@ export class ManagerComponent implements OnInit {
           timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
         });
         for (const key of this.objectKeys(this.model.listModels)) {
-          if (key.indexOf(this.manage.name) === 0) {
+          if (key.indexOf(this.manage.name + '-') === 0) {
             delete this.model.listModels[key];
           }
         }

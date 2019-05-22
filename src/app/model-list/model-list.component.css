@@ -27,10 +27,10 @@ tr {
 
 
 tr.selected {
-    background: rgb(212, 207, 198);
+    background: #f7f9ea;
 }
 .table tbody tr:hover {
-    background: #E6BC72;
+    background: #f7f9ea;
 }
 tr.version td {
     border: none
@@ -41,13 +41,6 @@ td {
     padding: 4px;
     vertical-align: middle;
 }
-
-.scrolltable { 
-    height: 100%; 
-    overflow: auto;
-    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
- }
-
 
 .model-content {
     max-width: 350px;

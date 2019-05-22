@@ -1,4 +1,5 @@
-@import '../../assets/css/buttons.dataTables.min.css';
+/* @import '../../assets/css/dataTables.material.min.css';
+@import '../../assets/css/material.min.css'; */
 
 .table th{
     color: #22577A;
@@ -41,3 +42,7 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+.card-header {
+background: #B8DCED;
+background-color: #B8DCED;
+}

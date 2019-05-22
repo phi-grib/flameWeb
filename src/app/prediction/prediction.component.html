@@ -1,67 +1,62 @@
-<div class="row m-3" [ngClass]="{ 'loading': prediction.result === undefined}"> 
-
-  <div class="offset-1 col-4" *ngIf="(prediction.result != undefined) && (!prediction.result.warning)">
-    <div class="card w-100" style="width: 18rem;">
-      <div class="card-header">External Validation</div>
-      <div class="card-body">
+<div class="m-5">
+  <div class="row"> 
+    <div class="col-4" *ngIf="(prediction.result != undefined) && (!prediction.result.warning)">
+      <div class="card w-100" style="width: 18rem;">
+        <div class="card-header">External Validation</div>
+        <div class="card-body">
           <div class="row justify-content-between">
             <table class="table table-sm table-striped">
               <tbody>
-                  <tr *ngFor = "let res of prediction.result['external-validation']">
-                      <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{res[1]}}"><strong>{{res[0]}}</strong></td>
-                      <td class="text-right text-capitalize">{{res[2].toFixed(3)}}</td>
-                  </tr>
+                <tr *ngFor = "let res of prediction.result['external-validation']">
+                  <td class="text-left text-capitalize" data-toggle="tooltip" data-placement="left" title="{{res[1]}}"><strong>{{res[0]}}</strong></td>
+                  <td class="text-right text-capitalize">{{res[2].toFixed(3)}}</td>
+                </tr>
               </tbody>
-            </table>  
-              
+            </table>    
           </div>
+        </div>
       </div>
     </div>
-    
   </div>
-</div>
-<div class="row justify-content-center m-3" *ngIf="(prediction.result != undefined) && (prediction.result.warning)">
-  <div class=" col-10">
-    <div class="alert alert-danger text-center" role="alert">
-        {{prediction.result.warning}}
+  <div class="row justify-content-center m-3" *ngIf="(prediction.result != undefined) && (prediction.result.warning)">
+    <div class=" col-10">
+      <div class="alert alert-danger text-center" role="alert">
+          {{prediction.result.warning}}
+      </div>
     </div>
   </div>
-</div>
-<div class="row justify-content-end m-3" *ngIf="prediction.result != undefined">
+  <div class="row justify-content-end" *ngIf="prediction.result != undefined">
     <div class="col-2 align-self-end">
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-raised btn-etransafe" (click)="savePDF()"><i class="far fa-file-pdf"></i>  PDF</button>
-            <button type="button" class="btn btn-raised btn-etransafe" (click)="saveEXCEL()"><i class="fas fa-file-excel"></i>  Excel</button>
-          </div>
-      
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-raised btn-etransafe" (click)="savePDF()"><i class="far fa-file-pdf"></i>  PDF</button>
+        <button type="button" class="btn btn-raised btn-etransafe" (click)="saveEXCEL()"><i class="fas fa-file-excel"></i>  Excel</button>
+      </div>
     </div>
   </div>
-<div class="row justify-content-center m-3">
-    
-  <div class="col-10">
-   
- 
-    <table id="info" class="table table-fixed table-bordered table-striped m-2 table-light" *ngIf="prediction.result != undefined">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th >Name</th>
-          <th class="align-middle text-center">Mol</th>
-          <th class="align-middle text-right" >Value</th>
-          <th class="align-middle text-right" >Prediction</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let res of prediction.result.SMILES; let i=index">
-          <td class="align-middle">{{i}}</td>
-          <td class="align-middle" >{{prediction.result.obj_nam[i]}}</td>
-          <td class="align-middle text-center">
-            <canvas #cmp id="{{prediction.result.obj_nam[i]}}">{{prediction.result.SMILES[i]}}</canvas>
-        </td>
-          <td class="align-middle text-right"  >{{prediction.result.ymatrix[i].toFixed(3)}}</td>
-          <td class="align-middle text-right"  >{{prediction.result.values[i].toFixed(3)}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="card col-11 pt-3">
+      <table id="info" class="table table-fixed table-bordered table-striped m-0 table-light" *ngIf="prediction.result != undefined">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th >Name</th>
+            <th class="align-middle text-center">Mol</th>
+            <th class="align-middle text-right" >Value</th>
+            <th class="align-middle text-right" >Prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let res of prediction.result.SMILES; let i=index">
+            <td class="align-middle">{{i}}</td>
+            <td class="align-middle" >{{prediction.result.obj_nam[i]}}</td>
+            <td class="align-middle text-center">
+              <canvas #cmp id="{{prediction.result.obj_nam[i]}}">{{prediction.result.SMILES[i]}}</canvas>
+          </td>
+            <td class="align-middle text-right"  >{{prediction.result.ymatrix[i].toFixed(3)}}</td>
+            <td class="align-middle text-right"  >{{prediction.result.values[i].toFixed(3)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

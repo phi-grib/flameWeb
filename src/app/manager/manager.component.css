@@ -31,6 +31,11 @@ button.disabled {
     pointer-events: none !important;
 }
 
+label.disabled {
+    cursor: not-allowed;
+    pointer-events: none !important;
+}
+
 .btn{
    min-width: 90px !important;
 }

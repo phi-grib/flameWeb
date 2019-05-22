@@ -26,3 +26,8 @@ a{
     pointer-events: none;
     opacity: 0.4;
 }
+
+.card-header {
+    background: #B8DCED;
+    background-color: #B8DCED;
+}
