@@ -136,6 +136,14 @@ export class ManagerComponent implements OnInit {
   importModel(fileList: FileList) {
     const file = fileList[0];
     this.manage.file = file;
+    this.service.importModel().subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   getModelList() {
 

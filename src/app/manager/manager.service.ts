@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Manager} from '../Globals';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class ManagerService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private manager: Manager) { }
 
   /**
    * Call to the server to create a new model with the given name
@@ -32,6 +33,15 @@ export class ManagerService {
   cloneModel(model: string) {
     const url: string = environment.baseUrl_manage + 'models/' + model;
     return this.http.put(url,null);
+  }
+  importModel(): Observable<any> {
+
+    const formData = new FormData();
+    formData.append('model', this.manager.file);
+    // formData.append('parameters',  this.model.parameters);
+    const url: string = environment.baseUrl_manage + 'models/import';
+    return this.http.post(url, formData);
+
   }
 
   /*exportModel(model string): Observable<Blob> {
