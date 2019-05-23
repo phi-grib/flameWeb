@@ -43,6 +43,6 @@
     100% { transform: rotate(360deg); }
   }
 .card-header {
-background: #B8DCED;
-background-color: #B8DCED;
+  background: #B8DCED;
+  background-color: #B8DCED;
 }

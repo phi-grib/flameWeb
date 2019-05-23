@@ -1,8 +1,8 @@
-<div class="m-5">
+<div class="m-3">
   <div class="row"> 
     <div class="col-4" *ngIf="(prediction.result != undefined) && (!prediction.result.warning)">
       <div class="card w-100" style="width: 18rem;">
-        <div class="card-header">External Validation</div>
+        <div class="card-header"><h5>External Validation</h5></div>
         <div class="card-body">
           <div class="row justify-content-between">
             <table class="table table-sm table-striped">
@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-end" *ngIf="prediction.result != undefined">
+  <div class="row justify-content-end mr-3" *ngIf="prediction.result != undefined">
     <div class="col-2 align-self-end">
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-raised btn-etransafe" (click)="savePDF()"><i class="far fa-file-pdf"></i>  PDF</button>

@@ -3,7 +3,7 @@ import { Prediction } from '../Globals';
 import * as SmilesDrawer from 'smiles-drawer';
 
 import * as $ from 'jquery';
-//import 'datatables.net';
+import 'datatables.net';
 import 'datatables.net-bs4';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';

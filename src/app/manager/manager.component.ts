@@ -139,9 +139,16 @@ export class ManagerComponent implements OnInit {
     this.service.importModel().subscribe(
       result => {
         console.log(result);
+        this.toastr.success('Model ' + result.Model + ' imported' , 'IMPORTED SUCCESFULLY',{
+          timeOut: 5000, positionClass: 'toast-top-right'});
+          this.manage.file = undefined;
+        this.getModelList();
       },
       error => {
+        alert('Error');
         console.log(error);
+        this.toastr.error('Model ' + error.Model + ' already exist' , 'ERROR IMPORTING', {
+          timeOut: 5000, positionClass: 'toast-top-right'});
       }
     );
   }
