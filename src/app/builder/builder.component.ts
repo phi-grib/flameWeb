@@ -70,6 +70,7 @@ export class BuilderComponent implements OnInit, OnChanges {
         }
         this.toastr.clear(inserted.toastId);
         this.getModelList();
+        this.model.trained = true;
         if (result.buildStatus[0]) {
           this.model.listModels[name + '-' + version].trained = true;
           this.toastr.success('Model ' + this.model.name + '.v' + this.model.version , 'CREATED SUCCESFULLY',{

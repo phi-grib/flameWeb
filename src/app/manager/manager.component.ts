@@ -49,7 +49,6 @@ export class ManagerComponent implements OnInit {
           },
           error => {
             console.log(error);
-              alert('ERROR2');
               this.toastr.error(error.error, 'ERROR', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
               });
@@ -117,20 +116,6 @@ export class ManagerComponent implements OnInit {
   exportModel() {
     const url: string = environment.baseUrl_manage + 'models/' + this.manage.name + '/export';
     window.open(url);
-    /*this.service.exportModel(this.manage.name).subscribe(
-      result => {
-        console.log(result);
-        const blob = new Blob([result], { type: 'application/tgz' });
-        const url = window.URL.createObjectURL(blob);
-        window.open(url);
-      },
-      error => {
-        console.log('--------------------');
-        console.log('Error getting model');
-        console.log(error);
-        console.log('--------------------');
-      }
-    );*/
   }
 
   importModel(fileList: FileList) {
@@ -138,16 +123,13 @@ export class ManagerComponent implements OnInit {
     this.manage.file = file;
     this.service.importModel().subscribe(
       result => {
-        console.log(result);
-        this.toastr.success('Model ' + result.Model + ' imported' , 'IMPORTED SUCCESFULLY',{
+        this.toastr.success('Model \'' + result.Model + '\' imported' , 'IMPORTED SUCCESFULLY',{
           timeOut: 5000, positionClass: 'toast-top-right'});
           this.manage.file = undefined;
         this.getModelList();
       },
       error => {
-        alert('Error');
-        console.log(error);
-        this.toastr.error('Model ' + error.Model + ' already exist' , 'ERROR IMPORTING', {
+        this.toastr.error('Model \'' + error.error.Model + '\' already exist' , 'ERROR IMPORTING', {
           timeOut: 5000, positionClass: 'toast-top-right'});
       }
     );
