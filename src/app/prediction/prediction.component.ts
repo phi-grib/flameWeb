@@ -23,15 +23,17 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   @ViewChildren('cmp') components: QueryList<ElementRef>;
   dataTable: any;
   info = [];
+  head = [];
   constructor(public prediction: Prediction) { }
 
   ngOnInit() {
   }
 
   saveEXCEL() {
-
+    const xls  = Object.assign([], this.info);
+    xls.splice(0, 0, this.head);
     /* generate worksheet */
-    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.info);
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(xls);
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
@@ -43,7 +45,7 @@ export class PredictionComponent implements OnInit, AfterViewInit {
 
     const pdf = new jsPDF();
     pdf.autoTable({
-      head: [['Name', 'Mol', 'Value', 'Prediction']],
+      head: [this.head],
       body: this.info,
       headStyles: {
         2: { halign: 'center'},
@@ -75,10 +77,48 @@ export class PredictionComponent implements OnInit, AfterViewInit {
     this.dataTable = table.DataTable();
     // pdf.autoTable({html: '#info'});
     this.info = [];
+    this.head = ['Name', 'Mol', 'Value'];
+
+    if ( this.prediction.result.values) {
+      this.head.push('Prediction');
+    }
+    if ( this.prediction.result.upper_limit) {
+      this.head.push('Upper limit');
+    }
+    if ( this.prediction.result.lower_limit) {
+      this.head.push('Lower limit');
+    }
+    if ( this.prediction.result.c0) {
+      this.head.push('Inactive');
+    }
+    if ( this.prediction.result.c1) {
+      this.head.push('Active');
+    }
+
+
+    let prediction = [];
     for (let i = 0; i < this.prediction.result.SMILES.length;) {
-      this.info.push([this.prediction.result.obj_nam[i], this.prediction.result.SMILES[i],
-        this.prediction.result.ymatrix[i].toFixed(3), this.prediction.result.values[i].toFixed(3)]);
-        i = i + 1;
+      prediction = [];
+      prediction = [this.prediction.result.obj_nam[i], this.prediction.result.SMILES[i],
+      this.prediction.result.ymatrix[i].toFixed(3)];
+
+      if (this.prediction.result.values) {
+        prediction.push(this.prediction.result.values[i].toFixed(3));
+      }
+      if (this.prediction.result.upper_limit) {
+        prediction.push(this.prediction.result.upper_limit[i].toFixed(3));
+      }
+      if (this.prediction.result.lower_limit) {
+        prediction.push(this.prediction.result.lower_limit[i].toFixed(3));
+      }
+      if (this.prediction.result.c0) {
+        prediction.push(this.prediction.result.c0[i]);
+      }
+      if (this.prediction.result.c1) {
+        prediction.push(this.prediction.result.c1[i]);
+      }
+      this.info.push(prediction);
+      i = i + 1;
     }
   }
 }

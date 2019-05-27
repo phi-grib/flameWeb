@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterContentChecked } from '@angular/core';
 import { Model} from '../Globals';
 
 @Component({
@@ -6,7 +6,7 @@ import { Model} from '../Globals';
   templateUrl: './config-model.component.html',
   styleUrls: ['./config-model.component.css']
 })
-export class ConfigModelComponent implements OnInit {
+export class ConfigModelComponent implements OnInit, AfterContentChecked {
 
   constructor(public model: Model) { }
 
@@ -29,6 +29,14 @@ export class ConfigModelComponent implements OnInit {
     SVM: 'SVM_optimize'
   };
   ngOnInit() {
+  }
+
+  ngAfterContentChecked() {
+    // CHECK DELTA DEPENDENCIES
+    // NOWIS HARDCODED, BUT IT WILL BE AUTOMATED
+    if (this.model.parameters['model'].value === 'PLSDA') {
+      this.model.parameters['conformal'].value = false;
+    }
   }
 
 }

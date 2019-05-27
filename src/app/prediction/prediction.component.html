@@ -41,8 +41,13 @@
             <th>#</th>
             <th >Name</th>
             <th class="align-middle text-center">Mol</th>
-            <th class="align-middle text-right" >Value</th>
-            <th class="align-middle text-right" >Prediction</th>
+            <th class="align-middle text-center" >Value</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.values">Prediction</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.upper_limit">Upper limit</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.lower_limit">Lower limit</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.c0">Inactive</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.c1">Active</th>
+
           </tr>
         </thead>
         <tbody>
@@ -52,8 +57,12 @@
             <td class="align-middle text-center">
               <canvas #cmp id="{{prediction.result.obj_nam[i]}}">{{prediction.result.SMILES[i]}}</canvas>
           </td>
-            <td class="align-middle text-right"  >{{prediction.result.ymatrix[i].toFixed(3)}}</td>
-            <td class="align-middle text-right"  >{{prediction.result.values[i].toFixed(3)}}</td>
+            <td class="align-middle text-center"  >{{prediction.result.ymatrix[i].toFixed(3)}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.values">{{prediction.result.values[i].toFixed(3)}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.upper_limit">{{prediction.result.upper_limit[i].toFixed(3)}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.lower_limit">{{prediction.result.lower_limit[i].toFixed(3)}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.c0">{{prediction.result.c0[i]}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.c1">{{prediction.result.c1[i]}}</td>
           </tr>
         </tbody>
       </table>

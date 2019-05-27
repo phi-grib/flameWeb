@@ -17,7 +17,7 @@
     </small> 
   </div>
   <!--CONFORMAL-->
-  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value=='RF'">
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='PLSDA'">
     <div class="checkbox">
       <label>
         <input  type="checkbox" [(ngModel)]="this.model.parameters['conformal'].value">
@@ -29,7 +29,7 @@
     </small>
   </div> 
   <div class="form-group col-md-4">
-    <div *ngIf="(this.model.parameters['model'].value=='RF') && (this.model.parameters['conformal'].value)" style="margin-top: 11px;">
+    <div *ngIf="(this.model.parameters['model'].value!='PLSDA') && (this.model.parameters['conformal'].value)" style="margin-top: 11px;">
         <label class="bmd-label-static" for="conformalSignificance" style="margin-top: 11px;">conformalSignificance</label>
       <input class="form-control" [(ngModel)]="this.model.parameters['conformalSignificance'].value" type='number' step="0.05">
       <small id="conformalSignificance" class="text-muted">
