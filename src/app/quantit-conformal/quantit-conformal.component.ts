@@ -149,6 +149,7 @@ export class QuantitConformalComponent implements OnInit {
         result => {
           if (result[0]) { // True is trained
             const info = JSON.parse(result[1]);
+            console.log(info);
             for (const modelInfo of info['model_build_info']) {
               if (typeof modelInfo[2] === 'number') {
                 modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Prediction } from '../Globals';
+import { Prediction, Model } from '../Globals';
 import { PredictorService } from './predictor.service';
 import { Router } from '@angular/router';
 declare var $: any;
@@ -13,7 +13,8 @@ export class PredictorComponent implements OnInit, OnChanges {
 
   constructor(public prediction: Prediction,
               public service: PredictorService,
-              private router: Router) { }
+              private router: Router,
+              public model: Model) { }
 
   ngOnInit() {
   }

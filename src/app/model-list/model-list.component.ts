@@ -82,11 +82,12 @@ export class ModelListComponent implements OnInit {
   }
 
 
-  selectModel(name: string, version: string, trained: boolean,type: string) {
+  selectModel(name: string, version: string, trained: boolean, type: string) {
 
     if (version === '-' || version === 'dev') {
       version = '0';
     }
+    
     if (this.globals.actualTab === 'build') {
       this.model.name = name;
       this.model.version = version;
@@ -96,13 +97,22 @@ export class ModelListComponent implements OnInit {
       this.model.file_info = undefined;
       this.model.file_fields = undefined;
       this.model.parameters = undefined;
-      this.getParameters();
     }
 
     if (this.globals.actualTab === 'predict') {
       this.prediction.name = name;
       this.prediction.version = version;
       this.prediction.trained = trained;
+
+      this.prediction.quantitative = false;
+      if (type.indexOf('quantitative') > -1 ) {
+        this.prediction.quantitative = true;
+      }
+
+      this.prediction.conformal = false;
+      if (type.indexOf('conformal') > -1 ) {
+        this.prediction.conformal = true;
+      }
       this.prediction.file = undefined;
       this.prediction.file_info = undefined;
       this.prediction.file_fields = undefined;
@@ -114,6 +124,8 @@ export class ModelListComponent implements OnInit {
       this.manage.name = name;
       this.manage.version = version;
     }
+    
+    
   }
 
   getParameters(): void {

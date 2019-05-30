@@ -35,7 +35,7 @@
   <div class="row mt-4">
     <div class="col-3">
       <label class="btn btn-outline-primary btn-lg" for="my-file-selector">
-          <input id="my-file-selector" type="file" style="display:none;" (change)="onChange($event.target.files)">
+          <input id="my-file-selector" type="file" style="display:none;" accept=".sdf" (change)="onChange($event.target.files)">
           BROWSE FILE
       </label>
     </div>

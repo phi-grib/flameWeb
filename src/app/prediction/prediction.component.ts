@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { Prediction } from '../Globals';
+import { Prediction} from '../Globals';
 import * as SmilesDrawer from 'smiles-drawer';
+import { SingleDataSet, Label } from 'ng2-charts';
+import { ChartType, ChartOptions, ChartColor} from 'chart.js';
 
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -24,9 +26,56 @@ export class PredictionComponent implements OnInit, AfterViewInit {
   dataTable: any;
   info = [];
   head = [];
+
+  modelBuildInfo = {};
+  modelValidationInfo = {};
+  quantitative = true
+  // PolarArea
+  public polarChartOptions: any = {
+    responsive: true,
+    startAngle : 1 * Math.PI,
+    scale: {
+      gridLines: {
+        color: 'rgba(0, 0, 0, 0.5)'
+      },
+      ticks: {
+        color: 'rgba(0, 0, 0, 0.5)',
+        fontStyle : 'bold'
+      }
+    }
+  };
+  public polarAreaChartLabels: Label[] = ['TP', 'FP', 'TN', 'FN'];
+  public polarAreaChartData: SingleDataSet = [0, 0, 0, 0];
+  public polarAreaLegend = true;
+  public polarAreaChartType: ChartType = 'polarArea';
+  public polarAreaChartColors = [
+    {
+      backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(3,49,155,0.3)', 'rgba(255,0,0,0.3)'],
+    },
+  ];
+
+
+
   constructor(public prediction: Prediction) { }
 
   ngOnInit() {
+
+    if (this.prediction.result) {
+      // INFO ABOUT VALIDATION
+      for (const modelInfo of this.prediction.result['external-validation']) {
+        if (typeof modelInfo[2] === 'number') {
+          modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+        }
+        if (typeof modelInfo[2] !== 'object') {
+          this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+        }
+      }
+      setTimeout(() => {
+        this.polarAreaChartData = [this.modelValidationInfo['TP_ex'][1], this.modelValidationInfo['FP_ex'][1],
+        this.modelValidationInfo['TN_ex'][1], this.modelValidationInfo['FN_ex'][1]];
+      }, 50);
+    }
+    console.log(this.modelValidationInfo);
   }
 
   saveEXCEL() {
@@ -77,8 +126,11 @@ export class PredictionComponent implements OnInit, AfterViewInit {
     this.dataTable = table.DataTable();
     // pdf.autoTable({html: '#info'});
     this.info = [];
-    this.head = ['Name', 'Mol', 'Value'];
+    this.head = ['Name', 'Mol'];
 
+    if (this.prediction.result.ymatrix) {
+      this.head.push('Value');
+    }
     if ( this.prediction.result.values) {
       this.head.push('Prediction');
     }
@@ -99,8 +151,11 @@ export class PredictionComponent implements OnInit, AfterViewInit {
     let prediction = [];
     for (let i = 0; i < this.prediction.result.SMILES.length;) {
       prediction = [];
-      prediction = [this.prediction.result.obj_nam[i], this.prediction.result.SMILES[i],
-      this.prediction.result.ymatrix[i].toFixed(3)];
+      prediction = [this.prediction.result.obj_nam[i], this.prediction.result.SMILES[i]];
+
+      if (this.prediction.result.ymatrix) {
+        prediction.push(this.prediction.result.ymatrix[i].toFixed(3));
+      }
 
       if (this.prediction.result.values) {
         prediction.push(this.prediction.result.values[i].toFixed(3));
