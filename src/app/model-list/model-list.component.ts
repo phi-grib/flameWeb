@@ -97,6 +97,7 @@ export class ModelListComponent implements OnInit {
       this.model.file_info = undefined;
       this.model.file_fields = undefined;
       this.model.parameters = undefined;
+      this.getParameters();
     }
 
     if (this.globals.actualTab === 'predict') {
