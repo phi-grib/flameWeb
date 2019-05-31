@@ -44,5 +44,5 @@ export class Manager {
 
 @Injectable()
 export class Globals {
-    actualTab = 'build';
+    actualTab = 'predict';
 }

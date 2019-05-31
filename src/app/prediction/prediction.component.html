@@ -15,7 +15,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-5 p-0" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)">
+            <div class="col-5 p-0" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative) && (!prediction.conformal)">
               <!--CONFUSION MATRIX-->
               <div class="container h-60 text-center mb-5 bt-3">
                 <div class="row align-items-center justify-content-center">
@@ -81,7 +81,7 @@
                 </div>
               </div>  
             </div>
-            <div class="col-4" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)">
+            <div class="col-4" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)  && (!prediction.conformal)">
               <div style="display: block">
                 <canvas baseChart
                     [data]="polarAreaChartData"
