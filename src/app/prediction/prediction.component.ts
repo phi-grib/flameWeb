@@ -71,8 +71,8 @@ export class PredictionComponent implements OnInit, AfterViewInit {
         }
       }
       setTimeout(() => {
-        this.polarAreaChartData = [this.modelValidationInfo['TP_ex'][1], this.modelValidationInfo['FP_ex'][1],
-        this.modelValidationInfo['TN_ex'][1], this.modelValidationInfo['FN_ex'][1]];
+        this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
+        this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
       }, 50);
     }
     console.log(this.modelValidationInfo);

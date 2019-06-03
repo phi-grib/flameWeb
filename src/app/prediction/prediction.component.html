@@ -15,7 +15,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="col-5 p-0" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative) && (!prediction.conformal)">
+            <div class="col-5 p-0" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)">
               <!--CONFUSION MATRIX-->
               <div class="container h-60 text-center mb-5 bt-3">
                 <div class="row align-items-center justify-content-center">
@@ -45,43 +45,43 @@
                     </div>
                     <div class="row border-bottom">
                       <div class="col border-right border-left TP">
-                          {{this.modelValidationInfo['TP_ex'][1]}} TP
+                          {{this.modelValidationInfo['TP'][1]}} TP
                       </div>
                       <div class="col border-right FP">
-                          {{this.modelValidationInfo['FP_ex'][1]}} FP
+                          {{this.modelValidationInfo['FP'][1]}} FP
                       </div>
                       <div class="col"> 
-                          {{this.modelValidationInfo['TP_ex'][1]+this.modelValidationInfo['FP_ex'][1]}}
+                          {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FP'][1]}}
                       </div>
                     </div>
                     <div class="row border-bottom">
                       <div class="col border-right border-left FN">
-                          {{this.modelValidationInfo['FN_ex'][1]}} FN
+                          {{this.modelValidationInfo['FN'][1]}} FN
                       </div>
                       <div class="col border-right TN">
-                          {{this.modelValidationInfo['TN_ex'][1]}} TN
+                          {{this.modelValidationInfo['TN'][1]}} TN
                       </div>
                       <div class="col">
-                          {{this.modelValidationInfo['FN_ex'][1]+this.modelValidationInfo['TN_ex'][1]}}
+                          {{this.modelValidationInfo['FN'][1]+this.modelValidationInfo['TN'][1]}}
                       </div>
                     </div>
                     <div class="row">
                       <div class="col border-right border-left">
-                          {{this.modelValidationInfo['TP_ex'][1]+this.modelValidationInfo['FN_ex'][1]}}
+                          {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]}}
                       </div>
                       <div class="col border-right">
-                          {{this.modelValidationInfo['FP_ex'][1]+this.modelValidationInfo['TN_ex'][1]}}
+                          {{this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}
                       </div>
                       <div class="col">
-                      {{this.modelValidationInfo['TP_ex'][1]+this.modelValidationInfo['FN_ex'][1]
-                          +  this.modelValidationInfo['FP_ex'][1]+this.modelValidationInfo['TN_ex'][1]}}
+                      {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]
+                          +  this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>  
             </div>
-            <div class="col-4" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)  && (!prediction.conformal)">
+            <div class="col-4" *ngIf="(prediction.result != undefined) && (prediction.result['external-validation']) && (!prediction.quantitative)">
               <div style="display: block">
                 <canvas baseChart
                     [data]="polarAreaChartData"
