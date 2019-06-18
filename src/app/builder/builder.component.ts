@@ -71,16 +71,13 @@ export class BuilderComponent implements OnInit, OnChanges {
         this.toastr.clear(inserted.toastId);
         this.getModelList();
         this.model.trained = true;
-        if (result.buildStatus[0]) {
-          this.model.listModels[name + '-' + version].trained = true;
-          this.toastr.success('Model ' + this.model.name + '.v' + this.model.version , 'CREATED SUCCESFULLY',{
-            timeOut: 5000, positionClass: 'toast-top-right'});
-        } else {
-          this.toastr.error('Model ' + this.model.name + '.v' + this.model.version + ' \n ' + result.buildStatus[1] ,  'ERROR', {
-            timeOut: 10000, positionClass: 'toast-top-right'});
-        }
+        this.model.listModels[name + '-' + version].trained = true;
+        this.toastr.success('Model ' + this.model.name + '.v' + this.model.version , 'CREATED SUCCESFULLY', {
+          timeOut: 5000, positionClass: 'toast-top-right'});
       },
       error => {
+        console.log(error);
+        alert('Build Error')
         const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
