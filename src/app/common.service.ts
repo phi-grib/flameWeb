@@ -19,7 +19,7 @@ export class CommonService {
   }
 
   getModel(model: string, version: string): Observable<any> {
-    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version;
+    const url: string = environment.baseUrl_manage + 'model/' + model + '/version/' + version;
     return this.http.get(url);
   }
 }

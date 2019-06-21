@@ -76,14 +76,13 @@ export class BuilderComponent implements OnInit, OnChanges {
           timeOut: 5000, positionClass: 'toast-top-right'});
       },
       error => {
-        console.log(error);
-        alert('Build Error')
         const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
+        console.log(error);
         this.toastr.clear(inserted.toastId);
-        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error.buildStatus , 'ERROR!', {
+        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error.error , 'ERROR!', {
           timeOut: 10000, positionClass: 'toast-top-right'});
       }
     );

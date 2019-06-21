@@ -15,7 +15,7 @@ export class ModelListService {
    * Version will be automatically set to 'dev'
    */
   getParameters(model: string, version: string): Observable<any> {
-    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version + '/parameters';
+    const url: string = environment.baseUrl_manage + 'model/' + model + '/version/' + version + '/parameters';
     return this.http.get(url);
   }
 

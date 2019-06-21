@@ -11,7 +11,7 @@ export class QualitNoConformalService {
   constructor(private http: HttpClient) { }
 
   getValidation(model: string, version: string): Observable<any> {
-    const url: string = environment.baseUrl_manage + 'models/' + model + '/version/' + version + '/validation';
+    const url: string = environment.baseUrl_manage + 'model/' + model + '/version/' + version + '/validation';
     return this.http.get(url);
   }
 }
