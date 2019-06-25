@@ -49,31 +49,30 @@ export class QualitNoConformalComponent implements OnInit {
   getValidation() {
     this.service.getValidation(this.model.name, this.model.version).subscribe(
       result => {
-        if (result[0]) { // True is trained
-          const info = JSON.parse(result[1]);
-          // INFO ABOUT MODEL
-          for (const modelInfo of info['model_build_info']) {
-            if (typeof modelInfo[2] === 'number') {
-              modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-            }
-            this.modelBuildInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+      
+        const info = result;
+        // INFO ABOUT MODEL
+        for (const modelInfo of info['model_build_info']) {
+          if (typeof modelInfo[2] === 'number') {
+            modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
           }
-          // INFO ABOUT VALIDATION
-          for (const modelInfo of info['model_valid_info']) {
-            if (typeof modelInfo[2] === 'number') {
-              modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-            }
-            if (typeof modelInfo[2] !== 'object') {
-              this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-            }
-          }
-          setTimeout(() => {
-            this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
-            this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
-            this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
-            this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
-          }, 50);
+          this.modelBuildInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
         }
+        // INFO ABOUT VALIDATION
+        for (const modelInfo of info['model_valid_info']) {
+          if (typeof modelInfo[2] === 'number') {
+            modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+          }
+          if (typeof modelInfo[2] !== 'object') {
+            this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+          }
+        }
+        setTimeout(() => {
+          this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
+          this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
+          this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
+          this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
+        }, 50);  
       },
       error => {
         alert('Error getting model');

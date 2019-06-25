@@ -32,10 +32,9 @@ export class ModelListComponent implements OnInit {
 
     this.commonService.getModelList().subscribe(
         result => {
-          result = JSON.parse(result[1]);
+          // result = JSON.parse(result[1]);
           for (const model of result) {
             const modelName = model.text;
-            let trained = false;
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
               // CAST VERSION
@@ -44,9 +43,7 @@ export class ModelListComponent implements OnInit {
               version = Number(version);
               // INFO OF EACH MODEL
               this.commonService.getModel(modelName, version).subscribe(
-                result2 => {
-                  if (result2[0]) { // True is trained
-                    trained = true;
+                result2 => {  
                     const dict_info = {};
                     for ( const info of JSON.parse(result2[1])) {
                       dict_info[info[0]] = info[2];
@@ -59,16 +56,13 @@ export class ModelListComponent implements OnInit {
                             quality[info] =  parseFloat(dict_info[info].toFixed(3));
                       }
                     }
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained,
+                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: true,
                     numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
-
-                  } else {
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained, numMols: '-',
-                    variables: '-', type: '-', quality: {}};
-                  }
                 },
                 error => {
-                  alert('Error getting model');
+                  console.log(error)
+                 this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
+                    variables: '-', type: '-', quality: {}};
                 }
               );
             }
@@ -132,10 +126,9 @@ export class ModelListComponent implements OnInit {
   getParameters(): void {
     this.service.getParameters(this.model.name, this.model.version).subscribe(
       result => {
-        if (result[0]) {
-          this.model.parameters = result = JSON.parse(result[1]);
-          console.log(this.model.parameters);
-        }
+        this.model.parameters = result;
+        console.log(this.model.parameters);
+        
       },
       error => {
         console.log(error);

@@ -138,8 +138,7 @@ export class QuantitNoConformalComponent implements OnInit {
   getValidation() {
     this.service.getValidation(this.model.name, this.model.version).subscribe(
       result => {
-        if (result[0]) { // True is trained
-          const info = JSON.parse(result[1]);
+          const info = result;
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
               modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
@@ -167,7 +166,7 @@ export class QuantitNoConformalComponent implements OnInit {
               this.ChartLabels[i] = info['obj_nam'][i];
             }
           }, 50);
-        }
+        
       },
       error => {
         alert('Error getting model');

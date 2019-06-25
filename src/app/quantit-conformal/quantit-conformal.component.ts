@@ -147,62 +147,59 @@ export class QuantitConformalComponent implements OnInit {
     getValidation() {
       this.service.getValidation(this.model.name, this.model.version).subscribe(
         result => {
-          if (result[0]) { // True is trained
-            const info = JSON.parse(result[1]);
-            console.log(info);
-            for (const modelInfo of info['model_build_info']) {
-              if (typeof modelInfo[2] === 'number') {
-                modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                // do something
-              }
-              this.modelBuildInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+          const info = result;
+          console.log(info);
+          for (const modelInfo of info['model_build_info']) {
+            if (typeof modelInfo[2] === 'number') {
+              modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+              // do something
             }
-            for (const modelInfo of info['model_valid_info']) {
-              if (typeof modelInfo[2] === 'number') {
-                modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                // do something
-              }
-              if (typeof modelInfo[2] !== 'object') {
-                this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              } else {
-                this.modelConformal[modelInfo[0]] = modelInfo[2];
-              }
-            }
-
-            setTimeout(() => {
-
-              let max: number = null;
-              let min: number = null;
-              // tslint:disable-next-line:forin
-              for (const i in info['ymatrix']) {
-                // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
-                // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-                this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i]};
-                this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] =
-                { plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
-                 minus: this.modelConformal['Conformal_prediction_ranges'][i][1]}
-                this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-                if (max) {
-                  if (max < this.modelConformal['Conformal_prediction_ranges'][i][0]) {
-                      max = this.modelConformal['Conformal_prediction_ranges'][i][0];
-                  }
-                } else {
-                  max = this.modelConformal['Conformal_prediction_ranges'][i][0];
-                }
-                if (min) {
-                  if (min > this.modelConformal['Conformal_prediction_ranges'][i][1]) {
-                      min = this.modelConformal['Conformal_prediction_ranges'][i][1];
-                  }
-                } else {
-                  min = this.modelConformal['Conformal_prediction_ranges'][i][1];
-                }
-                this.ChartLabels[i] = info['obj_nam'][i];
-              }
-              // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
-              // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
-              // console.log(this.QuantitConformalChart.nativeElement);
-            }, 50);
+            this.modelBuildInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
           }
+          for (const modelInfo of info['model_valid_info']) {
+            if (typeof modelInfo[2] === 'number') {
+              modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+              // do something
+            }
+            if (typeof modelInfo[2] !== 'object') {
+              this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+            } else {
+              this.modelConformal[modelInfo[0]] = modelInfo[2];
+            }
+          }
+          setTimeout(() => {
+
+            let max: number = null;
+            let min: number = null;
+            // tslint:disable-next-line:forin
+            for (const i in info['ymatrix']) {
+              // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
+              // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+              this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i]};
+              this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] =
+              { plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
+                minus: this.modelConformal['Conformal_prediction_ranges'][i][1]}
+              this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+              if (max) {
+                if (max < this.modelConformal['Conformal_prediction_ranges'][i][0]) {
+                    max = this.modelConformal['Conformal_prediction_ranges'][i][0];
+                }
+              } else {
+                max = this.modelConformal['Conformal_prediction_ranges'][i][0];
+              }
+              if (min) {
+                if (min > this.modelConformal['Conformal_prediction_ranges'][i][1]) {
+                    min = this.modelConformal['Conformal_prediction_ranges'][i][1];
+                }
+              } else {
+                min = this.modelConformal['Conformal_prediction_ranges'][i][1];
+              }
+              this.ChartLabels[i] = info['obj_nam'][i];
+            }
+            // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
+            // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
+            // console.log(this.QuantitConformalChart.nativeElement);
+          }, 50);
         },
         error => {
           alert('Error getting model');

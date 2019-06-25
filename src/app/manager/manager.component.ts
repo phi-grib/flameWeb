@@ -35,21 +35,15 @@ export class ManagerComponent implements OnInit {
     if (this.modelName.match(letters)) {
         this.service.createModel(this.modelName).subscribe(
           result => {
-            if (result.status[0] === true) {
-              this.modelName = '';
-              this.getModelList();
-              this.toastr.success('Model ' + this.modelName, 'CREATED', {
-                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-              });
-            } else {
-              this.toastr.error('Model ' + this.modelName + ' ' + result.status[1], 'ERROR', {
-                timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
-              });
-            }
+            this.modelName = '';
+            this.getModelList();
+            this.toastr.success('Model ' + result.modelName, 'CREATED', {
+              timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
+            });
+           
           },
           error => {
-            console.log(error);
-              this.toastr.error(error.error, 'ERROR', {
+              this.toastr.error(error.error.error, 'ERROR', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
               });
           }
@@ -102,9 +96,9 @@ export class ManagerComponent implements OnInit {
   cloneModel() {
 
     this.service.cloneModel(this.manage.name).subscribe(
-
       result => {
-        // this.model.listModels = {};
+        this.toastr.success('Model \'' + result['modelName'] + ' v.' + result['version'] + '\'', 'CREATED SUCCESFULLY',{
+          timeOut: 5000, positionClass: 'toast-top-right'});
         this.getModelList();
       },
       error => {
@@ -138,10 +132,9 @@ export class ManagerComponent implements OnInit {
 
     this.commonService.getModelList().subscribe(
         result => {
-          result = JSON.parse(result[1]);
+          // result = JSON.parse(result[1]);
           for (const model of result) {
             const modelName = model.text;
-            let trained = false;
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
               // CAST VERSION
@@ -151,30 +144,24 @@ export class ManagerComponent implements OnInit {
               // INFO OF EACH MODEL
               this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
-                  if (result2[0]) { // True is trained
-                    trained = true;
-                    const dict_info = {};
-                    for ( const info of JSON.parse(result2[1])) {
-                      dict_info[info[0]] = info[2];
-                    }
-                    const quality = {};
-                    for ( const info of (Object.keys(dict_info))) {
-                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                          && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
-                          && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
-                            quality[info] =  parseFloat(dict_info[info].toFixed(3));
-                      }
-                    }
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained,
-                    numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
-
-                  } else {
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained, numMols: '-',
-                    variables: '-', type: '-', quality: {}};
+                  const dict_info = {};
+                  for ( const info of JSON.parse(result2[1])) {
+                    dict_info[info[0]] = info[2];
                   }
+                  const quality = {};
+                  for ( const info of (Object.keys(dict_info))) {
+                    if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
+                        && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
+                        && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
+                          quality[info] =  parseFloat(dict_info[info].toFixed(3));
+                    }
+                  }
+                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: true,
+                  numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
                 },
-                error => {
-                  alert('Error getting model');
+                error => { // Not trained
+                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
+                    variables: '-', type: '-', quality: {}};
                 }
               );
             }

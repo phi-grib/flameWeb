@@ -94,10 +94,10 @@ export class BuilderComponent implements OnInit, OnChanges {
 
     this.commonService.getModelList().subscribe(
         result => {
-          result = JSON.parse(result[1]);
+          // result = JSON.parse(result[1]);
           for (const model of result) {
             const modelName = model.text;
-            let trained = false;
+            
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
               // CAST VERSION
@@ -107,31 +107,26 @@ export class BuilderComponent implements OnInit, OnChanges {
               // INFO OF EACH MODEL
               this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
-                  if (result2[0]) { // True is trained
-                    trained = true;
-                    const dict_info = {};
-                    for ( const info of JSON.parse(result2[1])) {
-                      dict_info[info[0]] = info[2];
-                    }
-                    const quality = {};
-                    for ( const info of (Object.keys(dict_info))) {
-                      if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                          && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
-                          && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
-                            quality[info] =  parseFloat(dict_info[info].toFixed(3));
-                      }
-                    }
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version,
-                      trained: trained, numMols: dict_info['nobj'], variables: dict_info['nvarx'],
-                      type: dict_info['model'], quality: quality};
-
-                  } else {
-                    this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: trained, numMols: '-',
-                    variables: '-', type: '-', quality: {}};
+                  // True is trained
+                  const dict_info = {};
+                  for ( const info of JSON.parse(result2[1])) {
+                    dict_info[info[0]] = info[2];
                   }
+                  const quality = {};
+                  for ( const info of (Object.keys(dict_info))) {
+                    if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
+                        && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
+                        && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
+                          quality[info] =  parseFloat(dict_info[info].toFixed(3));
+                    }
+                  }
+                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version,
+                    trained: true, numMols: dict_info['nobj'], variables: dict_info['nvarx'],
+                    type: dict_info['model'], quality: quality};
                 },
                 error => {
-                  alert('Error getting model');
+                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
+                    variables: '-', type: '-', quality: {}};
                 }
               );
             }

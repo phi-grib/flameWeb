@@ -49,9 +49,7 @@ export class QualitConformalComponent implements OnInit {
   getValidation() {
     this.service.getValidation(this.model.name, this.model.version).subscribe(
       result => {
-        if (result[0]) { // True is trained
-          const info = JSON.parse(result[1]);
-          console.log(info);
+          const info = result;
           // INFO ABOUT MODEL
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
@@ -73,8 +71,7 @@ export class QualitConformalComponent implements OnInit {
             this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
             this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
             this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
-          }, 50);
-        }
+          }, 50); 
       },
       error => {
         alert('Error getting model');
