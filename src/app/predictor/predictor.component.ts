@@ -26,7 +26,7 @@ export class PredictorComponent implements OnInit, OnChanges {
     this.prediction.predicting = true;
     this.service.predict().subscribe(
       result => {
-        this.prediction.result = JSON.parse(result.info);
+        this.prediction.result = result;
         console.log(this.prediction.result);
         this.router.navigate(['/prediction']);
         this.prediction.predicting = false;
