@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8000/api/',
-  baseUrl_manage: 'http://localhost:8000/manage/',
-  baseUrl_build: 'http://localhost:8000/build/',
-  baseUrl_predict: 'http://localhost:8000/predict/'
+  baseUrl: 'http://localhost:8000/flame/api/',
+  baseUrl_manage: 'http://localhost:8000/flame/api/manage/',
+  baseUrl_build: 'http://localhost:8000/flame/api/build/',
+  baseUrl_predict: 'http://localhost:8000/flame/api/predict/'
 };
 
 /*

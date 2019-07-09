@@ -43,13 +43,13 @@ export class ModelListComponent implements OnInit {
               version = Number(version);
               // INFO OF EACH MODEL
               this.commonService.getModel(modelName, version).subscribe(
-                result2 => {  
+                result2 => {
                     const dict_info = {};
-                    for ( const info of JSON.parse(result2[1])) {
+                    for (const info of result2) {
                       dict_info[info[0]] = info[2];
                     }
                     const quality = {};
-                    for ( const info of (Object.keys(dict_info))) {
+                    for (const info of (Object.keys(dict_info))) {
                       if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
                           && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
                           && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
@@ -69,7 +69,7 @@ export class ModelListComponent implements OnInit {
           }
         },
         error => {
-          console.log(error.message)
+          console.log(error.message);
           alert(error.message);
         }
     );
