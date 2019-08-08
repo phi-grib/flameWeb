@@ -1,26 +1,43 @@
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="nav nav-tabs" id="tab1" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="predict-tab" data-toggle="tab" href="#predict" role="tab" aria-controls="predict" aria-selected="true" (click)="changeTab('predict')">Predict</a>
+    <a class="nav-link active" id="models-tab" data-toggle="tab" href="#models" role="tab" aria-controls="models" aria-selected="true" (click)="changeTab('predict')">Models</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false" (click)="changeTab('manage')">Manage</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="build-tab" data-toggle="tab" href="#build" role="tab" aria-controls="build" aria-selected="false" (click)="changeTab('build')">Build</a>
+    <a class="nav-link" id="similarity-tab" data-toggle="tab" href="#similarity" role="tab" aria-controls="similarity" aria-selected="false" (click)="changeTab('manage')">Similarity</a>
   </li>
 </ul>
-<div class="tab-content mb-auto w-100" id="myTabContent">
-  <div class="tab-pane fade show active" id="predict" role="tabpanel" aria-labelledby="predict-tab">
-      <app-predictor></app-predictor>
+
+<!-- Models Tab-->
+<div class="tab-content mb-auto w-100" id="tab1">
+  <div class="tab-pane fade show active" id="models" role="tabpanel" aria-labelledby="models-tab">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="predict-tab" data-toggle="tab" href="#predict" role="tab" aria-controls="predict" aria-selected="true" (click)="changeTab('predict')">Predict</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false" (click)="changeTab('manage')">Manage</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="build-tab" data-toggle="tab" href="#build" role="tab" aria-controls="build" aria-selected="false" (click)="changeTab('build')">Build</a>
+      </li>
+    </ul>
+    <div class="tab-content mb-auto w-100" id="myTabContent">
+      <div class="tab-pane fade show active" id="predict" role="tabpanel" aria-labelledby="predict-tab">
+          <app-predictor></app-predictor>
+      </div>
+      <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+        <app-manager></app-manager>
+      </div>
+      <div class="tab-pane fade" id="build" role="tabpanel" aria-labelledby="build-tab">
+        <app-builder [tabChange] = globals.actualTab></app-builder>
+      </div>
+    </div>
   </div>
-  <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
-    <app-manager></app-manager>
+
+   <div class="tab-pane fade show active" id="similarity" role="tabpanel" aria-labelledby="similarity-tab">
+   <p>Similarity</p>
   </div>
-  <div class="tab-pane fade" id="build" role="tabpanel" aria-labelledby="build-tab">
-    <app-builder [tabChange] = globals.actualTab></app-builder>
-  </div>
- 
 </div>
 
 
