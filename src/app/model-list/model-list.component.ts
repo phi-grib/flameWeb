@@ -58,9 +58,10 @@ export class ModelListComponent implements OnInit {
                     }
                     this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: true,
                     numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
+                    this.model.parameters['ensemble_names'].options
+                    this.model.parameters['ensemble_versions'].options
                 },
                 error => {
-                  console.log(error)
                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
                     variables: '-', type: '-', quality: {}};
                 }
@@ -81,7 +82,6 @@ export class ModelListComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    
     if (this.globals.actualTab === 'build') {
       this.model.name = name;
       this.model.version = version;
