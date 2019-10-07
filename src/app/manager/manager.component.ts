@@ -40,7 +40,6 @@ export class ManagerComponent implements OnInit {
             this.toastr.success('Model ' + result.modelName, 'CREATED', {
               timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
             });
-           
           },
           error => {
               this.toastr.error(error.error.error, 'ERROR', {
@@ -97,7 +96,7 @@ export class ManagerComponent implements OnInit {
 
     this.service.cloneModel(this.manage.name).subscribe(
       result => {
-        this.toastr.success('Model \'' + result['modelName'] + ' v.' + result['version'] + '\'', 'CREATED SUCCESFULLY',{
+        this.toastr.success('Model \'' + result['modelName'] + ' v.' + result['version'] + '\'', 'CREATED SUCCESFULLY', {
           timeOut: 5000, positionClass: 'toast-top-right'});
         this.getModelList();
       },
@@ -145,7 +144,7 @@ export class ManagerComponent implements OnInit {
               this.commonService.getModel(modelName, version).subscribe(
                 result2 => {
                   const dict_info = {};
-                  for ( const info of JSON.parse(result2[1])) {
+                  for ( const info of result2) {
                     dict_info[info[0]] = info[2];
                   }
                   const quality = {};

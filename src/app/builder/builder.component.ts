@@ -97,7 +97,6 @@ export class BuilderComponent implements OnInit, OnChanges {
           // result = JSON.parse(result[1]);
           for (const model of result) {
             const modelName = model.text;
-            
             for ( const versionInfo of model.nodes) {
               let version = versionInfo.text;
               // CAST VERSION
@@ -109,7 +108,7 @@ export class BuilderComponent implements OnInit, OnChanges {
                 result2 => {
                   // True is trained
                   const dict_info = {};
-                  for ( const info of JSON.parse(result2[1])) {
+                  for ( const info of result2) {
                     dict_info[info[0]] = info[2];
                   }
                   const quality = {};
