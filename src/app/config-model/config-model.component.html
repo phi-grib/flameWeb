@@ -3,7 +3,7 @@
   <div class="form-group col-md-4">
     <label class="bmd-label-static" for="model">Model</label>
     <select id="key" class="form-control" [(ngModel)]="this.model.parameters['model'].value">
-      <option *ngFor="let value of this.model.parameters['model'].options" [value]='value' >
+      <option *ngFor="let value of this.type_models[this.model.parameters['input_type'].value]" [value]='value' >
         <div *ngIf="value==null">
           --none--
         </div>
@@ -146,7 +146,8 @@
 
 
 <!--MODEL PARAMETERS-->
-<fieldset class="border">  
+<fieldset class="border" *ngIf="this.model.parameters['model'].value!='majority' && this.model.parameters['model'].value!='mean' &&
+this.model.parameters['model'].value!='median'">  
     <legend>{{this.model.parameters['model'].value}} parameters</legend>
       <div class="m-2 w-50" *ngFor="let key of objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)" >
         <div class="form-group" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable">
@@ -199,7 +200,8 @@
 </fieldset>
 <!-- TUNE HARDCODED-->
 <br>
-<div class="checkbox">
+<div class="checkbox" *ngIf="this.model.parameters['model'].value!='majority' && this.model.parameters['model'].value!='mean' &&
+this.model.parameters['model'].value!='median'">
  <label>
      <input type="checkbox" [(ngModel)]="this.model.parameters['tune'].value">
       Tune

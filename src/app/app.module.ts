@@ -29,6 +29,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 import { PredictionComponent } from './prediction/prediction.component';
 import { DataTableModule } from 'angular-6-datatable';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DataTableModule } from 'angular-6-datatable';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     ChecklistModule,
     ChartsModule,
     DataTableModule

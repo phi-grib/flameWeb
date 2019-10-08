@@ -22,7 +22,6 @@ export class ModelListComponent implements OnInit {
 
   models: Array<any>;
   objectKeys = Object.keys;
-  
 
   ngOnInit() {
     this.getModelList();
@@ -33,6 +32,7 @@ export class ModelListComponent implements OnInit {
     this.commonService.getModelList().subscribe(
         result => {
           // result = JSON.parse(result[1]);
+          this.model.trained_models = [];
           for (const model of result) {
             const modelName = model.text;
             for ( const versionInfo of model.nodes) {
@@ -58,9 +58,9 @@ export class ModelListComponent implements OnInit {
                     }
                     this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: true,
                     numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
+                    this.model.trained_models.push(modelName + ' .v' + version);
                 },
                 error => {
-                  console.log(error)
                  this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
                     variables: '-', type: '-', quality: {}};
                 }
@@ -81,7 +81,6 @@ export class ModelListComponent implements OnInit {
     if (version === '-' || version === 'dev') {
       version = '0';
     }
-    
     if (this.globals.actualTab === 'build') {
       this.model.name = name;
       this.model.version = version;
@@ -119,19 +118,14 @@ export class ModelListComponent implements OnInit {
       this.manage.name = name;
       this.manage.version = version;
     }
-    
-    
   }
 
   getParameters(): void {
     this.service.getParameters(this.model.name, this.model.version).subscribe(
       result => {
         this.model.parameters = result;
-        console.log(this.model.parameters);
-        
       },
       error => {
-        console.log(error);
         alert(error.status + ' : ' + error.statusText);
       },
       () => { // when subscribe finishes

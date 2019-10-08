@@ -19,6 +19,7 @@ export class Model {
   delta: any = {};
   trainig_models = [];
   listModels = {};
+  trained_models = [];
 }
 
 @Injectable()

@@ -28,6 +28,13 @@ export class ConfigModelComponent implements OnInit, AfterContentChecked {
     GNB: 'GNB_optimize',
     SVM: 'SVM_optimize'
   };
+
+  type_models = {
+    data: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+    molecule: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+    model_ensemble: ['mean', 'median', 'majority']
+
+  };
   ngOnInit() {
   }
 

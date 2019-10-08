@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Model} from '../Globals';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
 
 
 @Component({
@@ -13,6 +15,10 @@ export class ConfigTrainingComponent implements OnInit {
 
   objectKeys = Object.keys;
 
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings: IDropdownSettings = {};
+
   infoSeries = {
     'molecule': ['SDFile_name', 'SDFile_activity', 'SDFile_experimental', 'quantitative', 'normalize_method',
      'convert3D_method', 'ionize_method', 'modelAutoscaling', 'computeMD_method'],
@@ -23,7 +29,32 @@ export class ConfigTrainingComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.selectedItems = [
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
   }
 
+  saveModelsSelected () {
+
+    let info: Array<string>;
+    let name: string;
+    let version: string;
+
+    this.model.parameters['ensemble_names'].value = [];
+    this.model.parameters['ensemble_versions'].value = [];
+
+    for (const model of this.selectedItems) {
+      info = model.split(' .v');
+      version = info[info.length - 1];
+      name = (info.slice(0, info.length - 1)).join();
+      this.model.parameters['ensemble_names'].value.push(name);
+      this.model.parameters['ensemble_versions'].value.push(Number(version));
+    }
+  }
 }
