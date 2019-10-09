@@ -16,8 +16,11 @@
         {{this.model.parameters['model'].description}}
     </small> 
   </div>
+
+
   <!--CONFORMAL-->
-  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='PLSDA'">
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='PLSDA' && 
+  this.model.parameters['input_type'].value != 'model_ensemble'">
     <div class="checkbox">
       <label>
         <input  type="checkbox" [(ngModel)]="this.model.parameters['conformal'].value">
@@ -40,7 +43,7 @@
   <!--Conformal significance-->
 </div>
 <!--'ModelValidationCV', 'ModelValidationN' ,'ModelValidationP'-->
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['input_type'].value != 'model_ensemble'">
   <div class="form-group col-md-4">
     <label class="bmd-label-static" for="key">ModelValidationCV</label>
     <select id="ModelValidationCV" class="form-control" [(ngModel)]="this.model.parameters['ModelValidationCV'].value">
@@ -73,7 +76,7 @@
   </div>
 </div>
 <!--'feature_selection', 'feature_number'-->
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['input_type'].value != 'model_ensemble'">
   <div class="form-group col-md-4">
     <label class="bmd-label-static" for="key">Feature selection</label>
     <select id="feature_selection" class="form-control" [(ngModel)]="this.model.parameters['feature_selection'].value">
@@ -99,7 +102,7 @@
   </div>
 </div>
 
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['input_type'].value != 'model_ensemble'">
 
 <!--REST OF PARAMETERS-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">
@@ -146,8 +149,7 @@
 
 
 <!--MODEL PARAMETERS-->
-<fieldset class="border" *ngIf="this.model.parameters['model'].value!='majority' && this.model.parameters['model'].value!='mean' &&
-this.model.parameters['model'].value!='median'">  
+<fieldset class="border" *ngIf="this.model.parameters['input_type'].value != 'model_ensemble'">  
     <legend>{{this.model.parameters['model'].value}} parameters</legend>
       <div class="m-2 w-50" *ngFor="let key of objectKeys(this.model.parameters[parametersModel[this.model.parameters['model'].value]].value)" >
         <div class="form-group" *ngIf="this.model.parameters[parametersModel[this.model.parameters['model'].value]].value[key].writable">
@@ -200,8 +202,7 @@ this.model.parameters['model'].value!='median'">
 </fieldset>
 <!-- TUNE HARDCODED-->
 <br>
-<div class="checkbox" *ngIf="this.model.parameters['model'].value!='majority' && this.model.parameters['model'].value!='mean' &&
-this.model.parameters['model'].value!='median'">
+<div class="checkbox" *ngIf="this.model.parameters['input_type'].value != 'model_ensemble'">
  <label>
      <input type="checkbox" [(ngModel)]="this.model.parameters['tune'].value">
       Tune

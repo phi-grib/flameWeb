@@ -80,9 +80,8 @@ export class BuilderComponent implements OnInit, OnChanges {
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
-        console.log(error);
         this.toastr.clear(inserted.toastId);
-        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error.error , 'ERROR!', {
+        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error , 'ERROR!', {
           timeOut: 10000, positionClass: 'toast-top-right'});
       }
     );
@@ -132,7 +131,6 @@ export class BuilderComponent implements OnInit, OnChanges {
           }
         },
         error => {
-          console.log(error.message);
           alert(error.message);
         }
     );

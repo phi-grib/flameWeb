@@ -128,6 +128,8 @@
             <th class="align-middle text-center" *ngIf="prediction.result.lower_limit">Lower limit</th>
             <th class="align-middle text-center" *ngIf="prediction.result.c0">Inactive</th>
             <th class="align-middle text-center" *ngIf="prediction.result.c1">Active</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.ensemble_c0">Ensemble Class 0</th>
+            <th class="align-middle text-center" *ngIf="prediction.result.ensemble_c1">Ensemble Class 1</th>
 
           </tr>
         </thead>
@@ -144,6 +146,8 @@
             <td class="align-middle text-center" *ngIf="prediction.result.lower_limit">{{prediction.result.lower_limit[i].toFixed(3)}}</td>
             <td class="align-middle text-center" *ngIf="prediction.result.c0">{{prediction.result.c0[i]}}</td>
             <td class="align-middle text-center" *ngIf="prediction.result.c1">{{prediction.result.c1[i]}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.ensemble_c0">{{prediction.result.ensemble_c0[i].toFixed(3)}}</td>
+            <td class="align-middle text-center" *ngIf="prediction.result.ensemble_c1">{{prediction.result.ensemble_c1[i].toFixed(3)}}</td>
           </tr>
         </tbody>
       </table>

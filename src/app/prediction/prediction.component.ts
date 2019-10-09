@@ -146,6 +146,12 @@ export class PredictionComponent implements OnInit, AfterViewInit {
     if ( this.prediction.result.c1) {
       this.head.push('Active');
     }
+    if ( this.prediction.result.ensemble_c0) {
+      this.head.push('Ensemble Class 0');
+    }
+    if ( this.prediction.result.ensemble_c1) {
+      this.head.push('Ensemble Class 1');
+    }
 
 
     let prediction = [];
@@ -171,6 +177,12 @@ export class PredictionComponent implements OnInit, AfterViewInit {
       }
       if (this.prediction.result.c1) {
         prediction.push(this.prediction.result.c1[i]);
+      }
+      if ( this.prediction.result.ensemble_c0) {
+        this.head.push(this.prediction.result.ensemble_c0[i].toFixed(3));
+      }
+      if ( this.prediction.result.ensemble_c1) {
+        this.head.push(this.prediction.result.ensemble_c1[i].toFixed(3));
       }
       this.info.push(prediction);
       i = i + 1;

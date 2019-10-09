@@ -44,6 +44,9 @@ export class ConfigModelComponent implements OnInit, AfterContentChecked {
     if (this.model.parameters['model'].value === 'PLSDA') {
       this.model.parameters['conformal'].value = false;
     }
+    if (this.model.parameters['input_type'].value !== 'model_ensemble') {
+      this.model.parameters['model'].value = 'RF';
+    }
   }
 
 }
