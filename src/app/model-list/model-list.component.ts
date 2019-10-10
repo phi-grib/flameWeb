@@ -104,7 +104,7 @@ export class ModelListComponent implements OnInit {
       }
 
       this.prediction.conformal = false;
-      if (type.indexOf('conformal') > -1 ) {
+      if (type.indexOf('conformal') > -1 && type.indexOf('combination') === -1) {
         this.prediction.conformal = true;
       }
       this.prediction.file = undefined;

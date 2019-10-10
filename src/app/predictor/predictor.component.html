@@ -10,7 +10,7 @@
               <div class="col-12">
                 <p class="font-italic p-1 m-0" *ngIf="this.prediction.name">
                   <i class="mr-1 fas fa-caret-right"></i> {{this.prediction.name}} v.{{this.prediction.version}}
-                  <ng-container *ngIf=" this.prediction.quantitative; else qualitative">
+                  <!--<ng-container *ngIf=" this.prediction.quantitative; else qualitative">
                     Quantitative
                   </ng-container>
                   <ng-template #qualitative>
@@ -18,7 +18,7 @@
                   </ng-template>
                   <ng-container *ngIf="this.prediction.conformal">
                     Conformal
-                  </ng-container>
+                  </ng-container>-->
                 </p>
               </div>
             </div>

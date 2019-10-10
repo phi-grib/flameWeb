@@ -32,7 +32,7 @@ export class ConfigModelComponent implements OnInit, AfterContentChecked {
   type_models = {
     data: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
     molecule: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-    model_ensemble: ['mean', 'median', 'majority']
+    model_ensemble: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
 
   };
   ngOnInit() {
@@ -43,9 +43,6 @@ export class ConfigModelComponent implements OnInit, AfterContentChecked {
     // NOWIS HARDCODED, BUT IT WILL BE AUTOMATED
     if (this.model.parameters['model'].value === 'PLSDA') {
       this.model.parameters['conformal'].value = false;
-    }
-    if (this.model.parameters['input_type'].value !== 'model_ensemble') {
-      this.model.parameters['model'].value = 'RF';
     }
   }
 

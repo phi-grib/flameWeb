@@ -9,7 +9,7 @@
   </div>
   <div class="form-group col-md-4" *ngIf="this.model.parameters['input_type'].value=='model_ensemble'">
     <ng-multiselect-dropdown
-      [placeholder]="'custom placeholder'"
+      [placeholder]="'select models'"
       [data]="this.model.trained_models.sort()"
       [(ngModel)]="selectedItems"
       [settings]="dropdownSettings"

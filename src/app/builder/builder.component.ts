@@ -63,26 +63,35 @@ export class BuilderComponent implements OnInit, OnChanges {
 
     this.service.buildModel().subscribe(
       result => {
-        // delete model from training models
-        const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
-        if (index > -1) {
-          this.model.trainig_models.splice(index, 1);
-        }
-        this.toastr.clear(inserted.toastId);
         this.getModelList();
-        this.model.trained = true;
-        this.model.listModels[name + '-' + version].trained = true;
-        this.toastr.success('Model ' + this.model.name + '.v' + this.model.version , 'CREATED SUCCESFULLY', {
-          timeOut: 5000, positionClass: 'toast-top-right'});
+        let iter = 0;
+        const intervalId = setInterval(() => {
+          if (iter < 15) {
+            this.checkModel(this.model.name, this.model.version, inserted, intervalId);
+          }
+          else {
+            clearInterval(intervalId);
+            const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
+            if (index > -1) {
+              this.model.trainig_models.splice(index, 1);
+            }
+            this.toastr.clear(inserted.toastId);
+            this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' , 'ERROR!', {
+            timeOut: 10000, positionClass: 'toast-top-right'});
+          }
+          iter += 1;
+        }, 10000);
       },
       error => {
         const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
+        this.model.listModels[this.model.name + '-' + this.model.version].trained = false;
         this.toastr.clear(inserted.toastId);
         this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error , 'ERROR!', {
           timeOut: 10000, positionClass: 'toast-top-right'});
+        this.getModelList();
       }
     );
     this.router.navigate(['/']);
@@ -133,6 +142,42 @@ export class BuilderComponent implements OnInit, OnChanges {
         error => {
           alert(error.message);
         }
+    );
+  }
+
+  // Periodic function to check model
+  checkModel(name, version, inserted, intervalId) {
+    this.commonService.getModel(name, version).subscribe(
+      result => {
+          const dict_info = {};
+          for (const info of result) {
+            dict_info[info[0]] = info[2];
+          }
+          const quality = {};
+          for (const info of (Object.keys(dict_info))) {
+            if ( (info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
+                && (info !== 'Conformal_interval_medians' ) && (info !== 'Conformal_prediction_ranges' )
+                && (info !== 'Y_adj' ) && (info !== 'Y_pred' )) {
+                  quality[info] =  parseFloat(dict_info[info].toFixed(3));
+            }
+          }
+          const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
+          if (index > -1) {
+            this.model.trainig_models.splice(index, 1);
+          }
+          this.toastr.clear(inserted.toastId);
+          this.model.listModels[name + '-' + version] = {name: name, version: version, trained: true,
+          numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality};
+          this.model.trained_models.push(name + ' .v' + version);
+          this.toastr.success('Model ' + name + '.v' + version + ' created' , 'MODEL CREATED', {
+            timeOut: 5000, positionClass: 'toast-top-right'});
+          this.getModelList();
+          clearInterval(intervalId);
+      },
+      error => { // CHECK MAX iterations
+       this.model.listModels[name + '-' + version] = {name: name, version: version, trained: false, numMols: '-',
+          variables: '-', type: '-', quality: {}};
+      }
     );
   }
 }

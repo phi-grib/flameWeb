@@ -33,6 +33,15 @@ export class ConfigTrainingComponent implements OnInit {
 
     this.selectedItems = [
     ];
+
+    console.log(this.model.parameters);
+    if (this.model.parameters['ensemble_names'].value) {
+      for (const index of Object.keys(this.model.parameters['ensemble_names'].value)) {
+        const name = this.model.parameters['ensemble_names'].value[index];
+        const version = this.model.parameters['ensemble_versions'].value[index];
+        this.selectedItems.push(name + ' v.' + version);
+      }
+    }
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
