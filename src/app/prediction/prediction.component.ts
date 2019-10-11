@@ -29,7 +29,7 @@ export class PredictionComponent implements OnInit, AfterViewInit {
 
   modelBuildInfo = {};
   modelValidationInfo = {};
-  quantitative = true
+  quantitative = true;
   // PolarArea
   public polarChartOptions: any = {
     responsive: true,
