@@ -102,6 +102,9 @@ export class ModelListComponent implements OnInit {
       if (type.indexOf('quantitative') > -1 ) {
         this.prediction.quantitative = true;
       }
+      if (type.indexOf('mean') >1 || type.indexOf('median')) {
+        this.prediction.quantitative = true;
+      }
 
       this.prediction.conformal = false;
       if (type.indexOf('conformal') > -1 && type.indexOf('combination') === -1) {

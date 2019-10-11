@@ -44,6 +44,14 @@ export class ConfigModelComponent implements OnInit, AfterContentChecked {
     if (this.model.parameters['model'].value === 'PLSDA') {
       this.model.parameters['conformal'].value = false;
     }
+    if (this.model.parameters['model'].value === 'mean' || this.model.parameters['model'].value === 'median') {
+      this.model.parameters['quantitative'].value = true;
+      this.model.parameters['conformal'].value = false;
+    }
+    if (this.model.parameters['model'].value === 'majority') {
+      this.model.parameters['quantitative'].value = false;
+      this.model.parameters['conformal'].value = false;
+    }
   }
 
 }

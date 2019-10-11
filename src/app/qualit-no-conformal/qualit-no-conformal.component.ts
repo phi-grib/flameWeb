@@ -68,7 +68,7 @@ export class QualitNoConformalComponent implements OnInit {
           }
         }
         setTimeout(() => {
-          if (this.modelValidationInfo['TP']){
+          if (this.modelValidationInfo['TP']) {
             this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
             this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
           }

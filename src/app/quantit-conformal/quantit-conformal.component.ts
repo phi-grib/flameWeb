@@ -13,7 +13,7 @@ import 'chartjs-plugin-error-bars';
 export class QuantitConformalComponent implements OnInit {
 
 
-  constructor(private service: QuantitConformalService,public model: Model) { }
+  constructor(private service: QuantitConformalService, public model: Model) { }
 
     objectKeys = Object.keys;
     modelBuildInfo = {};
