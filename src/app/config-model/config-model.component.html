@@ -19,7 +19,8 @@
 
 
   <!--CONFORMAL-->
-  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='PLSDA'">
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='PLSDA' && this.model.parameters['model'].value!='median' 
+  && this.model.parameters['model'].value!='mean' && this.model.parameters['model'].value!='majority'">
     <div class="checkbox">
       <label>
         <input  type="checkbox" [(ngModel)]="this.model.parameters['conformal'].value">
@@ -30,7 +31,8 @@
         {{this.model.parameters['conformal'].description}}
     </small>
   </div> 
-  <div class="form-group col-md-4" >
+  <div class="form-group col-md-4" *ngIf="this.model.parameters['model'].value!='median' && this.model.parameters['model'].value!='mean' 
+  && this.model.parameters['model'].value!='majority'">
     <div *ngIf="(this.model.parameters['model'].value!='PLSDA') && (this.model.parameters['conformal'].value)" style="margin-top: 11px;">
         <label class="bmd-label-static" for="conformalSignificance" style="margin-top: 11px;">conformalSignificance</label>
       <input class="form-control" [(ngModel)]="this.model.parameters['conformalSignificance'].value" type='number' step="0.05">
@@ -42,7 +44,8 @@
   <!--Conformal significance-->
 </div>
 <!--'ModelValidationCV', 'ModelValidationN' ,'ModelValidationP'-->
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['model'].value!='median' && this.model.parameters['model'].value!='mean' 
+  && this.model.parameters['model'].value!='majority'">
   <div class="form-group col-md-4">
     <label class="bmd-label-static" for="key">ModelValidationCV</label>
     <select id="ModelValidationCV" class="form-control" [(ngModel)]="this.model.parameters['ModelValidationCV'].value">
@@ -75,7 +78,8 @@
   </div>
 </div>
 <!--'feature_selection', 'feature_number'-->
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['model'].value!='median' && this.model.parameters['model'].value!='mean' 
+  && this.model.parameters['model'].value!='majority'">
   <div class="form-group col-md-4">
     <label class="bmd-label-static" for="key">Feature selection</label>
     <select id="feature_selection" class="form-control" [(ngModel)]="this.model.parameters['feature_selection'].value">
@@ -101,7 +105,8 @@
   </div>
 </div>
 
-<div class="form-row">
+<div class="form-row" *ngIf="this.model.parameters['model'].value!='median' && this.model.parameters['model'].value!='mean' 
+  && this.model.parameters['model'].value!='majority'">
 
 <!--REST OF PARAMETERS-->
   <div *ngFor="let key of infoModel" class="form-group col-md-4">

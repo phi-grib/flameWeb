@@ -56,7 +56,6 @@ export class BuilderComponent implements OnInit, OnChanges {
 
     this.model.delta = {};
     this.model.delta = this.recursiveDelta(this.model.parameters);
-    console.log(this.model.delta);
     this.model.trainig_models.push(name + '-' + version);
     const inserted = this.toastr.info('Running!', 'Model ' + name + '.v' + version , {
       disableTimeOut: true, positionClass: 'toast-top-right'});
@@ -67,7 +66,7 @@ export class BuilderComponent implements OnInit, OnChanges {
         let iter = 0;
         const intervalId = setInterval(() => {
           if (iter < 15) {
-            this.checkModel(this.model.name, this.model.version, inserted, intervalId);
+            this.checkModel(name, version, inserted, intervalId);
           }
           else {
             clearInterval(intervalId);
@@ -76,7 +75,7 @@ export class BuilderComponent implements OnInit, OnChanges {
               this.model.trainig_models.splice(index, 1);
             }
             this.toastr.clear(inserted.toastId);
-            this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' , 'ERROR!', {
+            this.toastr.error( 'Model ' + name + '.v' + version + ' \n ' , 'ERROR!', {
             timeOut: 10000, positionClass: 'toast-top-right'});
           }
           iter += 1;
@@ -87,9 +86,9 @@ export class BuilderComponent implements OnInit, OnChanges {
         if (index > -1) {
           this.model.trainig_models.splice(index, 1);
         }
-        this.model.listModels[this.model.name + '-' + this.model.version].trained = false;
+        this.model.listModels[name + '-' + version].trained = false;
         this.toastr.clear(inserted.toastId);
-        this.toastr.error( 'Model ' + this.model.name + '.v' + this.model.version + ' \n ' + error.error , 'ERROR!', {
+        this.toastr.error( 'Model ' + name + '.v' + version + ' \n ' + error.error , 'ERROR!', {
           timeOut: 10000, positionClass: 'toast-top-right'});
         this.getModelList();
       }
@@ -171,8 +170,8 @@ export class BuilderComponent implements OnInit, OnChanges {
           this.model.trained_models.push(name + ' .v' + version);
           this.toastr.success('Model ' + name + '.v' + version + ' created' , 'MODEL CREATED', {
             timeOut: 5000, positionClass: 'toast-top-right'});
-          this.getModelList();
           clearInterval(intervalId);
+          this.getModelList();
       },
       error => { // CHECK MAX iterations
        this.model.listModels[name + '-' + version] = {name: name, version: version, trained: false, numMols: '-',

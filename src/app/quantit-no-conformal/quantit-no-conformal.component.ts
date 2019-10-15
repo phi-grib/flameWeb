@@ -138,6 +138,7 @@ export class QuantitNoConformalComponent implements OnInit {
   getValidation() {
     this.service.getValidation(this.model.name, this.model.version).subscribe(
       result => {
+          console.log(result);
           const info = result;
           for (const modelInfo of info['model_build_info']) {
             if (typeof modelInfo[2] === 'number') {
@@ -155,18 +156,18 @@ export class QuantitNoConformalComponent implements OnInit {
               this.modelValidationInfo [modelInfo[0]] = [modelInfo[1], modelInfo[2]];
             }
           }
-
           setTimeout(() => {
             // tslint:disable-next-line:forin
             for (const i in info['ymatrix']) {
+             if ('Y_pred' in info) {
               this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
               this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
+            }
               this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_adj'][i]};
               this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
               this.ChartLabels[i] = info['obj_nam'][i];
             }
           }, 50);
-        
       },
       error => {
         alert('Error getting model');
