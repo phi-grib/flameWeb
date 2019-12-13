@@ -30,6 +30,7 @@ import { PredictionSeriesComponent } from './prediction-series/prediction-series
 import { PredictionComponent } from './prediction/prediction.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SimilarityComponent } from './similarity/similarity.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     PredictorComponent,
     ManagerComponent,
     PredictionSeriesComponent,
-    PredictionComponent
+    PredictionComponent,
+    SimilarityComponent
   ],
   imports: [
     BrowserModule,

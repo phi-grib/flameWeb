@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+      <div class="col-8">
+
+        <form class="form">
+
+          <div class="form-group row">
+            <label class="col-sm-2 control-label" for="ifile">Input </label>
+            <div class="col-sm-10">
+                <div class="form-group">
+                  <label for="exampleInputFile" class="bmd-label-floating">File input</label>
+                  <input type="file" class="form-control-file" id="exampleInputFile">
+                  <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 control-label" for="space">space</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="space" name="space">
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 control-label" for="version">version</label>
+            <div class="col-sm-10">
+              <select class="form-control" id="version" name="version">
+              </select>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="col-4 ">
+        <button class="btn btn-outline-primary" role="button" id="search" disabled="true">Search</button>
+        <button class="btn btn-outline-secondary" role="button" id="export" disabled="true">Export</button>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-12">
+        <h4>Console</h4>
+        <p class="bg-light border rounded" id="data-console">[not run]</p>
+      </div>
+
+      <div class="col-12">
+        <h4>Similarity Results</h4>
+        <table class="table table-fixed table-bordered table-striped" id="data-table"></table>
+      </div>
+
+      <div class="col-12">
+        <p class="bg-light border rounded" id="data-json" hidden="true"></p>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="loader" id="processing" hidden="true"></div>
+    </div>
+
+  </div>

@@ -1,25 +1,40 @@
-  <!-- 
+
 <div class="page-header border-bottom mb-3">
   <div class="d-flex">
         <div class="mr-auto p-2">
-        <h1 class="display-3">Flame</h1>
-        <p class="font-weight-bold">Flame</p>
-           
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Model</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Similarity</a>
+                </li>
+            </ul>
         </div>
         <div class="p-2">
             <a target="_blank">
-                <img src="assets/images/etransafe_logo@2x.png" data-holder-rendered="true" height="80"/>
+                <img src="assets/images/etransafe_logo@2x.png" data-holder-rendered="true" height="40"/>
             </a>
         </div>
     </div>
-</div>-->
+</div>
 
-<div class="d-flex flex-row">
-    <div class="col-2 p-0 sidebar">
-        <app-sidebar></app-sidebar>
+<div class="tab-content" id="myTabContent">
+ 
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+            <div class="col-2 ml-10 sidebar">
+                <app-sidebar></app-sidebar>
+            </div>
+            <!-- Main content -->
+            <div class="col-9 main">
+                <app-tabs></app-tabs>
+            </div>
+        </div>
+        
     </div>
-    <!-- Main content -->
-    <div class="col main">
-        <app-tabs></app-tabs>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <app-similarity></app-similarity>
     </div>
+
 </div>
