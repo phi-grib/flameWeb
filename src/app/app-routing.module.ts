@@ -7,41 +7,35 @@ import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { PredictionSeriesComponent } from './prediction-series/prediction-series.component';
 import { PredictionComponent } from './prediction/prediction.component';
-
+import { SimilarityComponent, } from './similarity/similarity.component';
+import { ModelingComponent, } from './modeling/modeling.component';
 
 const routes: Routes = [
   /*{
     path: 'training-series',
     component: TrainingSeriesComponent
   },*/
+
   {
     path: '',
-    redirectTo: '/listModel',
+    redirectTo: '/modeling',
     pathMatch: 'full'
   },
   {
-    path: 'listModel',
-    component: ModelListComponent
+    path: 'modeling',
+    component: ModelingComponent,
+    children: [
+      { path: '', component: ModelListComponent, pathMatch: 'full' },
+      { path: 'parameters', component: ParametersComponent },
+      { path: 'trainigseries', component: TrainingSeriesComponent},
+      { path: 'validation', component: ValidationsComponent},
+      { path: 'predictionseries', component: PredictionSeriesComponent},
+      { path: 'prediction', component: PredictionComponent},
+    ]
   },
   {
-    path: 'parameters',
-    component: ParametersComponent
-  },
-  {
-    path: 'trainigseries',
-    component: TrainingSeriesComponent
-  },
-  {
-    path: 'validation',
-    component: ValidationsComponent
-  },
-  {
-    path: 'predictionseries',
-    component: PredictionSeriesComponent
-  },
-  {
-    path: 'prediction',
-    component: PredictionComponent
+    path: 'similarity',
+    component: SimilarityComponent,
   },
 ];
 

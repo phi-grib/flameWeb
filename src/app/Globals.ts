@@ -47,3 +47,14 @@ export class Manager {
 export class Globals {
     actualTab = 'predict';
 }
+
+@Injectable()
+export class Similarity {
+
+    model_name: string = undefined;
+    model_version: string = undefined;
+    file: any = undefined;  // Name of file uploaded in the second step
+    file_info = undefined; // Info file ej. num mols, variables
+    file_fields = undefined;
+    result = undefined;
+}

@@ -7,12 +7,11 @@ import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ModelListComponent } from './model-list/model-list.component';
 import { TrainingSeriesComponent } from './training-series/training-series.component';
-import { TabsComponent } from './tabs/tabs.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParametersComponent } from './parameters/parameters.component';
 import { ValidationsComponent } from './validations/validations.component';
 import { ToastrModule } from 'ngx-toastr';
-import { Model, Prediction, Globals, Manager } from './Globals';
+import { Model, Prediction, Globals, Manager, Similarity } from './Globals';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfigTrainingComponent } from './config-training/config-training.component';
 import { ConfigModelComponent } from './config-model/config-model.component';
@@ -31,13 +30,13 @@ import { PredictionComponent } from './prediction/prediction.component';
 import { DataTableModule } from 'angular-6-datatable';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SimilarityComponent } from './similarity/similarity.component';
+import { ModelingComponent } from './modeling/modeling.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModelListComponent,
     TrainingSeriesComponent,
-    TabsComponent,
     SidebarComponent,
     ParametersComponent,
     ValidationsComponent,
@@ -53,7 +52,8 @@ import { SimilarityComponent } from './similarity/similarity.component';
     ManagerComponent,
     PredictionSeriesComponent,
     PredictionComponent,
-    SimilarityComponent
+    SimilarityComponent,
+    ModelingComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +68,7 @@ import { SimilarityComponent } from './similarity/similarity.component';
     DataTableModule
 
   ],
-  providers: [Model, Prediction, Globals, Manager],
+  providers: [Model, Prediction, Globals, Manager, Similarity],
   bootstrap: [AppComponent]
 })
 

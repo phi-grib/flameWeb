@@ -1,25 +1,3 @@
-.display-3 {
-    color: #E69400;
-}
-.main {
-    /*min-height: 100vh;*/
-    max-height: 100vh;
-    overflow: auto;
-    padding-bottom: 10px;
-    background-color:#FAFAFA;
-    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
-    background:#FAFAFA;
-    color:#0076a3;
-}
-.sidebar {
-    min-height: 100vh;
-    padding-bottom: 10px;
-    background-color:#0076a3;
-    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/
-    background: #0076a3;
-    border-right: 5px solid #B8DCED; 
-    
-}
 .myTabContent{
     border-top: 15px solid #e59300;
 }

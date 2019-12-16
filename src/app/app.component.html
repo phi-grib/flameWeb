@@ -4,10 +4,10 @@
         <div class="mr-auto p-2">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Model</a>
+                    <a class="nav-link active" routerLink="/modeling"  data-toggle="tab" role="tab">Modeling</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Similarity</a>
+                    <a class="nav-link" routerLink="/similarity" data-toggle="tab" role="tab">Similarity</a>
                 </li>
             </ul>
         </div>
@@ -19,22 +19,9 @@
     </div>
 </div>
 
+
 <div class="tab-content" id="myTabContent">
  
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <div class="row">
-            <div class="col-2 ml-10 sidebar">
-                <app-sidebar></app-sidebar>
-            </div>
-            <!-- Main content -->
-            <div class="col-9 main">
-                <app-tabs></app-tabs>
-            </div>
-        </div>
-        
-    </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <app-similarity></app-similarity>
-    </div>
+   <router-outlet></router-outlet>
 
 </div>
