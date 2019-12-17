@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, OnChanges} from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit} from '@angular/core';
 import { Similarity } from '../Globals';
 import { SimilarityService} from './similarity.service';
 import * as SmilesDrawer from 'smiles-drawer';
@@ -8,7 +8,7 @@ import * as SmilesDrawer from 'smiles-drawer';
   templateUrl: './similarity.component.html',
   styleUrls: ['./similarity.component.css']
 })
-export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
+export class SimilarityComponent implements OnInit, AfterViewInit {
   
 
   constructor(public similarity: Similarity,
@@ -20,9 +20,9 @@ export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
   spaces: {};
   space: string;
   version: string;
-  result: [];
-  smileSrc: [];
-  nameSrc: [];
+  result = [];
+  smileSrc = [];
+  nameSrc = [];
 
   ngOnInit() {
 
@@ -44,10 +44,6 @@ export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
       }
     );
   }
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    alert('ERROR');
-  }
-
   search() {
      // CAST VERSION
 
@@ -69,7 +65,7 @@ export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
     );
   }
 
-
+ 
   public change(fileList: FileList): void {
     const file = fileList[0];
     this.similarity.file = file;
@@ -100,18 +96,19 @@ export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
   }
 
   ngAfterViewInit() {
-    alert("ngAfterViewInit")
-    if (this.components !== undefined) {
-      this.components.forEach((child) => {
-        const options = {'width': 300, 'height': 150};
-        const smilesDrawer = new SmilesDrawer.Drawer(options);
-        SmilesDrawer.parse(child.nativeElement.textContent, function (tree) {
-          console.log(child.nativeElement.textContent);
-          smilesDrawer.draw(tree, child.nativeElement.id, 'light', false);
-          }, function (err) {
-            console.log(err);
+    this.components.changes.subscribe(
+      () => {
+        if (this.components !== undefined) {
+          this.components.forEach((child) => {
+            const options = {'width': 300, 'height': 150};
+            const smilesDrawer = new SmilesDrawer.Drawer(options);
+            SmilesDrawer.parse(child.nativeElement.textContent, function (tree) {
+              smilesDrawer.draw(tree, child.nativeElement.id, 'light', false);
+              }, function (err) {
+                console.log(err);
+              });
           });
-      });
-    }
+        }
+    });
   }
 }

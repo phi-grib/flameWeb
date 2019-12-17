@@ -56,14 +56,14 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf = "this.result.length > 0">
 
 
-      <div class="col-12">
+      <div class="col-12" >
         <h4>Similarity Results</h4>
       </div>
 
-      <div class="col-12" *ngIf = "this.result">
+      <div class="col-12" *ngIf = "this.result.length > 0">
         <table class="table table-fixed table-bordered table-striped" id="data-table">
           <thead>
             <tr>
@@ -78,7 +78,7 @@
           <tbody>
             <ng-container *ngFor="let src of this.nameSrc;let i=index">
               <tr *ngFor="let pred of this.result[i].names;let j=index">
-                <td width="">{{i}} - {{j}}</td>
+                <td class="align-middle" width="">{{i}} - {{j}}</td>
                 <td class="align-middle" >{{this.nameSrc[i]}}</td>
                 <td class="align-middle"><canvas #cmp id="{{'query_' + i + '_' + j}}" width="300" height="150">{{this.smileSrc[i]}}</canvas></td>
                 <td class="align-middle">{{this.result[i].names[j]}}</td>
