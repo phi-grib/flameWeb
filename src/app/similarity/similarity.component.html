@@ -2,51 +2,70 @@
     <div class="row">
       <div class="col-8">
 
-        <form class="form">
+      
 
-          <div class="row mt-4">
-           <div class="col-3">
-            <label class="btn btn-outline-primary btn-lg" for="my-file-selector">
-              <input id="my-file-selector" type="file" style="display:none;" accept=".sdf" (change)="change($event.target.files)">
-              BROWSE FILE
-            </label>
+      <div class="row mt-4">
+          <div class="col-3">
+          <label class="btn btn-outline-primary btn-lg" for="my-file-selector">
+            <input id="my-file-selector" type="file" style="display:none;" accept=".sdf" (change)="change($event.target.files)">
+            BROWSE FILE
+          </label>
+        </div>
+      </div> 
+        <!--<div class="form-group row">
+          <label class="col-2 control-label" for="ifile">Input </label>
+          <div class="col-10">
+              <div class="form-group">
+                <label for="exampleInputFile" class="bmd-label-floating">File input</label>
+                <input type="file" class="form-control-file" id="exampleInputFile">
+                <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+              </div>
           </div>
-        </div> 
-          <!--<div class="form-group row">
-            <label class="col-2 control-label" for="ifile">Input </label>
-            <div class="col-10">
-                <div class="form-group">
-                  <label for="exampleInputFile" class="bmd-label-floating">File input</label>
-                  <input type="file" class="form-control-file" id="exampleInputFile">
-                  <small class="text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+        </div>-->
+
+        <div class="form-group ">
+          <label for="space">Space</label>
+              <select class="form-control w-50" [(ngModel)]="this.space" name="space"> 
+                <option *ngFor="let value of objectKeys(this.spaces)" [value]='value'>
+                {{value}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group w-50">
+          <label for="version">Version</label>
+            <select class="form-control" [(ngModel)]="this.version" name="version"> 
+                <option *ngFor="let value of this.spaces[this.space]" [value]='value'>
+                {{value}}
+                </option>
+            </select>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label">Distance type</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                  <label class="form-check-label" for="gridRadios1">
+                    Euclidian
+                  </label>
                 </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                  <label class="form-check-label" for="gridRadios2">
+                   Tanimoto
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>-->
-
-          <div class="form-group row">
-            <label class="col-2 control-label" for="space">space</label>
-            <div class="col-10">
-               <select class="form-control" [(ngModel)]="this.space" name="space"> 
-                  <option *ngFor="let value of objectKeys(this.spaces)" [value]='value'>
-                  {{value}}
-                  </option>
-              </select>
-            </div>
+          </fieldset>
+        <div class="form-group w-25">
+            <label for="inputPassword6">Cutoff</label>
+            <input type="number" id="cutoff" class="form-control mx-sm-1" aria-describedby="cutoffhelp">
+            <small id="cutoffhelp" class="text-muted">
+              Distance cutoff.
+            </small>
           </div>
-
-          <div class="form-group row">
-            <label class="col-2 control-label" for="version">version</label>
-            <div class="col-10">
-             <select class="form-control" [(ngModel)]="this.version" name="version"> 
-                  <option *ngFor="let value of this.spaces[this.space]" [value]='value'>
-                  {{value}}
-                  </option>
-              </select>
-            </div>
-          </div>
-
-        </form>
-
       </div>
 
       <div class="col-4 ">
