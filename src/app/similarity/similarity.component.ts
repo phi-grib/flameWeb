@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit, OnChanges} from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, AfterViewInit} from '@angular/core';
 import { Similarity } from '../Globals';
 import { SimilarityService} from './similarity.service';
 import * as SmilesDrawer from 'smiles-drawer';
@@ -8,7 +8,7 @@ import * as SmilesDrawer from 'smiles-drawer';
   templateUrl: './similarity.component.html',
   styleUrls: ['./similarity.component.css']
 })
-export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
+export class SimilarityComponent implements OnInit, AfterViewInit {
   
 
   constructor(public similarity: Similarity,
@@ -44,10 +44,6 @@ export class SimilarityComponent implements OnInit, AfterViewInit , OnChanges {
       }
     );
   }
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    alert('ERROR');
-  }
-
   search() {
      // CAST VERSION
 
