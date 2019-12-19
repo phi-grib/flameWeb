@@ -10,7 +10,7 @@ import * as SmilesDrawer from 'smiles-drawer';
 })
 export class SimilarityComponent implements OnInit, AfterViewInit {
 
-  num_cutoff = '1';
+  num_cutoff = '10';
   dist_cutoff = '0.7';
 
   constructor(public similarity: Similarity,
