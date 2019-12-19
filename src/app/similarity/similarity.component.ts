@@ -61,6 +61,7 @@ export class SimilarityComponent implements OnInit, AfterViewInit {
       },
       error => {
         console.log(error.message);
+        alert(error.status);
         alert(error.message);
       }
     );
