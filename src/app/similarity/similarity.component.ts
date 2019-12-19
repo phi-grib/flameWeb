@@ -9,7 +9,9 @@ import * as SmilesDrawer from 'smiles-drawer';
   styleUrls: ['./similarity.component.css']
 })
 export class SimilarityComponent implements OnInit, AfterViewInit {
-  
+
+  num_cutoff = '1';
+  dist_cutoff = '0.7';
 
   constructor(public similarity: Similarity,
     private service: SimilarityService) { }
@@ -18,8 +20,8 @@ export class SimilarityComponent implements OnInit, AfterViewInit {
   objectKeys = Object.keys;
   fileContent: any;
   spaces: {};
-  space: string;
-  version: string;
+  space: string = 'Space1';
+  version: string = 'dev';
   result = [];
   smileSrc = [];
   nameSrc = [];
@@ -46,13 +48,12 @@ export class SimilarityComponent implements OnInit, AfterViewInit {
   }
   search() {
      // CAST VERSION
-
     this.version = this.version.replace('ver', '');
     this.version = (this.version === 'dev') ? '0' : this.version;
     this.result = [];
     this.nameSrc = [];
     this.smileSrc = [];
-    this.service.search(this.space, this.version).subscribe(
+    this.service.search(this.space, this.version, this.num_cutoff, this.dist_cutoff).subscribe(
       result => {
         this.result = result.search_results;
         this.nameSrc = result.obj_nam;
