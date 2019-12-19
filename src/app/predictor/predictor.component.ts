@@ -28,7 +28,7 @@ export class PredictorComponent implements OnInit, OnChanges {
       result => {
         this.prediction.result = result;
         console.log(this.prediction.result);
-        this.router.navigate(['/prediction']);
+        this.router.navigate(['/modeling/prediction']);
         this.prediction.predicting = false;
         setTimeout(function () {
           $('#options a:last-child').tab('show'); // Select first tab

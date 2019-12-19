@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PlatformLocation  } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'flameweb';
+
+  constructor(private platformLocation: PlatformLocation) {
+    const imageSource = this.platformLocation.pathname + 'assets/images/etransafe_logo@2x.png';
+    }
 }
+
+

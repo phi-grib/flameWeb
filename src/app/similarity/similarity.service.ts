@@ -19,9 +19,6 @@ export class SimilarityService {
   search(space_name: string, version: string): Observable<any> {
     const formData = new FormData();
     formData.append('SDF', this.similarity.file);
-    console.log("Send");
-    console.log(space_name);
-    console.log(version);
     const url: string = environment.baseUrl_search + 'space/' + space_name + '/version/' + version;
     return this.http.put(url, formData);
   }
